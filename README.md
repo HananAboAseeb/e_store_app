@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="center">
 
 # 🏗️ Flutter Clean Architecture Template
@@ -165,3 +166,7 @@ After `mason make feature ...`, wire it up in **3 steps**:
 [Report Bug](https://github.com/MokarmDev/flutter-clean-architecture-template/issues) · [Request Feature](https://github.com/MokarmDev/flutter-clean-architecture-template/issues)
 
 </div>
+=======
+# e_store_app
+Flutter e-commerce app with Clean Architecture
+>>>>>>> 19a490cd9683c03334c2afd8d6d4f574a02dcfed
