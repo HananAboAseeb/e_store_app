@@ -43,19 +43,19 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **⚠️ CRITICAL**: Must be completed before page-level UI wiring begins.
 
-- [ ] T013 Create UserEntity extending Equatable in `lib/features/auth/domain/entities/user_entity.dart`
-- [ ] T014 [P] Create CountryCodeEntity in `lib/features/auth/domain/entities/country_code_entity.dart`
-- [ ] T015 Define AuthRepository interface contract in `lib/features/auth/domain/repositories/auth_repository.dart`
-- [ ] T016 Create LoginUseCase in `lib/features/auth/domain/usecases/login_usecase.dart`
-- [ ] T017 [P] Create RegisterUseCase in `lib/features/auth/domain/usecases/register_usecase.dart`
-- [ ] T018 [P] Create VerifyOtpUseCase in `lib/features/auth/domain/usecases/verify_otp_usecase.dart`
-- [ ] T019 [P] Create ForgotPasswordUseCase in `lib/features/auth/domain/usecases/forgot_password_usecase.dart`
-- [ ] T020 [P] Create ResetPasswordUseCase in `lib/features/auth/domain/usecases/reset_password_usecase.dart`
-- [ ] T021 Create UserModel data model extending UserEntity with JSON methods in `lib/features/auth/data/models/user_model.dart`
-- [ ] T022 Create AuthRemoteDataSource mock implementation with 1-2s delay in `lib/features/auth/data/datasources/auth_remote_datasource.dart`
-- [ ] T023 Implement AuthRepositoryImpl wrapping remote calls with safeCall in `lib/features/auth/data/repositories/auth_repository_impl.dart`
-- [ ] T024 Create AuthState classes extending Equatable in `lib/features/auth/presentation/cubit/auth_state.dart`
-- [ ] T025 Implement AuthCubit in `lib/features/auth/presentation/cubit/auth_cubit.dart`
+- [X] T013 Create UserEntity extending Equatable in `lib/features/auth/domain/entities/user_entity.dart`
+- [X] T014 [P] Create CountryCodeEntity in `lib/features/auth/domain/entities/country_code_entity.dart`
+- [X] T015 Define AuthRepository interface contract in `lib/features/auth/domain/repositories/auth_repository.dart`
+- [X] T016 Create LoginUseCase in `lib/features/auth/domain/usecases/login_usecase.dart`
+- [X] T017 [P] Create RegisterUseCase in `lib/features/auth/domain/usecases/register_usecase.dart`
+- [X] T018 [P] Create VerifyOtpUseCase in `lib/features/auth/domain/usecases/verify_otp_usecase.dart`
+- [X] T019 [P] Create ForgotPasswordUseCase in `lib/features/auth/domain/usecases/forgot_password_usecase.dart`
+- [X] T020 [P] Create ResetPasswordUseCase in `lib/features/auth/domain/usecases/reset_password_usecase.dart`
+- [X] T021 Create UserModel data model extending UserEntity with JSON methods in `lib/features/auth/data/models/user_model.dart`
+- [X] T022 Create AuthRemoteDataSource mock implementation with 1-2s delay in `lib/features/auth/data/datasources/auth_remote_datasource.dart`
+- [X] T023 Implement AuthRepositoryImpl wrapping remote calls with safeCall in `lib/features/auth/data/repositories/auth_repository_impl.dart`
+- [X] T024 Create AuthState classes extending Equatable in `lib/features/auth/presentation/cubit/auth_state.dart`
+- [X] T025 Implement AuthCubit in `lib/features/auth/presentation/cubit/auth_cubit.dart`
 
 **Checkpoint**: Core foundation ready — page implementation can now begin.
 
