@@ -80,8 +80,8 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **Independent Test**: Navigate to `/login`, enter credentials, toggle password visibility, tap "Next", observe mock loading, and verify navigation to `/home`.
 
-- [ ] T028 [US2] Implement LoginPage layout and form controls in `lib/features/auth/presentation/pages/login_page.dart`
-- [ ] T029 [US2] Connect LoginPage forms to AuthCubit.login() and handle state transitions in `lib/features/auth/presentation/pages/login_page.dart`
+- [X] T028 [US2] Implement LoginPage layout and form controls in `lib/features/auth/presentation/pages/login_page.dart`
+- [X] T029 [US2] Connect LoginPage forms to AuthCubit.login() and handle state transitions in `lib/features/auth/presentation/pages/login_page.dart`
 
 **Checkpoint**: User Stories 1 and 2 work independently.
 
