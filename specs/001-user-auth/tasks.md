@@ -117,8 +117,8 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **Independent Test**: Navigate to `/forgot-password`, select SMS/Email option card, tap "Next", and verify navigation to `/verification`.
 
-- [ ] T036 [US5] Implement ForgotPasswordPage layout with SelectionCard choices in `lib/features/auth/presentation/pages/forgot_password_page.dart`
-- [ ] T037 [US5] Connect ForgotPasswordPage to AuthCubit.forgotPassword() and trigger navigation in `lib/features/auth/presentation/pages/forgot_password_page.dart`
+- [X] T036 [US5] Implement ForgotPasswordPage layout with SelectionCard choices in `lib/features/auth/presentation/pages/forgot_password_page.dart`
+- [X] T037 [US5] Connect ForgotPasswordPage to AuthCubit.forgotPassword() and trigger navigation in `lib/features/auth/presentation/pages/forgot_password_page.dart`
 
 ---
 
