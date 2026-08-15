@@ -104,10 +104,10 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **Independent Test**: Navigate to `/verification`, type digits on custom keypad, verify 4th digit auto-submit, check green success / red error box states, and test 47s countdown timer.
 
-- [ ] T032 [P] [US4] Build PinInput widget with 4 box fill/active/success/error states in `lib/features/auth/presentation/widgets/pin_input.dart`
-- [ ] T033 [P] [US4] Build NumericKeyboard widget with 3x4 grid and timer in `lib/features/auth/presentation/widgets/numeric_keyboard.dart`
-- [ ] T034 [US4] Implement VerificationPage layout combining PinInput, NumericKeyboard, and timer in `lib/features/auth/presentation/pages/verification_page.dart`
-- [ ] T035 [US4] Connect VerificationPage to AuthCubit.verifyOtp() with 4th-digit auto-submit and error shake state in `lib/features/auth/presentation/pages/verification_page.dart`
+- [X] T032 [P] [US4] Build PinInput widget with 4 box fill/active/success/error states in `lib/features/auth/presentation/widgets/pin_input.dart`
+- [X] T033 [P] [US4] Build NumericKeyboard widget with 3x4 grid and timer in `lib/features/auth/presentation/widgets/numeric_keyboard.dart`
+- [X] T034 [US4] Implement VerificationPage layout combining PinInput, NumericKeyboard, and timer in `lib/features/auth/presentation/pages/verification_page.dart`
+- [X] T035 [US4] Connect VerificationPage to AuthCubit.verifyOtp() with 4th-digit auto-submit and error shake state in `lib/features/auth/presentation/pages/verification_page.dart`
 
 ---
 
