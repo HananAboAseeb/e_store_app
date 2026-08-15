@@ -8,6 +8,8 @@ class PhoneInputField extends StatelessWidget {
   final String selectedDialCode;
   final VoidCallback? onCountryTap;
   final ValueChanged<String>? onChanged;
+  final String? Function(String?)? validator;
+  final String hintText;
 
   const PhoneInputField({
     super.key,
@@ -16,6 +18,8 @@ class PhoneInputField extends StatelessWidget {
     this.selectedDialCode = '+1',
     this.onCountryTap,
     this.onChanged,
+    this.validator,
+    this.hintText = 'Your number',
   });
 
   @override
@@ -24,11 +28,12 @@ class PhoneInputField extends StatelessWidget {
       height: 56.h,
       child: TextFormField(
         controller: controller,
+        validator: validator,
         keyboardType: TextInputType.phone,
         onChanged: onChanged,
         style: AppTypography.body,
         decoration: InputDecoration(
-          hintText: 'Phone Number',
+          hintText: hintText,
           hintStyle: AppTypography.bodySmall,
           filled: true,
           fillColor: AppColors.surface,
@@ -76,6 +81,14 @@ class PhoneInputField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
             borderSide: const BorderSide(color: AppColors.primary400, width: 1.5),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
+            borderSide: const BorderSide(color: AppColors.error, width: 1.5),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
+            borderSide: const BorderSide(color: AppColors.error, width: 1.5),
           ),
         ),
       ),

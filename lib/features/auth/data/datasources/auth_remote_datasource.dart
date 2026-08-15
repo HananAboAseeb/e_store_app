@@ -5,7 +5,8 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> register(String email, String password, String phoneNumber);
   Future<UserModel> verifyOtp(String email, String otpCode);
   Future<bool> forgotPassword(String email, String method);
-  Future<UserModel> resetPassword(String email, String newPassword, String confirmPassword);
+  Future<UserModel> resetPassword(
+      String email, String newPassword, String confirmPassword);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -24,7 +25,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> register(String email, String password, String phoneNumber) async {
+  Future<UserModel> register(
+      String email, String password, String phoneNumber) async {
     await Future.delayed(const Duration(milliseconds: 1500));
     if (email == 'error@shopx.com') {
       throw Exception('Email address is already in use.');
@@ -51,7 +53,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> resetPassword(String email, String newPassword, String confirmPassword) async {
+  Future<UserModel> resetPassword(
+      String email, String newPassword, String confirmPassword) async {
     await Future.delayed(const Duration(milliseconds: 1500));
     if (newPassword != confirmPassword) {
       throw Exception('Passwords do not match.');

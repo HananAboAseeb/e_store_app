@@ -93,8 +93,8 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **Independent Test**: Navigate to `/register`, fill form, tap "Next", observe loading indicator, and verify navigation to `/verification`.
 
-- [ ] T030 [US3] Implement RegisterPage layout with phone country dropdown in `lib/features/auth/presentation/pages/register_page.dart`
-- [ ] T031 [US3] Connect RegisterPage form to AuthCubit.register() and navigate to `/verification` in `lib/features/auth/presentation/pages/register_page.dart`
+- [X] T030 [US3] Implement RegisterPage layout with phone country dropdown in `lib/features/auth/presentation/pages/register_page.dart`
+- [X] T031 [US3] Connect RegisterPage form to AuthCubit.register() and navigate to `/verification` in `lib/features/auth/presentation/pages/register_page.dart`
 
 ---
 
