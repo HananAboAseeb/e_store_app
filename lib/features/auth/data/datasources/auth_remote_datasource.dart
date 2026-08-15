@@ -1,4 +1,3 @@
-import '../../../../core/errors/exceptions.dart';
 import '../models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
@@ -19,7 +18,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> login(String email, String password) async {
     await Future.delayed(const Duration(milliseconds: 1500));
     if (email == 'error@shopx.com' || password == 'error') {
-      throw ServerException('Invalid credentials. Please check your email or password.');
+      throw Exception('Invalid credentials. Please check your email or password.');
     }
     return UserModel.mock(email: email);
   }
@@ -28,7 +27,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> register(String email, String password, String phoneNumber) async {
     await Future.delayed(const Duration(milliseconds: 1500));
     if (email == 'error@shopx.com') {
-      throw ServerException('Email address is already in use.');
+      throw Exception('Email address is already in use.');
     }
     return UserModel.mock(email: email, phone: phoneNumber);
   }
@@ -37,7 +36,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> verifyOtp(String email, String otpCode) async {
     await Future.delayed(const Duration(milliseconds: 1200));
     if (otpCode == '0000') {
-      throw ServerException('Invalid verification code. Please try again.');
+      throw Exception('Invalid verification code. Please try again.');
     }
     return UserModel.mock(email: email);
   }
@@ -46,7 +45,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<bool> forgotPassword(String email, String method) async {
     await Future.delayed(const Duration(milliseconds: 1200));
     if (email == 'error@shopx.com') {
-      throw ServerException('Account not found with provided email.');
+      throw Exception('Account not found with provided email.');
     }
     return true;
   }
@@ -55,7 +54,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> resetPassword(String email, String newPassword, String confirmPassword) async {
     await Future.delayed(const Duration(milliseconds: 1500));
     if (newPassword != confirmPassword) {
-      throw ServerException('Passwords do not match.');
+      throw Exception('Passwords do not match.');
     }
     return UserModel.mock(email: email);
   }

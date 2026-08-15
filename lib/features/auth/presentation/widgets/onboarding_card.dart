@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_theme.dart';
 
 class OnboardingCard extends StatelessWidget {
@@ -32,7 +32,7 @@ class OnboardingCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppColors.cardRadius.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
+            color: Colors.black.withOpacity(0.08),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),

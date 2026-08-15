@@ -35,8 +35,10 @@ class CustomNetworkImage extends StatelessWidget {
         fit: fit,
         placeholder: (context, url) =>
             placeholder ??
-            CircularProgressIndicator(
-              constraints: BoxConstraints(maxHeight: 20.h, maxWidth: 20.w),
+            SizedBox(
+              width: 20.w,
+              height: 20.h,
+              child: const CircularProgressIndicator(strokeWidth: 2.0),
             ),
         errorWidget: (context, url, error) =>
             errorWidget ?? const Icon(Icons.error, color: Colors.red),

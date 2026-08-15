@@ -67,8 +67,8 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **Independent Test**: Navigate to `/start`, verify ShopX logo, title, subtitle, "Get Started" button, and "Login" link, and confirm tapping triggers correct route transitions.
 
-- [ ] T026 [US1] Create ShopXLogo branding widget in `lib/features/auth/presentation/widgets/shopx_logo.dart`
-- [ ] T027 [US1] Implement StartPage layout & navigation triggers in `lib/features/auth/presentation/pages/start_page.dart`
+- [X] T026 [US1] Create ShopXLogo branding widget in `lib/features/auth/presentation/widgets/shopx_logo.dart`
+- [X] T027 [US1] Implement StartPage layout & navigation triggers in `lib/features/auth/presentation/pages/start_page.dart`
 
 **Checkpoint**: User Story 1 fully functional and testable independently.
 

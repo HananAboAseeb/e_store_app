@@ -40,7 +40,7 @@ class AppTheme {
           color: AppColors.gray900,
         ),
       ),
-      cardTheme: CardThemeData(
+      cardTheme: CardTheme(
         color: AppColors.white,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -161,7 +161,7 @@ class AppTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.gray100,
-        selectedColor: AppColors.primary.withValues(alpha: 0.2),
+        selectedColor: AppColors.primary.withOpacity(0.2),
         labelStyle: const TextStyle(
           fontFamily: AppFonts.appFontFamily,
           fontSize: 12,
@@ -205,7 +205,7 @@ class AppTheme {
           color: AppColors.white,
         ),
       ),
-      cardTheme: CardThemeData(
+      cardTheme: CardTheme(
         color: AppColors.darkCard,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -326,7 +326,7 @@ class AppTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.darkCard,
-        selectedColor: AppColors.primary.withValues(alpha: 0.3),
+        selectedColor: AppColors.primary.withOpacity(0.3),
         labelStyle: const TextStyle(
           fontFamily: AppFonts.appFontFamily,
           fontSize: 12,
