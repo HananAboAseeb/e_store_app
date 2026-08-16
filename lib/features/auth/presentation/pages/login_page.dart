@@ -116,6 +116,26 @@ class _LoginPageState extends State<LoginPage> {
                                 return null;
                               },
                             ),
+                            SizedBox(height: 8.h),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.push(
+                                    '/forgot-password',
+                                    extra: _emailController.text.trim(),
+                                  );
+                                },
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: AppTypography.bodySmall.copyWith(
+                                    color: AppColors.primary400,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

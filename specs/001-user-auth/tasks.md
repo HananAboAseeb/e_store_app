@@ -157,9 +157,9 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **Purpose**: Wire all 8 routes and DI container registrations.
 
-- [ ] T042 Register 8 Auth routes (`/start`, `/login`, `/register`, `/verification`, `/forgot-password`, `/reset-password`, `/welcome`, `/error/max-attempts`) in `lib/config/routing/app_router.dart`
-- [ ] T043 Configure GetIt DI registrations in `lib/features/auth/auth_injection.dart` and call `initAuth()` in `lib/core/di/injection_container.dart`
-- [ ] T044 Update initial application route to `/start` for Phase 1 testing in `lib/config/routing/app_router.dart`
+- [X] T042 Register 8 Auth routes (`/start`, `/login`, `/register`, `/verification`, `/forgot-password`, `/reset-password`, `/welcome`, `/error/max-attempts`) in `lib/config/routing/app_router.dart`
+- [X] T043 Configure GetIt DI registrations in `lib/features/auth/auth_injection.dart` and call `initAuth()` in `lib/core/di/injection_container.dart`
+- [X] T044 Update initial application route to `/start` for Phase 1 testing in `lib/config/routing/app_router.dart`
 
 ---
 
