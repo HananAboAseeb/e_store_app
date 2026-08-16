@@ -139,7 +139,7 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **Independent Test**: Navigate to `/error/max-attempts`, verify dark overlay card, and dismiss with "Okay" button.
 
-- [ ] T040 [US7] Implement MaxAttemptsErrorPage layout and dismissal callback in `lib/features/auth/presentation/pages/max_attempts_error_page.dart`
+- [X] T040 [US7] Implement MaxAttemptsErrorPage layout and dismissal callback in `lib/features/auth/presentation/pages/max_attempts_error_page.dart`
 
 ---
 
@@ -149,7 +149,7 @@ description: "Task list for User Authentication (Auth) feature implementation"
 
 **Independent Test**: Navigate to `/welcome`, page through slides, check 3-dot pagination, and tap "Let's Start" to navigate to `/home`.
 
-- [ ] T041 [US8] Implement WelcomePage carousel combining OnboardingCards and dot indicators in `lib/features/auth/presentation/pages/welcome_page.dart`
+- [X] T041 [US8] Implement WelcomePage carousel combining OnboardingCards and dot indicators in `lib/features/auth/presentation/pages/welcome_page.dart`
 
 ---
 
