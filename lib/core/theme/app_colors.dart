@@ -30,8 +30,11 @@ class AppColors {
   static const Color border = Color(0xFFE5E5E5);
 
   // Radii Tokens
-  static const double buttonRadius = 12.0;
-  static const double inputRadius = 12.0;
-  static const double cardRadius = 16.0;
-  static const double pinBoxRadius = 8.0;
+  static const double buttonRadius = 24.0;
+  static const double inputRadius = 24.0;
+  static const double cardRadius = 20.0;
+  static const double pinBoxRadius = 12.0;
+
+  // Keypad & Input Fill Colors
+  static const Color keyFill = Color(0xFFE5E5E5);
 }

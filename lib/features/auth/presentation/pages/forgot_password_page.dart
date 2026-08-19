@@ -5,10 +5,11 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
-import '../widgets/auth_action_section.dart';
-import '../widgets/auth_header.dart';
+import '../widgets/auth_avatar_header.dart';
+import '../widgets/auth_button_group.dart';
 import '../widgets/auth_scaffold.dart';
-import '../widgets/selection_card.dart';
+import '../widgets/auth_selection_list.dart';
+import 'verification_page.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   final String email;
@@ -23,10 +24,22 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  String _selectedMethod = 'sms';
+  int _selectedIndex = 0;
+
+  final List<SelectionItem> _recoveryOptions = const [
+    SelectionItem(
+      title: 'SMS',
+      value: 'sms',
+    ),
+    SelectionItem(
+      title: 'Email',
+      value: 'email',
+    ),
+  ];
 
   void _onNext() {
-    context.read<AuthCubit>().forgotPassword(widget.email, _selectedMethod);
+    final selectedMethod = _recoveryOptions[_selectedIndex].value;
+    context.read<AuthCubit>().forgotPassword(widget.email, selectedMethod);
   }
 
   @override
@@ -34,7 +47,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthOtpSent) {
-          context.push('/verification', extra: state.email);
+          context.push(
+            '/verification',
+            extra: {
+              'email': state.email,
+              'mode': VerificationMode.passwordRecovery,
+              'phoneNumber': '+1 234 *****56',
+            },
+          );
         } else if (state is AuthError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -47,77 +67,35 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       },
       builder: (context, state) {
         return AuthScaffold(
-          backgroundImage: 'assets/images/bubbles3.png',
+          backgroundImage: 'assets/images/Bubbles4.png',
+          backgroundHeight: 260.0,
           showBackButton: true,
           child: Column(
             children: [
               const Spacer(flex: 1),
-
-              // Avatar Header
-              Center(
-                child: Container(
-                  width: 110.w,
-                  height: 110.w,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: const Color(0xFFFFB2D9),
-                    border: Border.all(color: Colors.white, width: 4.w),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.08),
-                        blurRadius: 16.r,
-                        offset: const Offset(0, 6),
-                      ),
-                    ],
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    '👩‍💼',
-                    style: TextStyle(fontSize: 56.sp),
-                  ),
-                ),
-              ),
-              SizedBox(height: 24.h),
-
-              const AuthHeader(
+              const AuthAvatarHeader(
                 title: 'Password Recovery',
                 subtitle: 'How would you like to Restore\nyour Password?',
-                isCentered: true,
-                titleFontSize: 24,
               ),
               SizedBox(height: 28.h),
 
-              // Selection cards (SMS / Email)
-              SelectionCard(
-                title: 'SMS',
-                subtitle: 'Send verification code via SMS text message',
-                icon: Icons.sms_rounded,
-                isSelected: _selectedMethod == 'sms',
-                onTap: () {
+              // Simple Figma-style Selection List
+              AuthSelectionList(
+                items: _recoveryOptions,
+                selectedIndex: _selectedIndex,
+                onSelected: (index) {
                   setState(() {
-                    _selectedMethod = 'sms';
-                  });
-                },
-              ),
-              SizedBox(height: 12.h),
-              SelectionCard(
-                title: 'Email',
-                subtitle: 'Send verification code via email address',
-                icon: Icons.email_rounded,
-                isSelected: _selectedMethod == 'email',
-                onTap: () {
-                  setState(() {
-                    _selectedMethod = 'email';
+                    _selectedIndex = index;
                   });
                 },
               ),
 
               const Spacer(flex: 2),
 
-              AuthActionSection(
-                buttonText: 'Next',
+              AuthButtonGroup(
+                primaryText: 'Next',
                 isLoading: state is AuthLoading,
-                onButtonPressed: state is AuthLoading ? null : _onNext,
+                onPrimaryPressed: state is AuthLoading ? null : _onNext,
               ),
             ],
           ),

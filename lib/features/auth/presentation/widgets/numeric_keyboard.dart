@@ -125,7 +125,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
         child: ElevatedButton(
           onPressed: () => widget.onNumberPressed(number),
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.surface,
+            backgroundColor: AppColors.keyFill,
             foregroundColor: AppColors.textPrimary,
             elevation: 0,
             shape: RoundedRectangleBorder(
@@ -154,7 +154,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.surface,
+            backgroundColor: AppColors.keyFill,
             foregroundColor: AppColors.textPrimary,
             elevation: 0,
             shape: RoundedRectangleBorder(

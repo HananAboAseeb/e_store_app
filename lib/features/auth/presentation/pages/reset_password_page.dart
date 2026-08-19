@@ -6,8 +6,8 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/auth_text_field.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
-import '../widgets/auth_action_section.dart';
-import '../widgets/auth_header.dart';
+import '../widgets/auth_avatar_header.dart';
+import '../widgets/auth_button_group.dart';
 import '../widgets/auth_scaffold.dart';
 
 class ResetPasswordPage extends StatefulWidget {
@@ -51,7 +51,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         if (state is AuthPasswordReset) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Password updated successfully! Please login with your new password.'),
+              content: Text(
+                  'Password updated successfully! Please login with your new password.'),
               backgroundColor: AppColors.success,
             ),
           );
@@ -68,7 +69,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       },
       builder: (context, state) {
         return AuthScaffold(
-          backgroundImage: 'assets/images/bubbles3.png',
+          backgroundImage: 'assets/images/Bubbles4.png',
+          backgroundHeight: 260.0,
           showBackButton: true,
           child: Column(
             children: [
@@ -78,41 +80,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        SizedBox(height: 20.h),
-                        // Avatar Header
-                        Center(
-                          child: Container(
-                            width: 110.w,
-                            height: 110.w,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: const Color(0xFFFFB2D9),
-                              border: Border.all(color: Colors.white, width: 4.w),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.08),
-                                  blurRadius: 16.r,
-                                  offset: const Offset(0, 6),
-                                ),
-                              ],
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                              '👩‍💼',
-                              style: TextStyle(fontSize: 56.sp),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 24.h),
-
-                        const AuthHeader(
+                        SizedBox(height: 12.h),
+                        const AuthAvatarHeader(
                           title: 'Setup New Password',
-                          subtitle: 'Please, setup a new password for\nyour account',
-                          isCentered: true,
-                          titleFontSize: 24,
+                          subtitle:
+                              'Please, setup a new password for\nyour account',
                         ),
                         SizedBox(height: 28.h),
-
                         AuthTextField(
                           hintText: 'New Password',
                           controller: _newPasswordController,
@@ -147,10 +121,10 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   ),
                 ),
               ),
-              AuthActionSection(
-                buttonText: 'Save',
+              AuthButtonGroup(
+                primaryText: 'Save',
                 isLoading: state is AuthLoading,
-                onButtonPressed: state is AuthLoading ? null : _onSave,
+                onPrimaryPressed: state is AuthLoading ? null : _onSave,
               ),
             ],
           ),

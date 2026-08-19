@@ -11,12 +11,21 @@ import '../widgets/auth_scaffold.dart';
 import '../widgets/numeric_keyboard.dart';
 import '../widgets/pin_input.dart';
 
+enum VerificationMode {
+  register,
+  passwordRecovery,
+}
+
 class VerificationPage extends StatefulWidget {
   final String email;
+  final VerificationMode mode;
+  final String? phoneNumber;
 
   const VerificationPage({
     super.key,
     required this.email,
+    this.mode = VerificationMode.register,
+    this.phoneNumber,
   });
 
   @override
@@ -52,7 +61,10 @@ class _VerificationPageState extends State<VerificationPage> {
   }
 
   void _onResendPressed() {
-    context.read<AuthCubit>().forgotPassword(widget.email, 'email');
+    context.read<AuthCubit>().forgotPassword(
+          widget.email,
+          widget.mode == VerificationMode.passwordRecovery ? 'sms' : 'email',
+        );
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('A new verification code has been sent.'),
@@ -63,6 +75,9 @@ class _VerificationPageState extends State<VerificationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isRecovery = widget.mode == VerificationMode.passwordRecovery;
+    final phoneText = widget.phoneNumber ?? '+98*******22';
+
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthOtpVerified) {
@@ -71,9 +86,13 @@ class _VerificationPageState extends State<VerificationPage> {
             _hasError = false;
           });
           final router = GoRouter.of(context);
-          Future.delayed(const Duration(milliseconds: 700), () {
+          Future.delayed(const Duration(milliseconds: 600), () {
             if (mounted) {
-              router.go('/welcome');
+              if (isRecovery) {
+                router.push('/reset-password', extra: widget.email);
+              } else {
+                router.go('/welcome');
+              }
             }
           });
         } else if (state is AuthError) {
@@ -109,12 +128,28 @@ class _VerificationPageState extends State<VerificationPage> {
                     child: Column(
                       children: [
                         const Spacer(flex: 1),
-                        const AuthHeader(
-                          title: 'Verification',
-                          subtitle:
-                              'We sent a code to your Email\nAddress, Enter it below.',
+
+                        // Header Matching Figma 08
+                        AuthHeader(
+                          title: isRecovery ? 'Password Recovery' : 'Verification',
+                          subtitle: isRecovery
+                              ? 'Enter 4-digits code we sent you\non your phone number'
+                              : 'We sent a code to your Email\nAddress, Enter it below.',
                           isCentered: true,
+                          titleFontSize: isRecovery ? 28.0 : 34.0,
                         ),
+
+                        if (isRecovery) ...[
+                          SizedBox(height: 8.h),
+                          Text(
+                            phoneText,
+                            style: AppTypography.body.copyWith(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                        ],
                         SizedBox(height: 32.h),
 
                         // PIN Boxes (Scale-safe, Zero Overflow)
@@ -136,7 +171,7 @@ class _VerificationPageState extends State<VerificationPage> {
 
                         const Spacer(flex: 2),
 
-                        // Custom Numeric Keypad
+                        // Custom Numeric Keypad (Background #E5E5E5)
                         NumericKeyboard(
                           onNumberPressed:
                               isLoading ? (_) {} : _onNumberPressed,

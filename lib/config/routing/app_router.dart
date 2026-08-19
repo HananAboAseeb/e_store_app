@@ -41,8 +41,29 @@ final router = GoRouter(
       path: RouteNames.kVerificationPage,
       name: 'verification',
       builder: (context, state) {
-        final email = (state.extra as String?) ?? '';
-        return VerificationPage(email: email);
+        final extra = state.extra;
+        String email = '';
+        VerificationMode mode = VerificationMode.register;
+        String? phoneNumber;
+
+        if (extra is Map<String, dynamic>) {
+          email = (extra['email'] as String?) ?? '';
+          mode = (extra['mode'] as VerificationMode?) ?? VerificationMode.register;
+          phoneNumber = extra['phoneNumber'] as String?;
+        } else if (extra is String) {
+          email = extra;
+        }
+
+        final modeQuery = state.uri.queryParameters['mode'];
+        if (modeQuery == 'recovery') {
+          mode = VerificationMode.passwordRecovery;
+        }
+
+        return VerificationPage(
+          email: email,
+          mode: mode,
+          phoneNumber: phoneNumber,
+        );
       },
     ),
     GoRoute(
