@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'config/routing/app_router.dart';
@@ -29,18 +28,16 @@ class MyApp extends StatelessWidget {
             designSize: const Size(360, 690),
             minTextAdapt: true,
             splitScreenMode: true,
-            builder: (context, child) => FlavorBanner(
-              child: MaterialApp.router(
-                title: AppStrings.appName,
-                debugShowCheckedModeBanner: false,
-                builder: (context, child) =>
-                    AppWrapper(child: child ?? const SizedBox.shrink()),
-                theme: isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
-                supportedLocales: context.supportedLocales,
-                localizationsDelegates: context.localizationDelegates,
-                locale: context.locale,
-                routerConfig: router,
-              ),
+            builder: (context, child) => MaterialApp.router(
+              title: AppStrings.appName,
+              debugShowCheckedModeBanner: false,
+              builder: (context, child) =>
+                  AppWrapper(child: child ?? const SizedBox.shrink()),
+              theme: isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
+              supportedLocales: context.supportedLocales,
+              localizationsDelegates: context.localizationDelegates,
+              locale: context.locale,
+              routerConfig: router,
             ),
           );
         },

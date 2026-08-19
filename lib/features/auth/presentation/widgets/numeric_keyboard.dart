@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 
 class NumericKeyboard extends StatefulWidget {
   final Function(int) onNumberPressed;
@@ -64,11 +65,11 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
       children: [
         // Grid Rows
         _buildRow([1, 2, 3]),
-        SizedBox(height: 12.h),
+        SizedBox(height: 10.h),
         _buildRow([4, 5, 6]),
-        SizedBox(height: 12.h),
+        SizedBox(height: 10.h),
         _buildRow([7, 8, 9]),
-        SizedBox(height: 12.h),
+        SizedBox(height: 10.h),
         // Bottom Row: Timer / Resend, 0, Backspace
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,11 +77,13 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
             // Timer or Resend Button
             _buildSpecialKey(
               child: Text(
-                _countdown > 0 ? '${_countdown}S' : 'Resend',
+                _countdown > 0 ? '${_countdown}s' : 'Resend',
                 style: AppTypography.body.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.sp,
-                  color: _countdown > 0 ? AppColors.textSecondary : AppColors.primary400,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15.sp,
+                  color: _countdown > 0
+                      ? AppColors.textSecondary
+                      : AppColors.primary400,
                 ),
               ),
               onTap: _countdown > 0
@@ -97,7 +100,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
               child: Icon(
                 Icons.backspace_outlined,
                 color: AppColors.textPrimary,
-                size: 22.sp,
+                size: 20.sp,
               ),
               onTap: widget.onBackspacePressed,
             ),
@@ -117,8 +120,8 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
   Widget _buildNumberKey(int number) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 6.w),
-        height: 60.h,
+        margin: EdgeInsets.symmetric(horizontal: 4.w),
+        height: 52.h,
         child: ElevatedButton(
           onPressed: () => widget.onNumberPressed(number),
           style: ElevatedButton.styleFrom(
@@ -126,15 +129,15 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
             foregroundColor: AppColors.textPrimary,
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(12.r),
             ),
             padding: EdgeInsets.zero,
           ),
           child: Text(
             number.toString(),
             style: AppTypography.h2.copyWith(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
+              fontSize: 22.sp,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -142,11 +145,12 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
     );
   }
 
-  Widget _buildSpecialKey({required Widget child, required VoidCallback? onTap}) {
+  Widget _buildSpecialKey(
+      {required Widget child, required VoidCallback? onTap}) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 6.w),
-        height: 60.h,
+        margin: EdgeInsets.symmetric(horizontal: 4.w),
+        height: 52.h,
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
@@ -154,7 +158,7 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
             foregroundColor: AppColors.textPrimary,
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(12.r),
             ),
             padding: EdgeInsets.zero,
           ),

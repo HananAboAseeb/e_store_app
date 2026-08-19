@@ -43,3 +43,4 @@ analyzer:
     prefer_const_constructors: ignore
     depend_on_referenced_packages: ignore
     constant_identifier_names: ignore
+    deprecated_member_use: ignore

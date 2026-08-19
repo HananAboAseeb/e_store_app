@@ -10,102 +10,124 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Stack(
-        children: [
-          // Soft Blue Gradient Background Glow at Top
-          Positioned(
-            top: -100.h,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 400.h,
-              decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  center: Alignment.center,
-                  radius: 0.8,
-                  colors: [
-                    AppColors.primary400.withOpacity(0.15),
-                    AppColors.primary200.withOpacity(0.05),
-                    Colors.transparent,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        body: Stack(
+          children: [
+            // Background Glow from Figma Asset
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: SizedBox(
+                height: 520.h,
+                child: Image.asset(
+                  'assets/images/faded_background.png',
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        gradient: RadialGradient(
+                          center: const Alignment(0, -0.4),
+                          radius: 0.85,
+                          colors: [
+                            AppColors.primary400.withOpacity(0.18),
+                            AppColors.primary100.withOpacity(0.06),
+                            Colors.transparent,
+                          ],
+                          stops: const [0.0, 0.5, 1.0],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+
+            // Main Screen Content
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Column(
+                  children: [
+                    const Spacer(flex: 3),
+
+                    // Center ShopX Branding (86.36 x 96 icon + exact ShopX asset)
+                    const ShopXLogo(),
+                    SizedBox(height: 18.h),
+
+                    // Subtitle
+                    Text(
+                      'Beautiful eCommerce UI Kit\nfor your online store',
+                      textAlign: TextAlign.center,
+                      style: AppTypography.bodySmall.copyWith(
+                        fontSize: 16.sp,
+                        color: AppColors.textSecondary,
+                        fontWeight: FontWeight.w400,
+                        height: 1.35,
+                      ),
+                    ),
+
+                    const Spacer(flex: 4),
+
+                    // Get Started Primary Button
+                    PrimaryButton(
+                      text: 'Get Started',
+                      onPressed: () {
+                        context.push('/register');
+                      },
+                    ),
+                    SizedBox(height: 24.h),
+
+                    // Already have an Account -> Link (Explicit LTR)
+                    GestureDetector(
+                      onTap: () {
+                        context.push('/login');
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 20.h),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          textDirection: TextDirection.ltr,
+                          children: [
+                            Text(
+                              'Already have an Account',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                color: AppColors.textPrimary,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(width: 10.w),
+                            Container(
+                              width: 32.w,
+                              height: 32.w,
+                              decoration: const BoxDecoration(
+                                color: AppColors.primary400,
+                                shape: BoxShape.circle,
+                              ),
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.arrow_forward_rounded,
+                                color: AppColors.textWhite,
+                                size: 18.sp,
+                                textDirection: TextDirection.ltr,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
                   ],
                 ),
               ),
             ),
-          ),
-          SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Column(
-                children: [
-                  const Spacer(flex: 2),
-                  // Center ShopX Branding & Subtitle
-                  const ShopXLogo(
-                    iconSize: 110,
-                    fontSize: 34,
-                  ),
-                  SizedBox(height: 20.h),
-                  Text(
-                    'Beautiful eCommerce UI Kit\nfor your online store',
-                    textAlign: TextAlign.center,
-                    style: AppTypography.bodySmall.copyWith(
-                      fontSize: 16.sp,
-                      color: AppColors.textSecondary,
-                      height: 1.4,
-                    ),
-                  ),
-                  const Spacer(flex: 3),
-
-                  // Bottom Actions: Primary Button + Account Link
-                  PrimaryButton(
-                    text: 'Get Started',
-                    onPressed: () {
-                      context.push('/register');
-                    },
-                  ),
-                  SizedBox(height: 24.h),
-                  GestureDetector(
-                    onTap: () {
-                      context.push('/login');
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 16.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Already have an Account',
-                            style: AppTypography.bodySmall.copyWith(
-                              fontSize: 15.sp,
-                              color: AppColors.textPrimary,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(width: 8.w),
-                          Container(
-                            width: 28.w,
-                            height: 28.w,
-                            decoration: const BoxDecoration(
-                              color: AppColors.primary400,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.arrow_forward_rounded,
-                              color: AppColors.textWhite,
-                              size: 16.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                ],
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

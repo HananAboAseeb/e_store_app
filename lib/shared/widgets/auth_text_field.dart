@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../core/theme/app_theme.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 
 class AuthTextField extends StatefulWidget {
   final String hintText;
@@ -41,58 +42,66 @@ class _AuthTextFieldState extends State<AuthTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 56.h,
-      child: TextFormField(
-        controller: widget.controller,
-        obscureText: widget.isPassword ? _obscureText : false,
-        keyboardType: widget.keyboardType,
-        validator: widget.validator,
-        onChanged: widget.onChanged,
-        readOnly: widget.readOnly,
-        onTap: widget.onTap,
-        style: AppTypography.body,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          hintStyle: AppTypography.bodySmall,
-          filled: true,
-          fillColor: AppColors.surface,
-          contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-          prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.isPassword
-              ? IconButton(
-                  icon: Icon(
-                    _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                    color: AppColors.textSecondary,
-                    size: 22.sp,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                )
-              : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
-            borderSide: BorderSide.none,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
-            borderSide: const BorderSide(color: AppColors.primary400, width: 1.5),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
-            borderSide: const BorderSide(color: AppColors.error, width: 1.5),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
-            borderSide: const BorderSide(color: AppColors.error, width: 1.5),
-          ),
+    return TextFormField(
+      controller: widget.controller,
+      obscureText: widget.isPassword ? _obscureText : false,
+      keyboardType: widget.keyboardType,
+      validator: widget.validator,
+      onChanged: widget.onChanged,
+      readOnly: widget.readOnly,
+      onTap: widget.onTap,
+      style: AppTypography.body.copyWith(
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w500,
+      ),
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        hintStyle: AppTypography.bodySmall.copyWith(
+          fontSize: 15.sp,
+          color: AppColors.textSecondary,
+        ),
+        filled: true,
+        fillColor: AppColors.surface,
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+        prefixIcon: widget.prefixIcon,
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                  color: AppColors.textSecondary,
+                  size: 20.sp,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              )
+            : null,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          borderSide: const BorderSide(color: AppColors.primary400, width: 1.5),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          borderSide: const BorderSide(color: AppColors.error, width: 1.2),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          borderSide: const BorderSide(color: AppColors.error, width: 1.5),
+        ),
+        errorStyle: TextStyle(
+          fontSize: 12.sp,
+          color: AppColors.error,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
+import '../widgets/auth_header.dart';
+import '../widgets/auth_scaffold.dart';
 import '../widgets/numeric_keyboard.dart';
 import '../widgets/pin_input.dart';
 
@@ -28,12 +31,11 @@ class _VerificationPageState extends State<VerificationPage> {
   void _onNumberPressed(int number) {
     if (_pin.length < 4) {
       setState(() {
-        _hasError = false;
         _pin += number.toString();
+        _hasError = false;
       });
 
       if (_pin.length == 4) {
-        // Auto-submit OTP verification
         context.read<AuthCubit>().verifyOtp(widget.email, _pin);
       }
     }
@@ -42,19 +44,19 @@ class _VerificationPageState extends State<VerificationPage> {
   void _onBackspacePressed() {
     if (_pin.isNotEmpty) {
       setState(() {
-        _hasError = false;
         _pin = _pin.substring(0, _pin.length - 1);
+        _hasError = false;
+        _isSuccess = false;
       });
     }
   }
 
   void _onResendPressed() {
-    // Call forgotPassword use case mock to simulate OTP resend
     context.read<AuthCubit>().forgotPassword(widget.email, 'email');
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Verification code resent to your email address.'),
-        backgroundColor: AppColors.success,
+        content: Text('A new verification code has been sent.'),
+        backgroundColor: AppColors.primary400,
       ),
     );
   }
@@ -69,14 +71,15 @@ class _VerificationPageState extends State<VerificationPage> {
             _hasError = false;
           });
           final router = GoRouter.of(context);
-          Future.delayed(const Duration(milliseconds: 600), () {
-            if (!mounted) return;
-            router.go('/welcome');
+          Future.delayed(const Duration(milliseconds: 700), () {
+            if (mounted) {
+              router.go('/welcome');
+            }
           });
         } else if (state is AuthError) {
           setState(() {
             _hasError = true;
-            _pin = ''; // Clear PIN on error
+            _isSuccess = false;
           });
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -90,113 +93,82 @@ class _VerificationPageState extends State<VerificationPage> {
       builder: (context, state) {
         final isLoading = state is AuthLoading;
 
-        return Scaffold(
-          backgroundColor: AppColors.background,
-          body: Stack(
-            children: [
-              // Soft blue gradient glow at top matching Figma design
-              Positioned(
-                top: -100.h,
-                left: 0,
-                right: 0,
-                child: Container(
-                  height: 400.h,
-                  decoration: BoxDecoration(
-                    gradient: RadialGradient(
-                      center: Alignment.center,
-                      radius: 0.8,
-                      colors: [
-                        AppColors.primary400.withOpacity(0.12),
-                        Colors.transparent,
+        return AuthScaffold(
+          backgroundImage: 'assets/images/bubbles3.png',
+          backgroundHeight: 250.0,
+          showBackButton: true,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
+                  ),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      children: [
+                        const Spacer(flex: 1),
+                        const AuthHeader(
+                          title: 'Verification',
+                          subtitle:
+                              'We sent a code to your Email\nAddress, Enter it below.',
+                          isCentered: true,
+                        ),
+                        SizedBox(height: 32.h),
+
+                        // PIN Boxes (Scale-safe, Zero Overflow)
+                        if (isLoading)
+                          SizedBox(
+                            height: 56.h,
+                            child: const Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.primary400,
+                              ),
+                            ),
+                          )
+                        else
+                          PinInput(
+                            pin: _pin,
+                            hasError: _hasError,
+                            isSuccess: _isSuccess,
+                          ),
+
+                        const Spacer(flex: 2),
+
+                        // Custom Numeric Keypad
+                        NumericKeyboard(
+                          onNumberPressed:
+                              isLoading ? (_) {} : _onNumberPressed,
+                          onBackspacePressed:
+                              isLoading ? () {} : _onBackspacePressed,
+                          onResendPressed:
+                              isLoading ? () {} : _onResendPressed,
+                        ),
+                        SizedBox(height: 20.h),
+
+                        // Cancel bottom link
+                        GestureDetector(
+                          onTap: () => context.pop(),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.h),
+                            child: Text(
+                              'Cancel',
+                              style: AppTypography.body.copyWith(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 12.h),
                       ],
                     ),
                   ),
                 ),
-              ),
-              SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 40.h),
-                      // Back Button Header Area
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: GestureDetector(
-                          onTap: () => context.pop(),
-                          child: Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            color: AppColors.textPrimary,
-                            size: 20.sp,
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      // Verification Title
-                      Text(
-                        'Verification',
-                        style: AppTypography.h1.copyWith(
-                          fontSize: 34.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 12.h),
-                      // Subtitle
-                      Text(
-                        'We sent a code to your Email\nAddress, Enter it below.',
-                        textAlign: TextAlign.center,
-                        style: AppTypography.bodySmall.copyWith(
-                          fontSize: 16.sp,
-                          color: AppColors.textSecondary,
-                          height: 1.4,
-                        ),
-                      ),
-                      SizedBox(height: 40.h),
-                      // Pin Input Boxes
-                      if (isLoading)
-                        SizedBox(
-                          height: 64.w,
-                          child: const Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.primary400,
-                            ),
-                          ),
-                        )
-                      else
-                        PinInput(
-                          pin: _pin,
-                          hasError: _hasError,
-                          isSuccess: _isSuccess,
-                        ),
-                      const Spacer(flex: 2),
-                      // Numeric Custom Keyboard
-                      NumericKeyboard(
-                        onNumberPressed: isLoading ? (_) {} : _onNumberPressed,
-                        onBackspacePressed: isLoading ? () {} : _onBackspacePressed,
-                        onResendPressed: isLoading ? () {} : _onResendPressed,
-                      ),
-                      SizedBox(height: 24.h),
-                      // Cancel bottom link
-                      GestureDetector(
-                        onTap: () => context.pop(),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.h),
-                          child: Text(
-                            'Cancel',
-                            style: AppTypography.body.copyWith(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.textPrimary,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 16.h),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+              );
+            },
           ),
         );
       },

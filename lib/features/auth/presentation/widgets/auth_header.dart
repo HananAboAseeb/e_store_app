@@ -1,70 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 
 class AuthHeader extends StatelessWidget {
   final String title;
-  final String subtitle;
-  final Widget? topLeading;
+  final String? subtitle;
+  final bool isCentered;
+  final double titleFontSize;
+  final double? titleHeight;
 
   const AuthHeader({
     super.key,
     required this.title,
-    required this.subtitle,
-    this.topLeading,
+    this.subtitle,
+    this.isCentered = false,
+    this.titleFontSize = 34.0,
+    this.titleHeight,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          isCentered ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Stack(
-          children: [
-            // Decorative Gradient Blob Top Area
-            Container(
-              height: 120.h,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.primary700.withOpacity(0.15),
-                    AppColors.primary400.withOpacity(0.02),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(32.r),
-                  bottomRight: Radius.circular(32.r),
-                ),
-              ),
-            ),
-            if (topLeading != null)
-              Positioned(
-                top: 50.h,
-                left: 16.w,
-                child: topLeading!,
-              ),
-          ],
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 12.h),
-              Text(
-                title,
-                style: AppTypography.h1,
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                subtitle,
-                style: AppTypography.bodySmall,
-              ),
-            ],
+        Text(
+          title,
+          textAlign: isCentered ? TextAlign.center : TextAlign.start,
+          style: AppTypography.h1.copyWith(
+            fontSize: titleFontSize.sp,
+            fontWeight: FontWeight.bold,
+            color: AppColors.textPrimary,
+            height: titleHeight,
           ),
         ),
+        if (subtitle != null) ...[
+          SizedBox(height: 12.h),
+          Text(
+            subtitle!,
+            textAlign: isCentered ? TextAlign.center : TextAlign.start,
+            style: AppTypography.bodySmall.copyWith(
+              fontSize: 16.sp,
+              color: AppColors.textSecondary,
+              height: 1.4,
+            ),
+          ),
+        ],
       ],
     );
   }
