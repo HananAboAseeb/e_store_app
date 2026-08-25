@@ -9,6 +9,7 @@ class PrimaryButton extends StatelessWidget {
   final bool isDisabled;
   final double? width;
   final double? height;
+  final TextStyle? textStyle;
 
   const PrimaryButton({
     super.key,
@@ -18,6 +19,7 @@ class PrimaryButton extends StatelessWidget {
     this.isDisabled = false,
     this.width,
     this.height,
+    this.textStyle,
   });
 
   @override
@@ -49,7 +51,7 @@ class PrimaryButton extends StatelessWidget {
               )
             : Text(
                 text,
-                style: AppTypography.buttonText,
+                style: textStyle ?? AppTypography.buttonText,
               ),
       ),
     );
