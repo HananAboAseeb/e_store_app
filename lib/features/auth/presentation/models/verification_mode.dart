@@ -1,0 +1,4 @@
+enum VerificationMode {
+  register,
+  passwordRecovery,
+}

@@ -5,11 +5,12 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
+import '../models/selection_item.dart';
+import '../models/verification_mode.dart';
 import '../widgets/auth_avatar_header.dart';
 import '../widgets/auth_button_group.dart';
 import '../widgets/auth_scaffold.dart';
 import '../widgets/auth_selection_list.dart';
-import 'verification_page.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   final String email;

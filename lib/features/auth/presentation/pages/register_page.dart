@@ -6,10 +6,12 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/auth_text_field.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
+import '../models/country_code.dart';
 import '../widgets/auth_action_section.dart';
 import '../widgets/auth_form_container.dart';
 import '../widgets/auth_header.dart';
 import '../widgets/auth_scaffold.dart';
+import '../widgets/country_picker_bottom_sheet.dart';
 import '../widgets/phone_input_field.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -48,51 +50,13 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _showCountryPicker() {
-    showModalBottomSheet(
-      context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-      ),
-      builder: (context) {
-        final countries = [
-          {'flag': '🇬🇧', 'name': 'United Kingdom', 'code': '+44'},
-          {'flag': '🇺🇸', 'name': 'United States', 'code': '+1'},
-          {'flag': '🇸🇦', 'name': 'Saudi Arabia', 'code': '+966'},
-          {'flag': '🇪🇬', 'name': 'Egypt', 'code': '+20'},
-          {'flag': '🇦🇪', 'name': 'UAE', 'code': '+971'},
-        ];
-
-        return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(16.w),
-                child: Text(
-                  'Select Country',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              ...countries.map(
-                (c) => ListTile(
-                  leading: Text(c['flag']!, style: TextStyle(fontSize: 24.sp)),
-                  title: Text(c['name']!),
-                  trailing: Text(c['code']!),
-                  onTap: () {
-                    setState(() {
-                      _selectedCountryFlag = c['flag']!;
-                      _selectedDialCode = c['code']!;
-                    });
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-            ],
-          ),
-        );
+    CountryPickerBottomSheet.show(
+      context,
+      onCountrySelected: (CountryCode country) {
+        setState(() {
+          _selectedCountryFlag = country.flag;
+          _selectedDialCode = country.dialCode;
+        });
       },
     );
   }

@@ -2,18 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
-
-class SelectionItem {
-  final String title;
-  final String? subtitle;
-  final String value;
-
-  const SelectionItem({
-    required this.title,
-    this.subtitle,
-    required this.value,
-  });
-}
+import '../models/selection_item.dart';
 
 class AuthSelectionList extends StatelessWidget {
   final List<SelectionItem> items;

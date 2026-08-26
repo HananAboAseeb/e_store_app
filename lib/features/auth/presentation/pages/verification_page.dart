@@ -6,15 +6,11 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
+import '../models/verification_mode.dart';
 import '../widgets/auth_header.dart';
 import '../widgets/auth_scaffold.dart';
 import '../widgets/numeric_keyboard.dart';
 import '../widgets/pin_input.dart';
-
-enum VerificationMode {
-  register,
-  passwordRecovery,
-}
 
 class VerificationPage extends StatefulWidget {
   final String email;

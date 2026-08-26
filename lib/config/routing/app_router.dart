@@ -7,6 +7,7 @@ import '../../features/auth/presentation/pages/max_attempts_error_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/auth/presentation/pages/reset_password_page.dart';
 import '../../features/auth/presentation/pages/start_page.dart';
+import '../../features/auth/presentation/models/verification_mode.dart';
 import '../../features/auth/presentation/pages/verification_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
