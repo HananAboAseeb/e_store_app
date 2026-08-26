@@ -63,7 +63,7 @@ class _NoDataFoundWidgetState extends State<NoDataFoundWidget>
                     Icon(
                       Icons.inbox_rounded,
                       size: 80,
-                      color: colorScheme.onSurface.withValues(alpha: 0.35),
+                      color: colorScheme.onSurface.withOpacity(0.35),
                     ),
                 const SizedBox(height: 24),
                 Text(
@@ -79,7 +79,7 @@ class _NoDataFoundWidgetState extends State<NoDataFoundWidget>
                   Text(
                     widget.message!,
                     style: textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.6),
+                      color: colorScheme.onSurface.withOpacity(0.6),
                       height: 1.5,
                     ),
                     textAlign: TextAlign.center,

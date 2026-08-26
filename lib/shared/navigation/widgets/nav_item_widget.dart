@@ -25,7 +25,7 @@ class NavItemWidget extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final activeColor = colorScheme.primary;
-    final inactiveColor = colorScheme.onSurface.withValues(alpha: 0.5);
+    final inactiveColor = colorScheme.onSurface.withOpacity(0.5);
 
     return InkWell(
       borderRadius: BorderRadius.circular(25.r),
@@ -46,7 +46,7 @@ class NavItemWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
                   color: isSelected
-                      ? activeColor.withValues(alpha: 0.08)
+                      ? activeColor.withOpacity(0.08)
                       : Colors.transparent,
                 ),
                 alignment: Alignment.center,

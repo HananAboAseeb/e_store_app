@@ -18,7 +18,7 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabs = NavEnum.values;
+    const tabs = NavEnum.values;
 
     return Container(
       decoration: BoxDecoration(
@@ -26,7 +26,7 @@ class CustomBottomNavBar extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(25.r)),
         boxShadow: [
           BoxShadow(
-            color: context.theme.shadowColor.withValues(alpha: 0.08),
+            color: context.theme.shadowColor.withOpacity(0.08),
             blurRadius: 20.r,
             offset: const Offset(0, -2),
           ),
