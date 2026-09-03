@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/extensions/layout_extensions.dart';
-import '../../core/extensions/widget_extensions.dart';
 import 'nav_enum.dart';
 import 'widgets/nav_item_widget.dart';
 
@@ -21,13 +20,13 @@ class CustomBottomNavBar extends StatelessWidget {
     const tabs = NavEnum.values;
 
     return Container(
+      height: 60.h,
       decoration: BoxDecoration(
-        color: context.theme.colorScheme.surface,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(25.r)),
+        color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: context.theme.shadowColor.withOpacity(0.08),
-            blurRadius: 20.r,
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 12.r,
             offset: const Offset(0, -2),
           ),
         ],

@@ -4,17 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app_colors.dart';
 import 'app_fonts.dart';
+import 'app_text_theme.dart';
 
 class AppTheme {
   AppTheme._();
 
-  static ThemeData get lightTheme {
+  static ThemeData lightTheme([BuildContext? context]) {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.gray50,
       fontFamily: AppFonts.appFontFamily,
+      textTheme: AppTextTheme.light(context),
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         primaryContainer: AppColors.primaryLight,
@@ -173,13 +175,14 @@ class AppTheme {
     );
   }
 
-  static ThemeData get darkTheme {
+  static ThemeData darkTheme([BuildContext? context]) {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.darkBackground,
       fontFamily: AppFonts.appFontFamily,
+      textTheme: AppTextTheme.dark(context),
       colorScheme: const ColorScheme.dark(
         primary: AppColors.primaryLight,
         primaryContainer: AppColors.primary,
