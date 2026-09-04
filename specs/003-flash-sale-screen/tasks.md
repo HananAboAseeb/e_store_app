@@ -43,77 +43,77 @@
 
 **Purpose**: Core domain entities, contracts, mock data sources, repository implementation, and Cubit state management. MUST be completed before User Story UI work.
 
-- [ ] T005 [P] Implement FlashSaleProductEntity in lib/features/flash_sale/domain/entities/flash_sale_product_entity.dart
+- [X] T005 [P] Implement FlashSaleProductEntity in lib/features/flash_sale/domain/entities/flash_sale_product_entity.dart
   - **Prerequisites**: None
   - **Estimated Effort**: 10m
   - **Quality Gate**: Extends `Equatable`, contains `id`, `title`, `currentPrice`, `originalPrice`, `imageUrl`, `discountPercentage`, `likeCount`, `tag`.
 
-- [ ] T006 [P] Implement LiveStreamEntity in lib/features/flash_sale/domain/entities/live_stream_entity.dart
+- [X] T006 [P] Implement LiveStreamEntity in lib/features/flash_sale/domain/entities/live_stream_entity.dart
   - **Prerequisites**: None
   - **Estimated Effort**: 10m
   - **Quality Gate**: Extends `Equatable`, contains `id`, `title`, `bannerUrl`, `isLive`, `viewerCount`.
 
-- [ ] T007 [P] Implement FlashSaleDataEntity aggregate in lib/features/flash_sale/domain/entities/flash_sale_data_entity.dart
+- [X] T007 [P] Implement FlashSaleDataEntity aggregate in lib/features/flash_sale/domain/entities/flash_sale_data_entity.dart
   - **Prerequisites**: T005, T006
   - **Estimated Effort**: 10m
   - **Quality Gate**: Extends `Equatable`, aggregates `products`, `liveStream`, `popularProducts`, `countdownDuration`.
 
-- [ ] T008 [P] Define FlashSaleRepository contract in lib/features/flash_sale/domain/repositories/flash_sale_repository.dart
+- [X] T008 [P] Define FlashSaleRepository contract in lib/features/flash_sale/domain/repositories/flash_sale_repository.dart
   - **Prerequisites**: T007
   - **Estimated Effort**: 10m
   - **Quality Gate**: Abstract interface returning `Future<Either<Failure, FlashSaleDataEntity>> getFlashSaleData()`.
 
-- [ ] T009 Implement GetFlashSaleProductsUseCase in lib/features/flash_sale/domain/usecases/get_flash_sale_data_usecase.dart
+- [X] T009 Implement GetFlashSaleProductsUseCase in lib/features/flash_sale/domain/usecases/get_flash_sale_data_usecase.dart
   - **Prerequisites**: T008
   - **Estimated Effort**: 10m
   - **Quality Gate**: Implements `UseCase<FlashSaleDataEntity, NoParams>` and calls `repository.getFlashSaleData()`.
 
-- [ ] T010 [P] Implement FlashSaleProductModel in lib/features/flash_sale/data/models/flash_sale_product_model.dart
+- [X] T010 [P] Implement FlashSaleProductModel in lib/features/flash_sale/data/models/flash_sale_product_model.dart
   - **Prerequisites**: T005
   - **Estimated Effort**: 15m
   - **Quality Gate**: Subclasses `FlashSaleProductEntity`, implements robust `fromJson` and `toJson` supporting double/num prices and discount parsing.
 
-- [ ] T011 [P] Implement LiveStreamModel in lib/features/flash_sale/data/models/live_stream_model.dart
+- [X] T011 [P] Implement LiveStreamModel in lib/features/flash_sale/data/models/live_stream_model.dart
   - **Prerequisites**: T006
   - **Estimated Effort**: 10m
   - **Quality Gate**: Subclasses `LiveStreamEntity`, implements `fromJson` and `toJson`.
 
-- [ ] T012 Implement FlashSaleDataModel in lib/features/flash_sale/data/models/flash_sale_data_model.dart
+- [X] T012 Implement FlashSaleDataModel in lib/features/flash_sale/data/models/flash_sale_data_model.dart
   - **Prerequisites**: T007, T010, T011
   - **Estimated Effort**: 15m
   - **Quality Gate**: Subclasses `FlashSaleDataEntity`, implements `fromJson` and `toJson` parsing nested lists and duration.
 
-- [ ] T013 [P] Define FlashSaleMockDataSource interface in lib/features/flash_sale/data/datasources/flash_sale_mock_datasource.dart
+- [X] T013 [P] Define FlashSaleMockDataSource interface in lib/features/flash_sale/data/datasources/flash_sale_mock_datasource.dart
   - **Prerequisites**: T012
   - **Estimated Effort**: 5m
   - **Quality Gate**: Abstract contract defines `Future<FlashSaleDataModel> getFlashSaleData()`.
 
-- [ ] T014 Implement FlashSaleMockDataSourceImpl in lib/features/flash_sale/data/datasources/flash_sale_mock_datasource_impl.dart
+- [X] T014 Implement FlashSaleMockDataSourceImpl in lib/features/flash_sale/data/datasources/flash_sale_mock_datasource_impl.dart
   - **Prerequisites**: T013
   - **Estimated Effort**: 25m
   - **Quality Gate**: Simulates 1200ms delay and provides categorized mock products for discount tiers (10%, 20%, 30%, 40%, 50%), live stream entity, and popular products.
 
-- [ ] T015 Implement FlashSaleRepositoryImpl with safeCall in lib/features/flash_sale/data/repositories/flash_sale_repository_impl.dart
+- [X] T015 Implement FlashSaleRepositoryImpl with safeCall in lib/features/flash_sale/data/repositories/flash_sale_repository_impl.dart
   - **Prerequisites**: T008, T014
   - **Estimated Effort**: 15m
   - **Quality Gate**: Implements `FlashSaleRepository`, wraps mock data call in `safeCall`, returning `Right(data)` or `Left(Failure)`.
 
-- [ ] T016 [P] Implement FlashSaleState with Equatable in lib/features/flash_sale/presentation/cubit/flash_sale_state.dart
+- [X] T016 [P] Implement FlashSaleState with Equatable in lib/features/flash_sale/presentation/cubit/flash_sale_state.dart
   - **Prerequisites**: T007
   - **Estimated Effort**: 15m
   - **Quality Gate**: Defines `FlashSaleInitial`, `FlashSaleLoading`, `FlashSaleLoaded` (with `allProducts`, `filteredProducts`, `selectedDiscount`, `liveStream`, `popularProducts`, `countdownDuration`), and `FlashSaleError`.
 
-- [ ] T017 Implement FlashSaleCubit in lib/features/flash_sale/presentation/cubit/flash_sale_cubit.dart
+- [X] T017 Implement FlashSaleCubit in lib/features/flash_sale/presentation/cubit/flash_sale_cubit.dart
   - **Prerequisites**: T009, T016
   - **Estimated Effort**: 20m
   - **Quality Gate**: Implements `loadFlashSaleData()`, `selectDiscountFilter(int?)` with synchronous in-memory filtering, and `refresh()`.
 
-- [ ] T018 [P] Implement FlashSaleShimmerLoading placeholder in lib/features/flash_sale/presentation/widgets/flash_sale_shimmer_loading.dart
+- [X] T018 [P] Implement FlashSaleShimmerLoading placeholder in lib/features/flash_sale/presentation/widgets/flash_sale_shimmer_loading.dart
   - **Prerequisites**: None
   - **Estimated Effort**: 20m
   - **Quality Gate**: Uses `shimmer` package to mirror screen layout (app bar skeleton, chip skeletons, live banner placeholder, 2-column grid cards) without UI overflow.
 
-- [ ] T019 Register dependencies in lib/features/flash_sale/flash_sale_injection.dart
+- [X] T019 Register dependencies in lib/features/flash_sale/flash_sale_injection.dart
   - **Prerequisites**: T002, T009, T014, T015, T017
   - **Estimated Effort**: 10m
   - **Quality Gate**: Registers `FlashSaleCubit` (Factory), `GetFlashSaleDataUseCase` (LazySingleton), `FlashSaleRepository` (LazySingleton), and `FlashSaleMockDataSource` (LazySingleton) into `sl`.
