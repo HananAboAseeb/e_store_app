@@ -11,8 +11,10 @@ import '../../features/auth/presentation/models/verification_mode.dart';
 import '../../features/auth/presentation/pages/verification_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
+import '../../features/catalog/presentation/pages/catalog_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/wishlist/presentation/pages/wishlist_page.dart';
 import '../../root.dart';
 import 'route_names.dart';
 
@@ -94,7 +96,7 @@ final router = GoRouter(
       builder: (context, state) => const MaxAttemptsErrorPage(),
     ),
 
-    // ── Main App Shell Routes ──────────────────────────────────────────────────
+    // ── Main App Shell Routes (5-tab navigation) ────────────────────────────────
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return RootPage(navigationShell: navigationShell);
@@ -106,6 +108,24 @@ final router = GoRouter(
               path: RouteNames.kHomePage,
               name: 'home',
               builder: (context, state) => const HomePage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: RouteNames.kWishlistPage,
+              name: 'wishlist',
+              builder: (context, state) => const WishlistPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: RouteNames.kCatalogPage,
+              name: 'catalog',
+              builder: (context, state) => const CatalogPage(),
             ),
           ],
         ),

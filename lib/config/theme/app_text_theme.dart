@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_fonts.dart';
 
 class AppTextTheme {
-  static TextTheme light = TextTheme(
+  AppTextTheme._();
+
+  static TextTheme light([BuildContext? context]) => TextTheme(
     titleLarge: TextStyle(
       fontSize: 20.sp,
       fontWeight: FontWeight.w700,
@@ -32,5 +34,5 @@ class AppTextTheme {
     ),
   );
 
-  static TextTheme dark = light;
+  static TextTheme dark([BuildContext? context]) => light(context);
 }
