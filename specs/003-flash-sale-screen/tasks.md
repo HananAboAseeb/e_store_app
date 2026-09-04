@@ -126,22 +126,22 @@
 
 **Independent Test**: Navigate to `/flash-sale`, observe default 20% discount filter active with matching products in a 2-column grid, tap another discount chip (e.g. 30%), and verify instant update of the section title and product items.
 
-- [ ] T020 [P] [US1] Create NEW FlashSaleProductCard widget in lib/features/flash_sale/presentation/widgets/flash_sale_product_card.dart
+- [X] T020 [P] [US1] Create NEW FlashSaleProductCard widget in lib/features/flash_sale/presentation/widgets/flash_sale_product_card.dart
   - **Prerequisites**: T005
   - **Estimated Effort**: 25m
   - **Quality Gate**: DO NOT modify `ProductCardStandard`. Creates specialized card with grey image container (`#E5E6EA`), `BlendMode.darken`, top-right gradient discount badge (e.g. `-20%`), 2-line title, bold black price (`$16,00`) in Raleway font, and strikethrough red/pink original price (`$20,00`). Fully responsive via `flutter_screenutil`.
 
-- [ ] T021 [P] [US1] Create DiscountFilterBar widget in lib/features/flash_sale/presentation/widgets/discount_filter_bar.dart
+- [X] T021 [P] [US1] Create DiscountFilterBar widget in lib/features/flash_sale/presentation/widgets/discount_filter_bar.dart
   - **Prerequisites**: None
   - **Estimated Effort**: 20m
   - **Quality Gate**: Renders horizontal scrollable chips: "All", "10%", "20%", "30%", "40%", "50%". Selected chip displays custom active pill indicator styling; unselected chips render clean subtle border/background. Calls `onDiscountSelected(int?)`.
 
-- [ ] T022 [US1] Create core FlashSalePage scaffold in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
+- [X] T022 [US1] Create core FlashSalePage scaffold in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
   - **Prerequisites**: T017, T018, T020, T021
   - **Estimated Effort**: 30m
   - **Quality Gate**: Integrates `BlocProvider`, `BlocBuilder<FlashSaleCubit, FlashSaleState>`, renders `FlashSaleShimmerLoading` when loading, and mounts `DiscountFilterBar`, REUSED `HomeSectionHeader` (`[X]% Discount`), and 2-column `GridView.builder` with `FlashSaleProductCard`s when loaded.
 
-- [ ] T023 [US1] Connect interactive discount filter selection with FlashSaleCubit in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
+- [X] T023 [US1] Connect interactive discount filter selection with FlashSaleCubit in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
   - **Prerequisites**: T022
   - **Estimated Effort**: 15m
   - **Quality Gate**: Tapping a discount chip immediately invokes `cubit.selectDiscountFilter()`, updating the section header (e.g. "30% Discount") and product grid in <16ms without flickering or network calls.
