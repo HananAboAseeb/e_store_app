@@ -5,6 +5,7 @@ class RouteNames {
   static const kCatalogPage = '/catalog';
   static const kCartPage = '/cart';
   static const kProfilePage = '/profile';
+  static const kFlashSalePage = '/flash-sale';
 
   // Auth Routes
   static const kStartPage = '/start';

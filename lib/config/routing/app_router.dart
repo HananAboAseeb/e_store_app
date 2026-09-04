@@ -12,6 +12,7 @@ import '../../features/auth/presentation/pages/verification_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/catalog/presentation/pages/catalog_page.dart';
+import '../../features/flash_sale/presentation/pages/flash_sale_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/wishlist/presentation/pages/wishlist_page.dart';
@@ -108,6 +109,11 @@ final router = GoRouter(
               path: RouteNames.kHomePage,
               name: 'home',
               builder: (context, state) => const HomePage(),
+            ),
+            GoRoute(
+              path: RouteNames.kFlashSalePage,
+              name: 'flash-sale',
+              builder: (context, state) => const FlashSalePage(),
             ),
           ],
         ),

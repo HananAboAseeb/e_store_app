@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../config/routing/route_names.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -162,29 +164,37 @@ class _HomeViewState extends State<_HomeView> {
                       SizedBox(height: 24.h),
 
                       // Section 6: Flash Sale Section (With Live Timer)
-                      HomeSectionHeader(
-                        title: 'Flash Sale',
-                        trailing: const FlashSaleTimer(),
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () => GoRouter.of(context).push(RouteNames.kFlashSalePage),
+                        child: HomeSectionHeader(
+                          title: 'Flash Sale',
+                          trailing: const FlashSaleTimer(),
+                        ),
                       ),
                       SizedBox(height: 12.h),
                       // 3-column grid for Flash Sale cards (110 x 115)
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: data.flashSaleProducts.length,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 12.h,
-                            crossAxisSpacing: 12.w,
-                            childAspectRatio: 0.95,
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () => GoRouter.of(context).push(RouteNames.kFlashSalePage),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: data.flashSaleProducts.length,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              mainAxisSpacing: 12.h,
+                              crossAxisSpacing: 12.w,
+                              childAspectRatio: 0.95,
+                            ),
+                            itemBuilder: (context, index) {
+                              return FlashSaleCard(
+                                product: data.flashSaleProducts[index],
+                              );
+                            },
                           ),
-                          itemBuilder: (context, index) {
-                            return FlashSaleCard(
-                              product: data.flashSaleProducts[index],
-                            );
-                          },
                         ),
                       ),
                       SizedBox(height: 24.h),
