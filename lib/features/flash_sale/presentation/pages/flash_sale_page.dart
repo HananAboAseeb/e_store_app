@@ -8,6 +8,7 @@ import '../../../home/presentation/widgets/home_section_header.dart';
 import '../cubit/flash_sale_cubit.dart';
 import '../cubit/flash_sale_state.dart';
 import '../widgets/discount_filter_bar.dart';
+import '../widgets/flash_sale_app_bar.dart';
 import '../widgets/flash_sale_product_card.dart';
 import '../widgets/flash_sale_shimmer_loading.dart';
 
@@ -81,9 +82,13 @@ class _FlashSaleView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Section 1: Flash Sale Custom AppBar with Countdown
+                    FlashSaleAppBar(
+                      timerDuration: state.countdownDuration,
+                    ),
                     SizedBox(height: 12.h),
 
-                    // Section: Discount Filter Bar
+                    // Section 2: Discount Filter Bar
                     DiscountFilterBar(
                       selectedDiscount: state.selectedDiscount,
                       onDiscountSelected: (val) {
@@ -94,13 +99,39 @@ class _FlashSaleView extends StatelessWidget {
                     ),
                     SizedBox(height: 16.h),
 
-                    // Section: Discount Header
+                    // Section 3: Discount Section Header with Filter Settings Gear
                     HomeSectionHeader(
                       title: discountTitle,
+                      trailing: GestureDetector(
+                        onTap: () {
+                          // Filter settings action
+                        },
+                        child: Container(
+                          width: 32.w,
+                          height: 32.w,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.06),
+                                blurRadius: 6,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.settings_outlined,
+                            size: 18.sp,
+                            color: const Color(0xFF000000),
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: 12.h),
 
-                    // Section: 2-Column Product Grid
+                    // Section 4: 2-Column Product Grid
                     if (state.filteredProducts.isEmpty)
                       Padding(
                         padding: EdgeInsets.symmetric(

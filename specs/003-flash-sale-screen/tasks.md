@@ -154,12 +154,12 @@
 
 **Independent Test**: Verify top AppBar displays "Flash Sale", active ticking countdown `[00] [36] [58]`, subtitle "Choose Your Discount", and gear icon on the discount section title.
 
-- [ ] T024 [P] [US2] Create FlashSaleAppBar widget in lib/features/flash_sale/presentation/widgets/flash_sale_app_bar.dart
+- [X] T024 [P] [US2] Create FlashSaleAppBar widget in lib/features/flash_sale/presentation/widgets/flash_sale_app_bar.dart
   - **Prerequisites**: None
   - **Estimated Effort**: 25m
   - **Quality Gate**: Custom AppBar area with soft blue aura gradient background, back button calling `context.pop()`, bold "Flash Sale" title (~22sp), embedded REUSED `FlashSaleTimer` (`lib/features/home/presentation/widgets/flash_sale_timer.dart`), and "Choose Your Discount" subtitle.
 
-- [ ] T025 [US2] Integrate FlashSaleAppBar and section filter gear control in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
+- [X] T025 [US2] Integrate FlashSaleAppBar and section filter gear control in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
   - **Prerequisites**: T023, T024
   - **Estimated Effort**: 15m
   - **Quality Gate**: Replaces default header in `FlashSalePage` with `FlashSaleAppBar`, and supplies `trailing: Icon(Icons.settings_outlined)` to the discount `HomeSectionHeader` with tap feedback.
