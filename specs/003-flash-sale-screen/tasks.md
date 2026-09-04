@@ -172,12 +172,12 @@
 
 **Independent Test**: Scroll past the discount filter bar to see the live stream banner with promotional collage, play button, and bright green "LIVE" badge.
 
-- [ ] T026 [P] [US3] Create FlashSaleLiveBanner widget in lib/features/flash_sale/presentation/widgets/flash_sale_live_banner.dart
+- [X] T026 [P] [US3] Create FlashSaleLiveBanner widget in lib/features/flash_sale/presentation/widgets/flash_sale_live_banner.dart
   - **Prerequisites**: T006
   - **Estimated Effort**: 25m
   - **Quality Gate**: Rounded rectangle card with multi-model promotional imagery, translucent circular play button overlay, title "ARTICALE REIMAGINED", and bright green pill badge with uppercase bold "LIVE" text. Supports `onTap` interaction.
 
-- [ ] T027 [US3] Mount FlashSaleLiveBanner into FlashSalePage in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
+- [X] T027 [US3] Mount FlashSaleLiveBanner into FlashSalePage in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
   - **Prerequisites**: T025, T026
   - **Estimated Effort**: 15m
   - **Quality Gate**: Inserted between `DiscountFilterBar` and the discount section header in `FlashSalePage`, populating data from `state.liveStream`.

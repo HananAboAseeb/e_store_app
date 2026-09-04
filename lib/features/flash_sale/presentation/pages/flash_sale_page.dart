@@ -9,6 +9,7 @@ import '../cubit/flash_sale_cubit.dart';
 import '../cubit/flash_sale_state.dart';
 import '../widgets/discount_filter_bar.dart';
 import '../widgets/flash_sale_app_bar.dart';
+import '../widgets/flash_sale_live_banner.dart';
 import '../widgets/flash_sale_product_card.dart';
 import '../widgets/flash_sale_shimmer_loading.dart';
 
@@ -97,9 +98,16 @@ class _FlashSaleView extends StatelessWidget {
                             .selectDiscountFilter(val);
                       },
                     ),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 18.h),
 
-                    // Section 3: Discount Section Header with Filter Settings Gear
+                    // Section 3: Live Stream Showcase Banner
+                    FlashSaleLiveBanner(
+                      liveStream: state.liveStream,
+                      onTap: () {},
+                    ),
+                    SizedBox(height: 22.h),
+
+                    // Section 4: Discount Section Header with Filter Settings Gear
                     HomeSectionHeader(
                       title: discountTitle,
                       trailing: GestureDetector(
@@ -131,7 +139,7 @@ class _FlashSaleView extends StatelessWidget {
                     ),
                     SizedBox(height: 12.h),
 
-                    // Section 4: 2-Column Product Grid
+                    // Section 5: 2-Column Product Grid
                     if (state.filteredProducts.isEmpty)
                       Padding(
                         padding: EdgeInsets.symmetric(
