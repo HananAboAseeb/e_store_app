@@ -190,12 +190,12 @@
 
 **Independent Test**: Scroll past the flash sale grid, view the static dual-tone promo banner, and browse the horizontal "Most Popular" carousel with like counts and badges.
 
-- [ ] T028 [P] [US4] Create NEW FlashSalePromoBanner widget in lib/features/flash_sale/presentation/widgets/flash_sale_promo_banner.dart
+- [X] T028 [P] [US4] Create NEW FlashSalePromoBanner widget in lib/features/flash_sale/presentation/widgets/flash_sale_promo_banner.dart
   - **Prerequisites**: None
   - **Estimated Effort**: 25m
   - **Quality Gate**: Different from `HomeHeroBanner` (which is a carousel with dots). Implements static dual-tone rounded banner matching Figma: mustard gold background, curved blue splash, "Big Sale", "Up to 50%", "Happening Now", and model graphic.
 
-- [ ] T029 [US4] Integrate FlashSalePromoBanner and Most Popular carousel in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
+- [X] T029 [US4] Integrate FlashSalePromoBanner and Most Popular carousel in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
   - **Prerequisites**: T027, T028
   - **Estimated Effort**: 25m
   - **Quality Gate**: Below the product grid, renders `FlashSalePromoBanner`, followed by REUSED `HomeSectionHeader` (`title: 'Most Popular'`, `showSeeAll: true` with blue circular arrow), and a horizontal `ListView.separated` of REUSED `PopularProductCard`s (`lib/features/home/presentation/widgets/popular_product_card.dart`).

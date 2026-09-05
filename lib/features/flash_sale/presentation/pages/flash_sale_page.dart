@@ -4,13 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../home/domain/entities/home_data_entity.dart';
 import '../../../home/presentation/widgets/home_section_header.dart';
+import '../../../home/presentation/widgets/popular_product_card.dart';
 import '../cubit/flash_sale_cubit.dart';
 import '../cubit/flash_sale_state.dart';
 import '../widgets/discount_filter_bar.dart';
 import '../widgets/flash_sale_app_bar.dart';
 import '../widgets/flash_sale_live_banner.dart';
 import '../widgets/flash_sale_product_card.dart';
+import '../widgets/flash_sale_promo_banner.dart';
 import '../widgets/flash_sale_shimmer_loading.dart';
 
 class FlashSalePage extends StatelessWidget {
@@ -79,7 +82,7 @@ class _FlashSaleView extends StatelessWidget {
 
               return SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.only(bottom: 24.h),
+                padding: EdgeInsets.only(bottom: 30.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -177,6 +180,51 @@ class _FlashSaleView extends StatelessWidget {
                           },
                         ),
                       ),
+                    SizedBox(height: 24.h),
+
+                    // Section 6: Big Sale Promotional Split Banner
+                    FlashSalePromoBanner(
+                      onTap: () {},
+                    ),
+                    SizedBox(height: 24.h),
+
+                    // Section 7: Most Popular Section Header
+                    HomeSectionHeader(
+                      title: 'Most Popular',
+                      showSeeAll: true,
+                      onSeeAllTap: () {},
+                    ),
+                    SizedBox(height: 12.h),
+
+                    // Section 8: Most Popular Horizontal Product Carousel
+                    SizedBox(
+                      height: 175.h,
+                      child: ListView.separated(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.popularProducts.length,
+                        separatorBuilder: (context, index) =>
+                            SizedBox(width: 12.w),
+                        itemBuilder: (context, index) {
+                          final prod = state.popularProducts[index];
+                          // Adapt to HomeProductEntity for PopularProductCard reuse
+                          final homeProduct = HomeProductEntity(
+                            id: prod.id,
+                            title: prod.title,
+                            price: prod.currentPrice,
+                            imageUrl: prod.imageUrl,
+                            discountPercentage: prod.discountPercentage,
+                            likeCount: prod.likeCount,
+                            tag: prod.tag,
+                          );
+
+                          return PopularProductCard(
+                            product: homeProduct,
+                            onTap: () {},
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               );
