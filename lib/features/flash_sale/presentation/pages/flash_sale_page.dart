@@ -80,12 +80,16 @@ class _FlashSaleView extends StatelessWidget {
                   ? '${state.selectedDiscount}% Discount'
                   : 'All Discounts';
 
-              return SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.only(bottom: 30.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+              return RefreshIndicator(
+                color: AppColors.primary400,
+                backgroundColor: Colors.white,
+                onRefresh: () => context.read<FlashSaleCubit>().refresh(),
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: EdgeInsets.only(bottom: 30.h),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                     // Section 1: Flash Sale Custom AppBar with Countdown
                     FlashSaleAppBar(
                       timerDuration: state.countdownDuration,
@@ -227,7 +231,8 @@ class _FlashSaleView extends StatelessWidget {
                     ),
                   ],
                 ),
-              );
+              ),
+            );
             }
 
             return const SizedBox.shrink();

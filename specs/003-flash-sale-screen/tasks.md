@@ -206,17 +206,17 @@
 
 **Purpose**: Pull-to-refresh, responsive layout audit, analyzer checks, and zero-defect quality gate.
 
-- [ ] T030 [P] Implement pull-to-refresh on FlashSalePage in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
+- [X] T030 [P] Implement pull-to-refresh on FlashSalePage in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
   - **Prerequisites**: T029
   - **Estimated Effort**: 10m
   - **Quality Gate**: Pulling down on `CustomScrollView` / `SingleChildScrollView` triggers `cubit.refresh()` with `RefreshIndicator` styled using `AppColors.primary400`.
 
-- [ ] T031 Perform ScreenUtil responsive audit across standard device viewports in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
+- [X] T031 Perform ScreenUtil responsive audit across standard device viewports in lib/features/flash_sale/presentation/pages/flash_sale_page.dart
   - **Prerequisites**: T030
   - **Estimated Effort**: 15m
   - **Quality Gate**: Zero `RenderFlex` overflow errors on 375x812, 390x844, and 412x915 viewports; all dimensions use `.w`, `.h`, `.r`, `.sp`.
 
-- [ ] T032 Run static analysis and lint audit with flutter analyze
+- [X] T032 Run static analysis and lint audit with flutter analyze
   - **Prerequisites**: T031
   - **Estimated Effort**: 10m
   - **Quality Gate**: `flutter analyze` runs cleanly with 0 errors, 0 warnings across all modified and newly created files.
