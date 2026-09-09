@@ -1,38 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app_fonts.dart';
 
+/// Application [TextTheme] — defines the Material text scale.
+///
+/// Dark theme shares the same typographic scale (colors are applied
+/// automatically by [ColorScheme.onSurface]).
 class AppTextTheme {
   AppTextTheme._();
 
-  static TextTheme light([BuildContext? context]) => TextTheme(
+  static const TextTheme textTheme = TextTheme(
     titleLarge: TextStyle(
-      fontSize: 20.sp,
+      fontSize: 20,
       fontWeight: FontWeight.w700,
       fontFamily: AppFonts.appFontFamily,
     ),
     titleMedium: TextStyle(
-      fontSize: 18.sp,
+      fontSize: 18,
       fontWeight: FontWeight.w600,
       fontFamily: AppFonts.appFontFamily,
     ),
     bodyLarge: TextStyle(
-      fontSize: 16.sp,
+      fontSize: 16,
       fontWeight: FontWeight.w500,
       fontFamily: AppFonts.appFontFamily,
     ),
     bodyMedium: TextStyle(
-      fontSize: 14.sp,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       fontFamily: AppFonts.appFontFamily,
     ),
     bodySmall: TextStyle(
-      fontSize: 12.sp,
+      fontSize: 12,
       fontWeight: FontWeight.w300,
       fontFamily: AppFonts.appFontFamily,
     ),
   );
-
-  static TextTheme dark([BuildContext? context]) => light(context);
 }

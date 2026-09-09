@@ -18,27 +18,27 @@ class CategoryCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+        padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 6.h),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(18.r),
+          borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.06),
-              blurRadius: 12,
-              spreadRadius: 0,
+              blurRadius: 10,
               offset: const Offset(0, 3),
             ),
           ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // Dual Image Preview Boxes (Figma: W:72 H:105, radius:10, fill:#000000 10% with Darken Blend Mode)
+            // Dual Image Preview Boxes (Figma)
             SizedBox(
-              height: 94.h,
+              height: 80.h,
               child: Row(
                 children: [
                   Expanded(
@@ -49,7 +49,7 @@ class CategoryCard extends StatelessWidget {
                       containerColor,
                     ),
                   ),
-                  SizedBox(width: 6.w),
+                  SizedBox(width: 5.w),
                   Expanded(
                     child: _buildImageBox(
                       category.previewImageUrls.length > 1
@@ -63,9 +63,10 @@ class CategoryCard extends StatelessWidget {
             ),
             SizedBox(height: 6.h),
 
-            // Bottom: Name (Deep Bold Black) + Count Badge (Blue Pill #004CFF)
+            // Bottom: Name + Count Badge tightly below images (Figma)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   child: Text(
@@ -74,14 +75,14 @@ class CategoryCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 14.sp,
-                      fontWeight: FontWeight.w900,
-                      color: const Color(0xFF000000),
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFF1A1A1A),
                       letterSpacing: -0.3,
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+                  padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
                   decoration: BoxDecoration(
                     color: const Color(0xFFEBF1FF),
                     borderRadius: BorderRadius.circular(8.r),
@@ -89,9 +90,9 @@ class CategoryCard extends StatelessWidget {
                   child: Text(
                     '${category.itemCount}',
                     style: TextStyle(
-                      fontSize: 12.sp,
+                      fontSize: 11.5.sp,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFF004CFF),
+                      color: const Color(0xFF004BFE),
                     ),
                   ),
                 ),
@@ -109,18 +110,16 @@ class CategoryCard extends StatelessWidget {
         color: containerColor,
         borderRadius: BorderRadius.circular(10.r),
       ),
+      clipBehavior: Clip.antiAlias,
       alignment: Alignment.center,
       child: imageUrl != null
-          ? Padding(
-              padding: EdgeInsets.all(4.w),
-              child: Image.asset(
-                imageUrl,
-                color: containerColor,
-                colorBlendMode: BlendMode.darken,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) =>
-                    const SizedBox.shrink(),
-              ),
+          ? Image.asset(
+              imageUrl,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+              errorBuilder: (context, error, stackTrace) =>
+                  const SizedBox.shrink(),
             )
           : const SizedBox.shrink(),
     );

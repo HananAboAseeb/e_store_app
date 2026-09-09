@@ -18,18 +18,18 @@ class PopularProductCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: Container(
-        width: 112.w,
-        padding: EdgeInsets.all(6.w),
+        width: 108.w,
+        padding: EdgeInsets.all(5.w),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(18.r),
+          borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.06),
-              blurRadius: 12,
-              spreadRadius: 0,
-              offset: const Offset(0, 4),
+              blurRadius: 10,
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -37,29 +37,32 @@ class PopularProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Top Image Box with gray background & Darken blend mode
+            // Top Image Box with gray background (Figma: compact, rounded)
             Container(
               width: double.infinity,
-              height: 112.h,
+              height: 100.h,
               decoration: BoxDecoration(
                 color: grayBg,
-                borderRadius: BorderRadius.circular(14.r),
+                borderRadius: BorderRadius.circular(12.r),
               ),
-              padding: EdgeInsets.all(6.w),
-              child: Image.asset(
-                product.imageUrl,
-                color: grayBg,
-                colorBlendMode: BlendMode.darken,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) =>
-                    const SizedBox.shrink(),
+              padding: EdgeInsets.all(4.w),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.r),
+                child: Image.asset(
+                  product.imageUrl,
+                  color: grayBg,
+                  colorBlendMode: BlendMode.darken,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) =>
+                      const SizedBox.shrink(),
+                ),
               ),
             ),
-            SizedBox(height: 8.h),
+            SizedBox(height: 6.h),
 
-            // Bottom Unified Meta Row (Inside Card: Likes Count + Blue Heart + Tag)
+            // Bottom Unified Meta Row (Likes Count + Blue Heart + Tag)
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
+              padding: EdgeInsets.symmetric(horizontal: 2.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -69,15 +72,15 @@ class PopularProductCard extends StatelessWidget {
                       Text(
                         '${product.likeCount ?? 1780}',
                         style: TextStyle(
-                          fontSize: 13.sp,
+                          fontSize: 12.5.sp,
                           fontWeight: FontWeight.w900,
                           color: const Color(0xFF000000),
                         ),
                       ),
-                      SizedBox(width: 4.w),
+                      SizedBox(width: 3.w),
                       Icon(
                         Icons.favorite_rounded,
-                        size: 14.sp,
+                        size: 13.sp,
                         color: const Color(0xFF004BFE),
                       ),
                     ],
@@ -86,7 +89,7 @@ class PopularProductCard extends StatelessWidget {
                     Text(
                       product.tag!,
                       style: TextStyle(
-                        fontSize: 12.sp,
+                        fontSize: 11.5.sp,
                         fontWeight: FontWeight.w600,
                         color: const Color(0xFF1A1A1A),
                       ),
@@ -94,7 +97,7 @@ class PopularProductCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 2.h),
+            SizedBox(height: 3.h),
           ],
         ),
       ),
