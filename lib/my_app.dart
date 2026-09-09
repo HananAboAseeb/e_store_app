@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               builder: (context, child) =>
                   AppWrapper(child: child ?? const SizedBox.shrink()),
-              theme: isDark ? AppTheme.darkTheme(context) : AppTheme.lightTheme(context),
+              theme: isDark ? AppTheme.dark : AppTheme.light,
               supportedLocales: context.supportedLocales,
               localizationsDelegates: context.localizationDelegates,
               locale: context.locale,

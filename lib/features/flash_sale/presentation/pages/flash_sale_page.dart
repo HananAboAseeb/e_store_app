@@ -35,69 +35,88 @@ class _FlashSaleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: BlocBuilder<FlashSaleCubit, FlashSaleState>(
-          builder: (context, state) {
-            if (state is FlashSaleLoading || state is FlashSaleInitial) {
-              return const FlashSaleShimmerLoading();
-            }
+      body: Stack(
+        children: [
+          // Top Blue Aura Bubble Background (Figma: full width, heavy blue on top-right fading to white)
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 240.h,
+            child: IgnorePointer(
+              child: Image.asset(
+                'assets/images/Bubbles_flash_sale.png',
+                width: double.infinity,
+                fit: BoxFit.cover,
+                alignment: Alignment.topRight,
+                errorBuilder: (context, error, stackTrace) =>
+                    const SizedBox.shrink(),
+              ),
+            ),
+          ),
+          SafeArea(
+            child: BlocBuilder<FlashSaleCubit, FlashSaleState>(
+              builder: (context, state) {
+                if (state is FlashSaleLoading || state is FlashSaleInitial) {
+                  return const FlashSaleShimmerLoading();
+                }
 
-            if (state is FlashSaleError) {
-              return Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        state.message,
-                        textAlign: TextAlign.center,
-                        style: AppTypography.body.copyWith(
-                          color: AppColors.error,
-                        ),
-                      ),
-                      SizedBox(height: 16.h),
-                      ElevatedButton(
-                        onPressed: () =>
-                            context.read<FlashSaleCubit>().loadFlashSaleData(),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary400,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.r),
+                if (state is FlashSaleError) {
+                  return Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            state.message,
+                            textAlign: TextAlign.center,
+                            style: AppTypography.body.copyWith(
+                              color: AppColors.error,
+                            ),
                           ),
-                        ),
-                        child: const Text('Try Again'),
+                          SizedBox(height: 16.h),
+                          ElevatedButton(
+                            onPressed: () =>
+                                context.read<FlashSaleCubit>().loadFlashSaleData(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primary400,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                            ),
+                            child: const Text('Try Again'),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              );
-            }
-
-            if (state is FlashSaleLoaded) {
-              final discountTitle = state.selectedDiscount != null
-                  ? '${state.selectedDiscount}% Discount'
-                  : 'All Discounts';
-
-              return RefreshIndicator(
-                color: AppColors.primary400,
-                backgroundColor: Colors.white,
-                onRefresh: () => context.read<FlashSaleCubit>().refresh(),
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.only(bottom: 30.h),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    // Section 1: Flash Sale Custom AppBar with Countdown
-                    FlashSaleAppBar(
-                      timerDuration: state.countdownDuration,
                     ),
-                    SizedBox(height: 12.h),
+                  );
+                }
 
-                    // Section 2: Discount Filter Bar
-                    DiscountFilterBar(
+                if (state is FlashSaleLoaded) {
+                  final discountTitle = state.selectedDiscount != null
+                      ? '${state.selectedDiscount}% Discount'
+                      : 'All Discounts';
+
+                  return RefreshIndicator(
+                    color: AppColors.primary400,
+                    backgroundColor: Colors.white,
+                    onRefresh: () => context.read<FlashSaleCubit>().refresh(),
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      padding: EdgeInsets.only(bottom: 30.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                        // Section 1: Flash Sale Custom AppBar with Countdown (No Back Button)
+                        FlashSaleAppBar(
+                          initialDuration: state.countdownDuration,
+                        ),
+                        SizedBox(height: 12.h),
+
+                        // Section 2: Discount Filter Bar
+                        DiscountFilterBar(
                       selectedDiscount: state.selectedDiscount,
                       onDiscountSelected: (val) {
                         context
@@ -114,39 +133,23 @@ class _FlashSaleView extends StatelessWidget {
                     ),
                     SizedBox(height: 22.h),
 
-                    // Section 4: Discount Section Header with Filter Settings Gear
+                    // Section 4: Discount Section Header with Filter Settings Gear (Figma: Standalone gray gear)
                     HomeSectionHeader(
                       title: discountTitle,
                       trailing: GestureDetector(
                         onTap: () {
                           // Filter settings action
                         },
-                        child: Container(
-                          width: 32.w,
-                          height: 32.w,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.06),
-                                blurRadius: 6,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          alignment: Alignment.center,
-                          child: Icon(
-                            Icons.settings_outlined,
-                            size: 18.sp,
-                            color: const Color(0xFF000000),
-                          ),
+                        child: Icon(
+                          Icons.settings_outlined,
+                          size: 22.sp,
+                          color: const Color(0xFF8E8E93),
                         ),
                       ),
                     ),
                     SizedBox(height: 12.h),
 
-                    // Section 5: 2-Column Product Grid
+                    // Section 5: 2-Column Product Grid (Fixed childAspectRatio: 0.65 for zero overflow)
                     if (state.filteredProducts.isEmpty)
                       Padding(
                         padding: EdgeInsets.symmetric(
@@ -174,7 +177,7 @@ class _FlashSaleView extends StatelessWidget {
                             crossAxisCount: 2,
                             mainAxisSpacing: 16.h,
                             crossAxisSpacing: 14.w,
-                            childAspectRatio: 0.72,
+                            childAspectRatio: 0.65,
                           ),
                           itemBuilder: (context, index) {
                             return FlashSaleProductCard(
@@ -200,9 +203,9 @@ class _FlashSaleView extends StatelessWidget {
                     ),
                     SizedBox(height: 12.h),
 
-                    // Section 8: Most Popular Horizontal Product Carousel
+                    // Section 8: Most Popular Horizontal Product Carousel (Compact height 140.h)
                     SizedBox(
-                      height: 175.h,
+                      height: 140.h,
                       child: ListView.separated(
                         padding: EdgeInsets.symmetric(horizontal: 16.w),
                         scrollDirection: Axis.horizontal,
@@ -239,6 +242,8 @@ class _FlashSaleView extends StatelessWidget {
           },
         ),
       ),
-    );
+    ],
+  ),
+);
   }
 }

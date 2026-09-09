@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/live_stream_entity.dart';
 
 class FlashSaleLiveBanner extends StatelessWidget {
@@ -21,90 +20,94 @@ class FlashSaleLiveBanner extends StatelessWidget {
         onTap: onTap,
         child: Container(
           width: double.infinity,
-          height: 145.h,
-          clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20.r),
-            color: const Color(0xFF1B1B1E),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.08),
-                blurRadius: 12,
+                color: Colors.black.withOpacity(0.07),
+                blurRadius: 14,
                 offset: const Offset(0, 4),
               ),
             ],
           ),
-          child: Stack(
-            fit: StackFit.expand,
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Background Model Imagery / Collage
-              Image.asset(
-                liveStream.bannerUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) =>
-                    const SizedBox.shrink(),
-              ),
-
-              // Gradient Overlay for text contrast
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.black.withOpacity(0.15),
-                      Colors.black.withOpacity(0.65),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-              ),
-
-              // Centered Circular Translucent Play Button
-              Center(
-                child: Container(
-                  width: 48.w,
-                  height: 48.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.28),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.85),
-                      width: 1.5.w,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.20),
-                        blurRadius: 12,
-                        offset: const Offset(0, 2),
+              // Top: Multi-Model Collage Image with Centered Play Button
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    liveStream.bannerUrl.isNotEmpty
+                        ? liveStream.bannerUrl
+                        : 'assets/images/live_stream_collage.png',
+                    width: double.infinity,
+                    height: 140.h,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Image.asset(
+                      'assets/images/live_stream_collage.png',
+                      width: double.infinity,
+                      height: 140.h,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          Container(
+                        height: 140.h,
+                        color: const Color(0xFFF0F1F5),
                       ),
-                    ],
+                    ),
                   ),
-                  child: Icon(
-                    Icons.play_arrow_rounded,
-                    color: Colors.white,
-                    size: 32.sp,
+
+                  // Translucent White Circular Play Button (Figma)
+                  Container(
+                    width: 44.w,
+                    height: 44.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.55),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.15),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 3.w),
+                      child: Icon(
+                        Icons.play_arrow_rounded,
+                        size: 26.sp,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
 
-              // Bottom Content: Title ("ARTICALE REIMAGINED") + Green "LIVE" Badge
-              Positioned(
-                left: 16.w,
-                right: 16.w,
-                bottom: 14.h,
+              // Bottom: White Bar Area Below the Images (Figma)
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16.w,
+                  vertical: 10.h,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Title
+                    // Title: ARTICALE REIMAGINED (Figma tracked uppercase text)
                     Expanded(
                       child: Text(
-                        liveStream.title,
+                        liveStream.title.toUpperCase(),
                         style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                          letterSpacing: 0.8,
+                          fontSize: 12.5.sp,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFF1A1A1A),
+                          letterSpacing: 1.6,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -112,46 +115,25 @@ class FlashSaleLiveBanner extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
 
-                    // Green LIVE Pill Badge
+                    // LIVE Green Pill Badge (Figma)
                     if (liveStream.isLive)
                       Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 10.w,
+                          horizontal: 12.w,
                           vertical: 4.h,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.success,
+                          color: const Color(0xFF00A638), // Figma Vibrant Green
                           borderRadius: BorderRadius.circular(12.r),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.success.withOpacity(0.4),
-                              blurRadius: 6,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: 6.w,
-                              height: 6.w,
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            SizedBox(width: 4.w),
-                            Text(
-                              'LIVE',
-                              style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w800,
-                                color: Colors.white,
-                                letterSpacing: 0.5,
-                              ),
-                            ),
-                          ],
+                        child: Text(
+                          'LIVE',
+                          style: TextStyle(
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                            letterSpacing: 0.5,
+                          ),
                         ),
                       ),
                   ],

@@ -37,8 +37,8 @@ class HomeMockDataSourceImpl implements HomeMockDataSource {
           name: 'Clothings',
           itemCount: 109,
           previewImageUrls: [
-            'assets/images/jact.png',
-            'assets/images/jact.png',
+            'assets/images/cat_cloth_1.png',
+            'assets/images/cat_cloth_2.png',
           ],
         ),
         CategoryModel(
@@ -46,8 +46,8 @@ class HomeMockDataSourceImpl implements HomeMockDataSource {
           name: 'Shoes',
           itemCount: 530,
           previewImageUrls: [
-            'assets/images/jact.png',
-            'assets/images/jact.png',
+            'assets/images/cat_shoe_1.png',
+            'assets/images/cat_shoe_2.png',
           ],
         ),
         CategoryModel(
@@ -55,8 +55,8 @@ class HomeMockDataSourceImpl implements HomeMockDataSource {
           name: 'Bags',
           itemCount: 87,
           previewImageUrls: [
-            'assets/images/jact.png',
-            'assets/images/jact.png',
+            'assets/images/cat_bag_1.png',
+            'assets/images/cat_bag_2.png',
           ],
         ),
         CategoryModel(
@@ -64,8 +64,8 @@ class HomeMockDataSourceImpl implements HomeMockDataSource {
           name: 'Hoodies',
           itemCount: 123,
           previewImageUrls: [
-            'assets/images/jact.png',
-            'assets/images/jact.png',
+            'assets/images/cat_hoodie_1.png',
+            'assets/images/cat_hoodie_2.png',
           ],
         ),
         CategoryModel(
@@ -73,8 +73,8 @@ class HomeMockDataSourceImpl implements HomeMockDataSource {
           name: 'Watch',
           itemCount: 239,
           previewImageUrls: [
-            'assets/images/jact.png',
-            'assets/images/jact.png',
+            'assets/images/cat_watch_1.png',
+            'assets/images/cat_watch_2.png',
           ],
         ),
       ],
@@ -138,42 +138,42 @@ class HomeMockDataSourceImpl implements HomeMockDataSource {
           id: 'flash_1',
           title: 'Wide Leg Pants',
           price: 24.0,
-          imageUrl: 'assets/images/jact.png',
+          imageUrl: 'assets/images/home_flash_1.png',
           discountPercentage: 20,
         ),
         HomeProductModel(
           id: 'flash_2',
           title: 'Denim Culottes',
           price: 32.0,
-          imageUrl: 'assets/images/jact.png',
+          imageUrl: 'assets/images/home_flash_2.png',
           discountPercentage: 20,
         ),
         HomeProductModel(
           id: 'flash_3',
           title: 'Sleeveless Top',
           price: 18.0,
-          imageUrl: 'assets/images/jact.png',
+          imageUrl: 'assets/images/home_flash_3.png',
           discountPercentage: 20,
         ),
         HomeProductModel(
           id: 'flash_4',
           title: 'Floral Summer Dress',
           price: 45.0,
-          imageUrl: 'assets/images/jact.png',
+          imageUrl: 'assets/images/home_flash_4.png',
           discountPercentage: 20,
         ),
         HomeProductModel(
           id: 'flash_5',
           title: 'Black Tank Top',
           price: 15.0,
-          imageUrl: 'assets/images/jact.png',
+          imageUrl: 'assets/images/home_flash_5.png',
           discountPercentage: 20,
         ),
         HomeProductModel(
           id: 'flash_6',
           title: 'Striped Blue Blouse',
           price: 28.0,
-          imageUrl: 'assets/images/jact.png',
+          imageUrl: 'assets/images/home_flash_6.png',
           discountPercentage: 20,
         ),
       ],

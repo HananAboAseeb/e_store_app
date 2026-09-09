@@ -144,7 +144,7 @@ class _HomeViewState extends State<_HomeView> {
                             crossAxisCount: 2,
                             mainAxisSpacing: 12.h,
                             crossAxisSpacing: 12.w,
-                            childAspectRatio: 1.0,
+                            childAspectRatio: 1.14,
                           ),
                           itemBuilder: (context, index) {
                             return CategoryCard(category: data.categories[index]);
@@ -207,7 +207,7 @@ class _HomeViewState extends State<_HomeView> {
                       ),
                       SizedBox(height: 12.h),
                       SizedBox(
-                        height: 175.h,
+                        height: 140.h,
                         child: ListView.separated(
                           padding: EdgeInsets.symmetric(horizontal: 16.w),
                           scrollDirection: Axis.horizontal,

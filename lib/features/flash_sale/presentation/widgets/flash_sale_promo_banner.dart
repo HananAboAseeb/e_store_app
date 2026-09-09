@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_typography.dart';
 
 class FlashSalePromoBanner extends StatelessWidget {
   final VoidCallback? onTap;
@@ -18,110 +16,77 @@ class FlashSalePromoBanner extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          height: 160.h,
-          clipBehavior: Clip.antiAlias,
+          width: double.infinity,
+          height: 135.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24.r),
-            color: const Color(0xFFF4B942), // Mustard Gold Accent
+            borderRadius: BorderRadius.circular(18.r),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.08),
-                blurRadius: 14,
-                offset: const Offset(0, 4),
+                blurRadius: 12,
+                offset: const Offset(0, 3),
               ),
             ],
           ),
+          clipBehavior: Clip.antiAlias,
           child: Stack(
+            fit: StackFit.expand,
             children: [
-              // Left Curved Blue Splash with Gradient
-              Positioned(
-                left: 0,
-                top: 0,
-                bottom: 0,
-                width: 225.w,
-                child: ClipPath(
-                  clipper: _CurvedSplashClipper(),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          AppColors.primary400,
-                          AppColors.primary800,
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
-                  ),
+              // Background Image: Yellow background with model holding SALE bag and blue shapes
+              Image.asset(
+                'assets/images/big_sale_banner.png',
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    Image.asset(
+                  'assets/images/Big_Sale_Banner (2).png',
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                      Container(color: const Color(0xFFF4B942)),
                 ),
               ),
 
-              // Left Text Content: Big Sale, Up to 50%, Happening Now
+              // Left Text Layout: "Big Sale" & "Up to 50%"
               Positioned(
-                left: 20.w,
-                top: 0,
-                bottom: 0,
+                left: 18.w,
+                top: 14.h,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    // "Happening Now" Tag
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 8.w,
-                        vertical: 3.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.18),
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Text(
-                        'HAPPENING NOW',
-                        style: TextStyle(
-                          fontSize: 9.sp,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white,
-                          letterSpacing: 0.6,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 6.h),
-
-                    // "Big Sale"
                     Text(
                       'Big Sale',
-                      style: AppTypography.h1.copyWith(
-                        fontSize: 26.sp,
-                        fontWeight: FontWeight.w900,
-                        color: AppColors.textWhite,
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w800,
+                        color: const Color(0xFF1A1A1A),
                         letterSpacing: -0.5,
                       ),
                     ),
-                    SizedBox(height: 4.h),
-
-                    // "Up to 50%"
+                    SizedBox(height: 3.h),
                     Text(
                       'Up to 50%',
-                      style: AppTypography.bodySmall.copyWith(
-                        fontSize: 14.sp,
+                      style: TextStyle(
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white.withOpacity(0.92),
+                        color: const Color(0xFF262626),
                       ),
                     ),
                   ],
                 ),
               ),
 
-              // Right Girl Image Overlay
+              // "Happening\nNow" positioned inside the blue bottom-left curve (Figma)
               Positioned(
-                right: 4.w,
-                bottom: 0,
-                top: 0,
-                child: Image.asset(
-                  'assets/images/girl_image.png',
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) =>
-                      const SizedBox.shrink(),
+                left: 18.w,
+                bottom: 12.h,
+                child: Text(
+                  'Happening\nNow',
+                  style: TextStyle(
+                    fontSize: 10.5.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    height: 1.15,
+                  ),
                 ),
               ),
             ],
@@ -130,24 +95,4 @@ class FlashSalePromoBanner extends StatelessWidget {
       ),
     );
   }
-}
-
-class _CurvedSplashClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0, size.height);
-    path.lineTo(size.width * 0.72, size.height);
-    path.quadraticBezierTo(
-      size.width * 1.05,
-      size.height * 0.5,
-      size.width * 0.78,
-      0,
-    );
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

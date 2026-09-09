@@ -1,95 +1,132 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import '../../../home/presentation/widgets/flash_sale_timer.dart';
 
-class FlashSaleAppBar extends StatelessWidget {
-  final VoidCallback? onBackTap;
-  final Duration? timerDuration;
+class FlashSaleAppBar extends StatefulWidget {
+  final Duration initialDuration;
 
   const FlashSaleAppBar({
     super.key,
-    this.onBackTap,
-    this.timerDuration,
+    this.initialDuration = const Duration(hours: 0, minutes: 36, seconds: 58),
   });
 
   @override
-  Widget build(BuildContext context) {
+  State<FlashSaleAppBar> createState() => _FlashSaleAppBarState();
+}
+
+class _FlashSaleAppBarState extends State<FlashSaleAppBar> {
+  late Duration _remaining;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _remaining = widget.initialDuration;
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (mounted && _remaining.inSeconds > 0) {
+        setState(() {
+          _remaining = _remaining - const Duration(seconds: 1);
+        });
+      } else {
+        _timer?.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  Widget _buildTimeBox(String value) {
     return Container(
+      width: 28.w,
+      height: 28.h,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xFF004BFE).withOpacity(0.09),
-            const Color(0xFF004BFE).withOpacity(0.03),
-            Colors.transparent,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(6.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 4,
+            offset: const Offset(0, 1.5),
+          ),
+        ],
+      ),
+      child: Text(
+        value,
+        style: TextStyle(
+          fontSize: 13.sp,
+          fontWeight: FontWeight.w800,
+          color: const Color(0xFF1A1A1A),
+          height: 1.1,
         ),
       ),
-      padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 12.h),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final hours = _remaining.inHours.toString().padLeft(2, '0');
+    final minutes = (_remaining.inMinutes % 60).toString().padLeft(2, '0');
+    final seconds = (_remaining.inSeconds % 60).toString().padLeft(2, '0');
+
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 4.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Row: Back Button + "Flash Sale" Title + Embedded Countdown Timer
+          // Row: "Flash Sale" Title on Left + Stopwatch Icon and White Timer Boxes on Right
           Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Back Button
-              GestureDetector(
-                onTap: onBackTap ?? () => context.pop(),
-                child: Container(
-                  width: 38.w,
-                  height: 38.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.06),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  alignment: Alignment.center,
-                  child: Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    size: 16.sp,
-                    color: const Color(0xFF000000),
-                  ),
-                ),
-              ),
-              SizedBox(width: 12.w),
-
               // Title: Flash Sale
               Text(
                 'Flash Sale',
                 style: TextStyle(
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.w900,
-                  color: const Color(0xFF000000),
-                  letterSpacing: -0.6,
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.w800,
+                  color: const Color(0xFF1A1A1A),
+                  letterSpacing: -0.5,
                 ),
               ),
               const Spacer(),
 
-              // Reused FlashSaleTimer countdown box
-              FlashSaleTimer(
-                initialDuration: timerDuration ??
-                    const Duration(hours: 0, minutes: 36, seconds: 58),
+              // Countdown Timer
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.timer_outlined,
+                    size: 22.sp,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: 6.w),
+                  _buildTimeBox(hours),
+                  SizedBox(width: 4.w),
+                  _buildTimeBox(minutes),
+                  SizedBox(width: 4.w),
+                  _buildTimeBox(seconds),
+                ],
               ),
             ],
           ),
-          SizedBox(height: 16.h),
+          SizedBox(height: 2.h),
 
-          // Subtitle: Choose Your Discount
+          // Subtitle: Choose Your Discount (directly below title with tight spacing)
           Text(
             'Choose Your Discount',
             style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w800,
-              color: const Color(0xFF000000),
-              letterSpacing: -0.4,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+              color: const Color(0xFF333333),
+              letterSpacing: -0.2,
             ),
           ),
         ],

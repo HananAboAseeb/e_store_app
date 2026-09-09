@@ -16,21 +16,12 @@ class FlashSaleShimmerLoading extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Bar: Back button, Title, Timer
+            // Top Bar: Title, Timer (No Back Button)
             Row(
               children: [
                 Container(
-                  width: 36.w,
-                  height: 36.w,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(width: 12.w),
-                Container(
-                  width: 110.w,
-                  height: 24.h,
+                  width: 130.w,
+                  height: 26.h,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(6.r),
@@ -121,7 +112,7 @@ class FlashSaleShimmerLoading extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 16.h,
                 crossAxisSpacing: 14.w,
-                childAspectRatio: 0.72,
+                childAspectRatio: 0.65,
               ),
               itemBuilder: (context, index) {
                 return Column(
