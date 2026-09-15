@@ -40,7 +40,8 @@ class PinInput extends StatelessWidget {
             borderSide = const BorderSide(color: AppColors.success, width: 1.5);
             backgroundColor = const Color(0xFFEBF9EF);
           } else if (isFocused) {
-            borderSide = const BorderSide(color: AppColors.primary400, width: 1.5);
+            borderSide =
+                const BorderSide(color: AppColors.primary400, width: 1.5);
             backgroundColor = AppColors.background;
           }
 

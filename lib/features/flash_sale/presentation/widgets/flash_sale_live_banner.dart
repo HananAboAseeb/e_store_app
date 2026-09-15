@@ -47,14 +47,12 @@ class FlashSaleLiveBanner extends StatelessWidget {
                     width: double.infinity,
                     height: 140.h,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                        Image.asset(
+                    errorBuilder: (context, error, stackTrace) => Image.asset(
                       'assets/images/live_stream_collage.png',
                       width: double.infinity,
                       height: 140.h,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          Container(
+                      errorBuilder: (context, error, stackTrace) => Container(
                         height: 140.h,
                         color: const Color(0xFFF0F1F5),
                       ),

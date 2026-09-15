@@ -36,8 +36,7 @@ class FlashSalePromoBanner extends StatelessWidget {
               Image.asset(
                 'assets/images/big_sale_banner.png',
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) =>
-                    Image.asset(
+                errorBuilder: (context, error, stackTrace) => Image.asset(
                   'assets/images/Big_Sale_Banner (2).png',
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) =>

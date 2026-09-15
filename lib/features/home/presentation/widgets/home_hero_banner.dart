@@ -64,7 +64,8 @@ class _HomeHeroBannerState extends State<HomeHeroBanner> {
                         end: Alignment.bottomRight,
                       ),
                       image: const DecorationImage(
-                        image: AssetImage('assets/images/banner_Slid_background_image.png'),
+                        image: AssetImage(
+                            'assets/images/banner_Slid_background_image.png'),
                         fit: BoxFit.cover,
                       ),
                     ),

@@ -16,7 +16,8 @@ class HomeBannerEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props => [id, title, subtitle, imageUrl, discountPercentage];
+  List<Object?> get props =>
+      [id, title, subtitle, imageUrl, discountPercentage];
 }
 
 class CategoryEntity extends Equatable {

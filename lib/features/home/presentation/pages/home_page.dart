@@ -85,7 +85,8 @@ class _HomeViewState extends State<_HomeView> {
                       ),
                       SizedBox(height: 16.h),
                       ElevatedButton(
-                        onPressed: () => context.read<HomeCubit>().getHomeData(),
+                        onPressed: () =>
+                            context.read<HomeCubit>().getHomeData(),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary400,
                           foregroundColor: Colors.white,
@@ -140,14 +141,16 @@ class _HomeViewState extends State<_HomeView> {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: data.categories.length,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             mainAxisSpacing: 12.h,
                             crossAxisSpacing: 12.w,
                             childAspectRatio: 1.14,
                           ),
                           itemBuilder: (context, index) {
-                            return CategoryCard(category: data.categories[index]);
+                            return CategoryCard(
+                                category: data.categories[index]);
                           },
                         ),
                       ),
@@ -166,7 +169,8 @@ class _HomeViewState extends State<_HomeView> {
                       // Section 6: Flash Sale Section (With Live Timer)
                       GestureDetector(
                         behavior: HitTestBehavior.opaque,
-                        onTap: () => GoRouter.of(context).push(RouteNames.kFlashSalePage),
+                        onTap: () => GoRouter.of(context)
+                            .push(RouteNames.kFlashSalePage),
                         child: HomeSectionHeader(
                           title: 'Flash Sale',
                           trailing: const FlashSaleTimer(),
@@ -176,14 +180,16 @@ class _HomeViewState extends State<_HomeView> {
                       // 3-column grid for Flash Sale cards (110 x 115)
                       GestureDetector(
                         behavior: HitTestBehavior.opaque,
-                        onTap: () => GoRouter.of(context).push(RouteNames.kFlashSalePage),
+                        onTap: () => GoRouter.of(context)
+                            .push(RouteNames.kFlashSalePage),
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.w),
                           child: GridView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: data.flashSaleProducts.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               mainAxisSpacing: 12.h,
                               crossAxisSpacing: 12.w,

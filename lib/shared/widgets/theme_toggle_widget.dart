@@ -30,9 +30,7 @@ class ThemeToggleWidget extends StatelessWidget {
               key: ValueKey(isDark ? 'theme_icon_dark' : 'theme_icon_light'),
               icon: Icon(
                 isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-                color: isDark
-                    ? AppColors.primary100
-                    : AppColors.black,
+                color: isDark ? AppColors.primary100 : AppColors.black,
               ),
               onPressed: () {
                 context.read<ThemeCubit>().toggleTheme();

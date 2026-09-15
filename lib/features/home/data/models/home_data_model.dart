@@ -78,9 +78,8 @@ class HomeProductModel extends HomeProductEntity {
       discountPercentage: json['discountPercentage'] != null
           ? (json['discountPercentage'] as num).toInt()
           : null,
-      likeCount: json['likeCount'] != null
-          ? (json['likeCount'] as num).toInt()
-          : null,
+      likeCount:
+          json['likeCount'] != null ? (json['likeCount'] as num).toInt() : null,
       tag: json['tag'] as String?,
       isFavorite: (json['isFavorite'] as bool?) ?? false,
     );

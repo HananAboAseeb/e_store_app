@@ -6,8 +6,7 @@ abstract class AuthRemoteDataSource {
   Future<List<UserModel>> fetchUsers();
 }
 
-class AuthRemoteDataSourceImpl
-    implements AuthRemoteDataSource {
+class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final ApiConsumer _dio;
 
   AuthRemoteDataSourceImpl(this._dio);

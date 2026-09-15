@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,26 +21,42 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     const tabs = NavEnum.values;
 
-    return Container(
-      height: 60.h,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.06),
-            blurRadius: 12.r,
-            offset: const Offset(0, -2),
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.85),
+            border: Border(
+              top: BorderSide(
+                color: Colors.black.withOpacity(0.05),
+                width: 0.5,
+              ),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.04),
+                blurRadius: 16.r,
+                offset: const Offset(0, -4),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Row(
-        children: List.generate(
-          tabs.length,
-          (index) => NavItemWidget(
-            tab: tabs[index],
-            isSelected: currentIndex == index,
-            onTap: () => onTap(index),
-          ).expanded(),
+          child: SafeArea(
+            top: false,
+            child: SizedBox(
+              height: 56.h,
+              child: Row(
+                children: List.generate(
+                  tabs.length,
+                  (index) => NavItemWidget(
+                    tab: tabs[index],
+                    isSelected: currentIndex == index,
+                    onTap: () => onTap(index),
+                  ).expanded(),
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

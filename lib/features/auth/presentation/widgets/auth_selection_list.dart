@@ -28,7 +28,8 @@ class AuthSelectionList extends StatelessWidget {
         final isSelected = index == selectedIndex;
 
         return Padding(
-          padding: EdgeInsets.only(bottom: index == items.length - 1 ? 0 : 12.h),
+          padding:
+              EdgeInsets.only(bottom: index == items.length - 1 ? 0 : 12.h),
           child: GestureDetector(
             onTap: () => onSelected(index),
             behavior: HitTestBehavior.opaque,
@@ -56,9 +57,13 @@ class AuthSelectionList extends StatelessWidget {
                     height: 24.w,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: isSelected ? AppColors.primary400 : Colors.transparent,
+                      color: isSelected
+                          ? AppColors.primary400
+                          : Colors.transparent,
                       border: Border.all(
-                        color: isSelected ? AppColors.primary400 : const Color(0xFFC7C7CC),
+                        color: isSelected
+                            ? AppColors.primary400
+                            : const Color(0xFFC7C7CC),
                         width: 2.w,
                       ),
                     ),

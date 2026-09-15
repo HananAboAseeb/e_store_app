@@ -30,9 +30,9 @@ class ThemeCubit extends Cubit<ThemeState> {
       final newThemeType = currentThemeType == ThemeType.light
           ? ThemeType.dark
           : ThemeType.light;
-      
+
       final newTheme = ThemeEntity(type: newThemeType);
-      
+
       try {
         await saveThemeUseCase(newTheme);
         emit(ThemeSuccess(newTheme));

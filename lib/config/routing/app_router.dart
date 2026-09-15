@@ -11,7 +11,7 @@ import '../../features/auth/presentation/models/verification_mode.dart';
 import '../../features/auth/presentation/pages/verification_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
-import '../../features/catalog/presentation/pages/catalog_page.dart';
+import '../../features/shop/presentation/pages/shop_page.dart';
 import '../../features/flash_sale/presentation/pages/flash_sale_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
@@ -52,7 +52,8 @@ final router = GoRouter(
 
         if (extra is Map<String, dynamic>) {
           email = (extra['email'] as String?) ?? '';
-          mode = (extra['mode'] as VerificationMode?) ?? VerificationMode.register;
+          mode =
+              (extra['mode'] as VerificationMode?) ?? VerificationMode.register;
           phoneNumber = extra['phoneNumber'] as String?;
         } else if (extra is String) {
           email = extra;
@@ -131,7 +132,7 @@ final router = GoRouter(
             GoRoute(
               path: RouteNames.kCatalogPage,
               name: 'catalog',
-              builder: (context, state) => const CatalogPage(),
+              builder: (context, state) => const ShopPage(),
             ),
           ],
         ),

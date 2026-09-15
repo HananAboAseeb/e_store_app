@@ -77,8 +77,9 @@ class _FlashSaleView extends StatelessWidget {
                           ),
                           SizedBox(height: 16.h),
                           ElevatedButton(
-                            onPressed: () =>
-                                context.read<FlashSaleCubit>().loadFlashSaleData(),
+                            onPressed: () => context
+                                .read<FlashSaleCubit>()
+                                .loadFlashSaleData(),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary400,
                               foregroundColor: Colors.white,
@@ -109,141 +110,141 @@ class _FlashSaleView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                        // Section 1: Flash Sale Custom AppBar with Countdown (No Back Button)
-                        FlashSaleAppBar(
-                          initialDuration: state.countdownDuration,
-                        ),
-                        SizedBox(height: 12.h),
+                          // Section 1: Flash Sale Custom AppBar with Countdown (No Back Button)
+                          FlashSaleAppBar(
+                            initialDuration: state.countdownDuration,
+                          ),
+                          SizedBox(height: 12.h),
 
-                        // Section 2: Discount Filter Bar
-                        DiscountFilterBar(
-                      selectedDiscount: state.selectedDiscount,
-                      onDiscountSelected: (val) {
-                        context
-                            .read<FlashSaleCubit>()
-                            .selectDiscountFilter(val);
-                      },
-                    ),
-                    SizedBox(height: 18.h),
+                          // Section 2: Discount Filter Bar
+                          DiscountFilterBar(
+                            selectedDiscount: state.selectedDiscount,
+                            onDiscountSelected: (val) {
+                              context
+                                  .read<FlashSaleCubit>()
+                                  .selectDiscountFilter(val);
+                            },
+                          ),
+                          SizedBox(height: 18.h),
 
-                    // Section 3: Live Stream Showcase Banner
-                    FlashSaleLiveBanner(
-                      liveStream: state.liveStream,
-                      onTap: () {},
-                    ),
-                    SizedBox(height: 22.h),
+                          // Section 3: Live Stream Showcase Banner
+                          FlashSaleLiveBanner(
+                            liveStream: state.liveStream,
+                            onTap: () {},
+                          ),
+                          SizedBox(height: 22.h),
 
-                    // Section 4: Discount Section Header with Filter Settings Gear (Figma: Standalone gray gear)
-                    HomeSectionHeader(
-                      title: discountTitle,
-                      trailing: GestureDetector(
-                        onTap: () {
-                          // Filter settings action
-                        },
-                        child: Icon(
-                          Icons.settings_outlined,
-                          size: 22.sp,
-                          color: const Color(0xFF8E8E93),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 12.h),
-
-                    // Section 5: 2-Column Product Grid (Fixed childAspectRatio: 0.65 for zero overflow)
-                    if (state.filteredProducts.isEmpty)
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 24.w,
-                          vertical: 40.h,
-                        ),
-                        child: Center(
-                          child: Text(
-                            'No products found for this discount tier.',
-                            style: AppTypography.bodySmall.copyWith(
-                              color: AppColors.textSecondary,
+                          // Section 4: Discount Section Header with Filter Settings Gear (Figma: Standalone gray gear)
+                          HomeSectionHeader(
+                            title: discountTitle,
+                            trailing: GestureDetector(
+                              onTap: () {
+                                // Filter settings action
+                              },
+                              child: Icon(
+                                Icons.settings_outlined,
+                                size: 22.sp,
+                                color: const Color(0xFF8E8E93),
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    else
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: state.filteredProducts.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 16.h,
-                            crossAxisSpacing: 14.w,
-                            childAspectRatio: 0.65,
-                          ),
-                          itemBuilder: (context, index) {
-                            return FlashSaleProductCard(
-                              product: state.filteredProducts[index],
-                              onTap: () {},
-                            );
-                          },
-                        ),
-                      ),
-                    SizedBox(height: 24.h),
+                          SizedBox(height: 12.h),
 
-                    // Section 6: Big Sale Promotional Split Banner
-                    FlashSalePromoBanner(
-                      onTap: () {},
-                    ),
-                    SizedBox(height: 24.h),
+                          // Section 5: 2-Column Product Grid (Fixed childAspectRatio: 0.65 for zero overflow)
+                          if (state.filteredProducts.isEmpty)
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 24.w,
+                                vertical: 40.h,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'No products found for this discount tier.',
+                                  style: AppTypography.bodySmall.copyWith(
+                                    color: AppColors.textSecondary,
+                                  ),
+                                ),
+                              ),
+                            )
+                          else
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: state.filteredProducts.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 16.h,
+                                  crossAxisSpacing: 14.w,
+                                  childAspectRatio: 0.65,
+                                ),
+                                itemBuilder: (context, index) {
+                                  return FlashSaleProductCard(
+                                    product: state.filteredProducts[index],
+                                    onTap: () {},
+                                  );
+                                },
+                              ),
+                            ),
+                          SizedBox(height: 24.h),
 
-                    // Section 7: Most Popular Section Header
-                    HomeSectionHeader(
-                      title: 'Most Popular',
-                      showSeeAll: true,
-                      onSeeAllTap: () {},
-                    ),
-                    SizedBox(height: 12.h),
-
-                    // Section 8: Most Popular Horizontal Product Carousel (Compact height 140.h)
-                    SizedBox(
-                      height: 140.h,
-                      child: ListView.separated(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.popularProducts.length,
-                        separatorBuilder: (context, index) =>
-                            SizedBox(width: 12.w),
-                        itemBuilder: (context, index) {
-                          final prod = state.popularProducts[index];
-                          // Adapt to HomeProductEntity for PopularProductCard reuse
-                          final homeProduct = HomeProductEntity(
-                            id: prod.id,
-                            title: prod.title,
-                            price: prod.currentPrice,
-                            imageUrl: prod.imageUrl,
-                            discountPercentage: prod.discountPercentage,
-                            likeCount: prod.likeCount,
-                            tag: prod.tag,
-                          );
-
-                          return PopularProductCard(
-                            product: homeProduct,
+                          // Section 6: Big Sale Promotional Split Banner
+                          FlashSalePromoBanner(
                             onTap: () {},
-                          );
-                        },
+                          ),
+                          SizedBox(height: 24.h),
+
+                          // Section 7: Most Popular Section Header
+                          HomeSectionHeader(
+                            title: 'Most Popular',
+                            showSeeAll: true,
+                            onSeeAllTap: () {},
+                          ),
+                          SizedBox(height: 12.h),
+
+                          // Section 8: Most Popular Horizontal Product Carousel (Compact height 140.h)
+                          SizedBox(
+                            height: 140.h,
+                            child: ListView.separated(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.popularProducts.length,
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(width: 12.w),
+                              itemBuilder: (context, index) {
+                                final prod = state.popularProducts[index];
+                                // Adapt to HomeProductEntity for PopularProductCard reuse
+                                final homeProduct = HomeProductEntity(
+                                  id: prod.id,
+                                  title: prod.title,
+                                  price: prod.currentPrice,
+                                  imageUrl: prod.imageUrl,
+                                  discountPercentage: prod.discountPercentage,
+                                  likeCount: prod.likeCount,
+                                  tag: prod.tag,
+                                );
+
+                                return PopularProductCard(
+                                  product: homeProduct,
+                                  onTap: () {},
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            );
-            }
+                  );
+                }
 
-            return const SizedBox.shrink();
-          },
-        ),
+                return const SizedBox.shrink();
+              },
+            ),
+          ),
+        ],
       ),
-    ],
-  ),
-);
+    );
   }
 }

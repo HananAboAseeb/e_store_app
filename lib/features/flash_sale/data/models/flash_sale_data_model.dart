@@ -30,16 +30,19 @@ class FlashSaleDataModel extends FlashSaleDataEntity {
   Map<String, dynamic> toJson() {
     return {
       'products': products
-          .map((e) => (e is FlashSaleProductModel ? e : FlashSaleProductModel(
-                id: e.id,
-                title: e.title,
-                currentPrice: e.currentPrice,
-                originalPrice: e.originalPrice,
-                imageUrl: e.imageUrl,
-                discountPercentage: e.discountPercentage,
-                likeCount: e.likeCount,
-                tag: e.tag,
-              )).toJson())
+          .map((e) => (e is FlashSaleProductModel
+                  ? e
+                  : FlashSaleProductModel(
+                      id: e.id,
+                      title: e.title,
+                      currentPrice: e.currentPrice,
+                      originalPrice: e.originalPrice,
+                      imageUrl: e.imageUrl,
+                      discountPercentage: e.discountPercentage,
+                      likeCount: e.likeCount,
+                      tag: e.tag,
+                    ))
+              .toJson())
           .toList(),
       'liveStream': (liveStream is LiveStreamModel
               ? liveStream as LiveStreamModel
@@ -52,16 +55,19 @@ class FlashSaleDataModel extends FlashSaleDataEntity {
                 ))
           .toJson(),
       'popularProducts': popularProducts
-          .map((e) => (e is FlashSaleProductModel ? e : FlashSaleProductModel(
-                id: e.id,
-                title: e.title,
-                currentPrice: e.currentPrice,
-                originalPrice: e.originalPrice,
-                imageUrl: e.imageUrl,
-                discountPercentage: e.discountPercentage,
-                likeCount: e.likeCount,
-                tag: e.tag,
-              )).toJson())
+          .map((e) => (e is FlashSaleProductModel
+                  ? e
+                  : FlashSaleProductModel(
+                      id: e.id,
+                      title: e.title,
+                      currentPrice: e.currentPrice,
+                      originalPrice: e.originalPrice,
+                      imageUrl: e.imageUrl,
+                      discountPercentage: e.discountPercentage,
+                      likeCount: e.likeCount,
+                      tag: e.tag,
+                    ))
+              .toJson())
           .toList(),
       'countdownSeconds': countdownDuration.inSeconds,
     };

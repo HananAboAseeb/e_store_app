@@ -19,7 +19,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> login(String email, String password) async {
     await Future.delayed(const Duration(milliseconds: 1500));
     if (email == 'error@shopx.com' || password == 'error') {
-      throw Exception('Invalid credentials. Please check your email or password.');
+      throw Exception(
+          'Invalid credentials. Please check your email or password.');
     }
     return UserModel.mock(email: email);
   }

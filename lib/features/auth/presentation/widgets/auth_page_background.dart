@@ -33,7 +33,8 @@ class AuthPageBackground extends StatelessWidget {
               imagePath,
               fit: BoxFit.cover,
               alignment: alignment,
-              errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
+              errorBuilder: (context, error, stackTrace) =>
+                  const SizedBox.shrink(),
             ),
             if (enableFade)
               Container(

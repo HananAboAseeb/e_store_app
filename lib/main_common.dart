@@ -39,7 +39,7 @@ Future<void> mainCommon({required String name, required String baseUrl}) async {
 // to generate env
 // dart run build_runner build
 // to generate feature
-// mason make feature --feature_name home --entity_name Home 
+// mason make feature --feature_name home --entity_name Home
 // to generate assets
 // dart pub global run flutter_gen:flutter_gen_command
 // or add Pub Cache\bin to PATH then: fluttergen

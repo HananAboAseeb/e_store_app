@@ -69,12 +69,15 @@ class ProductCardStandard extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (showNewBadge || (product.tag != null && product.tag!.toLowerCase() == 'new'))
+                if (showNewBadge ||
+                    (product.tag != null &&
+                        product.tag!.toLowerCase() == 'new'))
                   Positioned(
                     top: 10.h,
                     left: 10.w,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
                       decoration: BoxDecoration(
                         color: AppColors.primary400,
                         borderRadius: BorderRadius.circular(6.r),
