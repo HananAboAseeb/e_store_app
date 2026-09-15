@@ -29,6 +29,10 @@ class ShopCubit extends Cubit<ShopState> {
             emit(ShopLoaded(
               products: products,
               categories: categories,
+              selectedSubCategory: 'Clothing',
+              filterCriteria: const FilterCriteriaEntity(
+                selectedSubCategories: ['Clothing'],
+              ),
             ));
           },
         );

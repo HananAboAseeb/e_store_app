@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,21 +45,22 @@ class _ShopView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        bottom: false,
-        child: BlocBuilder<ShopCubit, ShopState>(
-          builder: (context, state) {
-            if (state is ShopLoading || state is ShopInitial) {
-              return const Column(
+      body: BlocBuilder<ShopCubit, ShopState>(
+        builder: (context, state) {
+          if (state is ShopLoading || state is ShopInitial) {
+            return const SafeArea(
+              child: Column(
                 children: [
                   ShopAppBar(),
                   Expanded(child: ShopShimmerLoading()),
                 ],
-              );
-            }
+              ),
+            );
+          }
 
-            if (state is ShopError) {
-              return Column(
+          if (state is ShopError) {
+            return SafeArea(
+              child: Column(
                 children: [
                   const ShopAppBar(),
                   Expanded(
@@ -102,34 +105,55 @@ class _ShopView extends StatelessWidget {
                     ),
                   ),
                 ],
-              );
-            }
+              ),
+            );
+          }
 
-            if (state is ShopLoaded) {
-              final activeCategoryTitle = state.selectedSubCategory ??
-                  (state.filterCriteria.selectedSubCategories.isNotEmpty
-                      ? state.filterCriteria.selectedSubCategories.first
-                      : 'Clothing');
+          if (state is ShopLoaded) {
+            final activeCategoryTitle = state.selectedSubCategory ??
+                (state.filterCriteria.selectedSubCategories.isNotEmpty
+                    ? state.filterCriteria.selectedSubCategories.first
+                    : null);
 
-              return CustomScrollView(
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  // Sticky App Bar (Screen 25 & Screen 26)
-                  SliverAppBar(
-                    pinned: true,
-                    floating: false,
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                    toolbarHeight: 56.h,
-                    automaticallyImplyLeading: false,
-                    flexibleSpace: ShopAppBar(
-                      activeCategory: activeCategoryTitle,
-                      onDismissCategory: () =>
-                          context.read<ShopCubit>().clearFilter(),
-                      onCameraTap: () {},
-                      onFilterTap: () => _openFilter(context, state),
+            return CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                // Frosted Glass Sticky App Bar (Screen 25 & Screen 26)
+                SliverAppBar(
+                  pinned: true,
+                  floating: false,
+                  elevation: 0,
+                  scrolledUnderElevation: 0,
+                  backgroundColor: Colors.transparent,
+                  toolbarHeight: 58.h,
+                  automaticallyImplyLeading: false,
+                  flexibleSpace: ClipRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.85),
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.black.withOpacity(0.04),
+                              width: 0.5,
+                            ),
+                          ),
+                        ),
+                        child: SafeArea(
+                          bottom: false,
+                          child: ShopAppBar(
+                            activeCategory: activeCategoryTitle,
+                            onDismissCategory: () =>
+                                context.read<ShopCubit>().clearFilter(),
+                            onCameraTap: () {},
+                            onFilterTap: () => _openFilter(context, state),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
+                ),
 
                   // Sub-Categories 2-Row Grid
                   SliverToBoxAdapter(
@@ -238,7 +262,7 @@ class _ShopView extends StatelessWidget {
                     )
                   else
                     SliverPadding(
-                      padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 24.h),
+                      padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 96.h),
                       sliver: SliverGrid(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -267,7 +291,6 @@ class _ShopView extends StatelessWidget {
             return const SizedBox.shrink();
           },
         ),
-      ),
     );
   }
 }

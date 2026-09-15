@@ -39,12 +39,12 @@ class FilterColorSection extends StatelessWidget {
           'Color',
           style: TextStyle(
             fontFamily: 'Raleway',
-            fontSize: 16.sp,
+            fontSize: 22.sp,
             fontWeight: FontWeight.w700,
             color: AppColors.textPrimary,
           ),
         ),
-        SizedBox(height: 12.h),
+        SizedBox(height: 14.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: colors.map((item) {
@@ -52,45 +52,67 @@ class FilterColorSection extends StatelessWidget {
                 selectedColor?.toLowerCase() == item.name.toLowerCase();
             return GestureDetector(
               onTap: () => onColorSelected?.call(isSelected ? null : item.name),
-              child: Stack(
-                alignment: Alignment.center,
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    width: 36.w,
-                    height: 36.w,
-                    decoration: BoxDecoration(
-                      color: item.color,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: isSelected
-                            ? AppColors.primary
-                            : (item.color == const Color(0xFFFFFFFF)
-                                ? const Color(0xFFE5E5E5)
-                                : Colors.transparent),
-                        width: isSelected ? 2.5.w : 1.w,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.08),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
+              behavior: HitTestBehavior.opaque,
+              child: SizedBox(
+                width: 44.w,
+                height: 44.w,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.center,
+                  children: [
+                    // Outer Ring if selected
+                    if (isSelected)
+                      Container(
+                        width: 42.w,
+                        height: 42.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: const Color(0xFF004BFE),
+                            width: 2.2.w,
+                          ),
                         ),
-                      ],
+                      ),
+
+                    // Color Circle
+                    Container(
+                      width: isSelected ? 32.w : 36.w,
+                      height: isSelected ? 32.w : 36.w,
+                      decoration: BoxDecoration(
+                        color: item.color,
+                        shape: BoxShape.circle,
+                        border: item.color == const Color(0xFFFFFFFF)
+                            ? Border.all(
+                                color: const Color(0xFFE5E5EA),
+                                width: 1.w,
+                              )
+                            : null,
+                      ),
                     ),
-                    child: isSelected
-                        ? Center(
+
+                    // Top-Right Check Badge if selected
+                    if (isSelected)
+                      Positioned(
+                        top: -1.h,
+                        right: -1.w,
+                        child: Container(
+                          width: 18.w,
+                          height: 18.w,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFF004BFE),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
                             child: Icon(
                               Icons.check,
-                              size: 16.sp,
-                              color: item.color == const Color(0xFFFFFFFF)
-                                  ? AppColors.primary
-                                  : Colors.white,
+                              size: 11.sp,
+                              color: Colors.white,
                             ),
-                          )
-                        : null,
-                  ),
-                ],
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             );
           }).toList(),

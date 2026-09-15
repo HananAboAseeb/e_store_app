@@ -29,10 +29,12 @@ class ShopRepositoryImpl implements ShopRepository {
       }
 
       final filtered = allProducts.where((product) {
-        // SubCategory filter
+        // SubCategory / Category filter
         if (criteria.selectedSubCategories.isNotEmpty) {
           final matchesSubCategory = criteria.selectedSubCategories.any(
-            (sc) => sc.toLowerCase() == product.subCategory.toLowerCase(),
+            (sc) =>
+                sc.toLowerCase() == product.subCategory.toLowerCase() ||
+                sc.toLowerCase() == product.category.toLowerCase(),
           );
           if (!matchesSubCategory) return false;
         }

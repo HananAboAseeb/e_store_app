@@ -22,41 +22,40 @@ class FilterPriceRangeSection extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              child: Text(
-                'Price Range',
-                style: TextStyle(
-                  fontFamily: 'Raleway',
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.textPrimary,
-                ),
+            Text(
+              'Price Range',
+              style: TextStyle(
+                fontFamily: 'Raleway',
+                fontSize: 22.sp,
+                fontWeight: FontWeight.w700,
+                color: AppColors.textPrimary,
               ),
             ),
             Text(
               '\$${minPrice.round()} - \$${maxPrice.round()}',
               style: TextStyle(
                 fontFamily: 'Raleway',
-                fontSize: 15.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.primary,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
               ),
             ),
           ],
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 12.h),
         SliderTheme(
           data: SliderThemeData(
-            activeTrackColor: AppColors.primary,
-            inactiveTrackColor: const Color(0xFFE5E7EB),
-            thumbColor: Colors.white,
+            activeTrackColor: const Color(0xFF004BFE),
+            inactiveTrackColor: const Color(0xFFD1D5DB),
+            thumbColor: const Color(0xFFE5E7EB),
             trackHeight: 4.h,
             rangeThumbShape: const RoundRangeSliderThumbShape(
-              enabledThumbRadius: 10,
-              elevation: 4,
+              enabledThumbRadius: 13,
+              elevation: 3,
             ),
-            overlayColor: AppColors.primary.withOpacity(0.15),
+            overlayColor: const Color(0xFF004BFE).withOpacity(0.12),
           ),
           child: RangeSlider(
             values: RangeValues(minPrice, maxPrice),

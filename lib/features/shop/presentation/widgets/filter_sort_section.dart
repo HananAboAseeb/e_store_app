@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/filter_criteria_entity.dart';
 
 class FilterSortSection extends StatelessWidget {
@@ -16,42 +15,27 @@ class FilterSortSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Sort by',
-          style: TextStyle(
-            fontFamily: 'Raleway',
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w700,
-            color: AppColors.textPrimary,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
+      child: Row(
+        children: [
+          _buildSortChip(
+            label: 'Popular',
+            option: ShopSortOption.popular,
           ),
-        ),
-        SizedBox(height: 12.h),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          child: Row(
-            children: [
-              _buildSortChip(
-                label: 'Popular',
-                option: ShopSortOption.popular,
-              ),
-              SizedBox(width: 8.w),
-              _buildSortChip(
-                label: 'Newest',
-                option: ShopSortOption.newest,
-              ),
-              SizedBox(width: 8.w),
-              _buildSortChip(
-                label: 'Price High to Low',
-                option: ShopSortOption.priceHighToLow,
-              ),
-            ],
+          SizedBox(width: 10.w),
+          _buildSortChip(
+            label: 'Newest',
+            option: ShopSortOption.newest,
           ),
-        ),
-      ],
+          SizedBox(width: 10.w),
+          _buildSortChip(
+            label: 'Price Hight to Low',
+            option: ShopSortOption.priceHighToLow,
+          ),
+        ],
+      ),
     );
   }
 
@@ -63,25 +47,36 @@ class FilterSortSection extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => onSortOptionSelected?.call(option),
+      behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
+        height: 36.h,
+        padding: EdgeInsets.symmetric(horizontal: 14.w),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFEBF1FF) : const Color(0xFFF5F5F5),
-          borderRadius: BorderRadius.circular(20.r),
-          border: isSelected
-              ? Border.all(color: AppColors.primary, width: 1.5.w)
-              : null,
+          color: isSelected ? const Color(0xFFDCE8FE) : const Color(0xFFEBECEF),
+          borderRadius: BorderRadius.circular(18.r),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 13.sp,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                color: isSelected
+                    ? const Color(0xFF004BFE)
+                    : const Color(0xFF1A1A1A),
+              ),
+            ),
             if (isSelected) ...[
+              SizedBox(width: 8.w),
               Container(
-                width: 16.w,
-                height: 16.w,
+                width: 18.w,
+                height: 18.w,
                 decoration: const BoxDecoration(
-                  color: AppColors.primary,
+                  color: Color(0xFF004BFE),
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -92,16 +87,7 @@ class FilterSortSection extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 6.w),
             ],
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13.sp,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected ? AppColors.primary : AppColors.textPrimary,
-              ),
-            ),
           ],
         ),
       ),

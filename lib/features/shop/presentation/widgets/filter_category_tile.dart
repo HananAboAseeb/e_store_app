@@ -28,16 +28,11 @@ class FilterCategoryTile extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                width: 58.w,
-                height: 58.w,
+                width: 60.w,
+                height: 60.w,
                 decoration: BoxDecoration(
-                  color: isSelected
-                      ? const Color(0xFFEBF1FF)
-                      : const Color(0xFFF5F5F5),
-                  borderRadius: BorderRadius.circular(16.r),
-                  border: isSelected
-                      ? Border.all(color: AppColors.primary, width: 1.5.w)
-                      : null,
+                  color: const Color(0xFFF3F4F6),
+                  borderRadius: BorderRadius.circular(18.r),
                 ),
                 padding: EdgeInsets.all(10.w),
                 child: Center(
@@ -54,19 +49,19 @@ class FilterCategoryTile extends StatelessWidget {
               ),
               if (isSelected)
                 Positioned(
-                  top: -4.h,
-                  right: -4.w,
+                  top: -3.h,
+                  right: -3.w,
                   child: Container(
-                    width: 18.w,
-                    height: 18.w,
+                    width: 20.w,
+                    height: 20.w,
                     decoration: const BoxDecoration(
-                      color: AppColors.primary,
+                      color: Color(0xFF004BFE),
                       shape: BoxShape.circle,
                     ),
                     child: Center(
                       child: Icon(
                         Icons.check,
-                        size: 12.sp,
+                        size: 13.sp,
                         color: Colors.white,
                       ),
                     ),
@@ -76,16 +71,16 @@ class FilterCategoryTile extends StatelessWidget {
           ),
           SizedBox(height: 6.h),
           SizedBox(
-            width: 60.w,
+            width: 62.w,
             child: Text(
               category.name,
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 11.sp,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected ? AppColors.primary : AppColors.textPrimary,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
               ),
             ),
           ),
