@@ -40,7 +40,7 @@ class TokenExpiredFailure extends AuthFailure {
 
 class UnauthorizedFailure extends AuthFailure {
   const UnauthorizedFailure([String? message])
-    : super(message ?? 'You are not authorized to perform this action.');
+      : super(message ?? 'You are not authorized to perform this action.');
 }
 
 class NetworkFailure extends Failure {

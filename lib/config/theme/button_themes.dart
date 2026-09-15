@@ -37,8 +37,7 @@ class AppButtonThemes {
   static final OutlinedButtonThemeData outlinedDark =
       OutlinedButtonThemeData(style: _outlinedStyle(AppColors.primary300));
 
-  static ButtonStyle _outlinedStyle(Color accent) =>
-      OutlinedButton.styleFrom(
+  static ButtonStyle _outlinedStyle(Color accent) => OutlinedButton.styleFrom(
         foregroundColor: accent,
         side: BorderSide(color: accent),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),

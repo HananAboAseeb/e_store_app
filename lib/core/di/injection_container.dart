@@ -10,6 +10,7 @@ import '../../features/flash_sale/flash_sale_injection.dart';
 import '../../features/home/domain/entities/product/product_entity.dart';
 import '../../features/home/home_injection.dart';
 import '../../features/profile/profile_injection.dart';
+import '../../features/shop/shop_injection.dart';
 import '../../features/theme/theme_injection.dart';
 import '../localization/localization_service.dart';
 import '../network/api_consumer.dart';
@@ -56,4 +57,5 @@ Future<void> initCore() async {
   initProfile();
   initAuth();
   initFlashSale();
+  initShop();
 }

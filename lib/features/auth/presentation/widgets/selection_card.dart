@@ -27,7 +27,9 @@ class SelectionCard extends StatelessWidget {
         height: 68.h,
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary400.withOpacity(0.04) : AppColors.surface,
+          color: isSelected
+              ? AppColors.primary400.withOpacity(0.04)
+              : AppColors.surface,
           borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
           border: Border.all(
             color: isSelected ? AppColors.primary400 : AppColors.border,
@@ -40,12 +42,15 @@ class SelectionCard extends StatelessWidget {
               width: 40.w,
               height: 40.w,
               decoration: BoxDecoration(
-                color: isSelected ? AppColors.primary400 : AppColors.border.withOpacity(0.5),
+                color: isSelected
+                    ? AppColors.primary400
+                    : AppColors.border.withOpacity(0.5),
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 icon,
-                color: isSelected ? AppColors.textWhite : AppColors.textSecondary,
+                color:
+                    isSelected ? AppColors.textWhite : AppColors.textSecondary,
                 size: 20.sp,
               ),
             ),
@@ -57,7 +62,8 @@ class SelectionCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: AppTypography.body.copyWith(fontWeight: FontWeight.w600),
+                    style: AppTypography.body
+                        .copyWith(fontWeight: FontWeight.w600),
                   ),
                   SizedBox(height: 2.h),
                   Text(

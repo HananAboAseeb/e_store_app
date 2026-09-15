@@ -127,7 +127,8 @@ class _VerificationPageState extends State<VerificationPage> {
 
                         // Header Matching Figma 08
                         AuthHeader(
-                          title: isRecovery ? 'Password Recovery' : 'Verification',
+                          title:
+                              isRecovery ? 'Password Recovery' : 'Verification',
                           subtitle: isRecovery
                               ? 'Enter 4-digits code we sent you\non your phone number'
                               : 'We sent a code to your Email\nAddress, Enter it below.',
@@ -173,8 +174,7 @@ class _VerificationPageState extends State<VerificationPage> {
                               isLoading ? (_) {} : _onNumberPressed,
                           onBackspacePressed:
                               isLoading ? () {} : _onBackspacePressed,
-                          onResendPressed:
-                              isLoading ? () {} : _onResendPressed,
+                          onResendPressed: isLoading ? () {} : _onResendPressed,
                         ),
                         SizedBox(height: 20.h),
 

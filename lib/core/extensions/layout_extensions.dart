@@ -5,14 +5,14 @@ extension PaddingExtension on Widget {
       Padding(padding: value, child: this);
 
   Widget paddingHorizontal([double value = 8]) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: value),
-    child: this,
-  );
+        padding: EdgeInsets.symmetric(horizontal: value),
+        child: this,
+      );
 
   Widget paddingVertical([double value = 8]) => Padding(
-    padding: EdgeInsets.symmetric(vertical: value),
-    child: this,
-  );
+        padding: EdgeInsets.symmetric(vertical: value),
+        child: this,
+      );
 }
 
 extension ExpandedExtension on Widget {

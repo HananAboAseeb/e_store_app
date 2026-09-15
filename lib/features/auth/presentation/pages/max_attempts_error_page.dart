@@ -78,7 +78,8 @@ class MaxAttemptsErrorPage extends StatelessWidget {
                         foregroundColor: AppColors.textWhite,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppColors.buttonRadius.r),
+                          borderRadius:
+                              BorderRadius.circular(AppColors.buttonRadius.r),
                         ),
                       ),
                       child: Text(

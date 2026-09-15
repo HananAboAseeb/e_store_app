@@ -35,7 +35,9 @@ class _ProductGridViewState extends State<ProductGridView> {
   }
 
   void _loadFirstPage() {
-    context.read<ProductCubit>().loadProducts(limit: _pageSize, isRefresh: true);
+    context
+        .read<ProductCubit>()
+        .loadProducts(limit: _pageSize, isRefresh: true);
   }
 
   void _scrollListener() async {
@@ -44,7 +46,9 @@ class _ProductGridViewState extends State<ProductGridView> {
 
     if (currentPosition >= 0.7 * maxScrollLength) {
       final cubit = context.read<ProductCubit>();
-      if (!_isLoadingMore && !cubit.hasReachedMax && cubit.state is! ProductLoading) {
+      if (!_isLoadingMore &&
+          !cubit.hasReachedMax &&
+          cubit.state is! ProductLoading) {
         setState(() {
           _isLoadingMore = true;
         });
@@ -77,7 +81,8 @@ class _ProductGridViewState extends State<ProductGridView> {
           final products = cubit.products;
 
           if (state is ProductLoading && products.isEmpty) {
-            return const Center(child: LoadingWidget(message: 'Loading products...'));
+            return const Center(
+                child: LoadingWidget(message: 'Loading products...'));
           } else if (state is ProductError && products.isEmpty) {
             return Center(
               child: Column(

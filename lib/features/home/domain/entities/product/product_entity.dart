@@ -76,29 +76,29 @@ class ProductEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    id,
-    title,
-    description,
-    category,
-    price,
-    discountPercentage,
-    rating,
-    stock,
-    tags,
-    brand,
-    sku,
-    weight,
-    dimensions,
-    warrantyInformation,
-    shippingInformation,
-    availabilityStatus,
-    reviews,
-    returnPolicy,
-    minimumOrderQuantity,
-    meta,
-    images,
-    thumbnail,
-  ];
+        id,
+        title,
+        description,
+        category,
+        price,
+        discountPercentage,
+        rating,
+        stock,
+        tags,
+        brand,
+        sku,
+        weight,
+        dimensions,
+        warrantyInformation,
+        shippingInformation,
+        availabilityStatus,
+        reviews,
+        returnPolicy,
+        minimumOrderQuantity,
+        meta,
+        images,
+        thumbnail,
+      ];
 }
 
 @HiveType(typeId: 1)
@@ -143,12 +143,12 @@ class ReviewEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    rating,
-    comment,
-    date,
-    reviewerName,
-    reviewerEmail,
-  ];
+        rating,
+        comment,
+        date,
+        reviewerName,
+        reviewerEmail,
+      ];
 }
 
 @HiveType(typeId: 3)
@@ -172,4 +172,3 @@ class MetaEntity extends Equatable {
   @override
   List<Object?> get props => [createdAt, updatedAt, barcode, qrCode];
 }
-

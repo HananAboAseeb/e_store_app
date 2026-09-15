@@ -67,7 +67,9 @@ class _AuthTextFieldState extends State<AuthTextField> {
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(
-                  _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                  _obscureText
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility_outlined,
                   color: AppColors.textSecondary,
                   size: 20.sp,
                 ),

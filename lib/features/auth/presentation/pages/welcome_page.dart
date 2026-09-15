@@ -38,7 +38,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   children: [
                     const WelcomeCard(
                       title: 'Hello',
-                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consectetur turpis. Morbi eu eleifend lacus.',
+                      description:
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non consectetur turpis. Morbi eu eleifend lacus.',
                     ),
                     WelcomeCard(
                       title: 'Ready?',

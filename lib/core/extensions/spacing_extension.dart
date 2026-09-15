@@ -8,12 +8,12 @@ extension SpacingExtension on num {
   SizedBox get height => SizedBox(height: h);
 
   Widget get hDivider => SizedBox(
-    height: h,
-    child: Divider(height: 0.h, color: AppColors.divider),
-  );
+        height: h,
+        child: Divider(height: 0.h, color: AppColors.divider),
+      );
 
   Widget get vDivider => SizedBox(
-    width: w,
-    child: VerticalDivider(width: 0.w, color: AppColors.divider),
-  );
+        width: w,
+        child: VerticalDivider(width: 0.w, color: AppColors.divider),
+      );
 }

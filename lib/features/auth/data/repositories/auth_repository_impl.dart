@@ -24,7 +24,8 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
     required String phoneNumber,
   }) async {
-    return await safeCall(() => remoteDataSource.register(email, password, phoneNumber));
+    return await safeCall(
+        () => remoteDataSource.register(email, password, phoneNumber));
   }
 
   @override
