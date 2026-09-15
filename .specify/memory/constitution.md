@@ -1,15 +1,11 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: Initial Template -> 1.0.0
+Version change: 1.0.0 -> 1.1.0
 Modified principles:
-  - Initialized Core Principles for E-Store project architecture, Figma design tokens, Clean Architecture, Cubit state management, go_router navigation, flutter_screenutil, and Mason brick workflows.
+  - Added Permanent Project Rules (Mandatory for ALL Features) covering verification timing, asset policy, architecture, design patterns, responsive dimensions, component reuse, Clean Architecture layers, mock data, shimmer loading, and Figma pixel-perfection.
 Added sections:
-  - Phase 1 Scope & Constraints
-  - Development Workflow & Quality Gates
-  - Governance
-Removed sections:
-  - N/A (template placeholders replaced)
+  - Permanent Project Rules (Mandatory for ALL Features)
 Templates requiring updates:
   - .specify/templates/plan-template.md (✅ aligned)
   - .specify/templates/spec-template.md (✅ aligned)
@@ -56,6 +52,20 @@ New features MUST be created using the repository's established Mason brick stru
 - Presentation layers MUST be covered by automated widget tests in `test/`.
 - Phase 1 implementations MUST focus on UI completeness backed by clean mock data sources.
 
+## Permanent Project Rules (Mandatory for ALL Features)
+
+These rules apply to every feature without exception:
+1. **Verification Timing**: Do NOT run `flutter analyze` or `flutter test` after each individual task. Save all static analysis and verification strictly for the final phase to save tokens and time.
+2. **Asset Policy**: Do NOT generate any new placeholder images, icons, or asset files. Reuse existing assets located in `assets/images/` and `assets/design_references/` only. Use provided Figma screenshots strictly as visual references.
+3. **Architectural Adherence**: STRICTLY adhere to the project Constitution, Feature-First Clean Architecture, Design Tokens (`app_colors`, `app_spacing`, `app_typography`, `app_theme`), and all established coding standards.
+4. **Code Quality & Design Patterns**: Write clean, production-ready Dart code using proper Design Patterns (Repository, UseCase, Cubit/Bloc, Factory for models, etc.). Extract all reusable UI components into separate widget files.
+5. **Dimensions & Frameworks**: All dimensions must use `flutter_screenutil` (.w, .h, .r, .sp). All navigation must use `go_router`. All state management must use `flutter_bloc` (Cubit) with `equatable` states.
+6. **Component Reuse**: Reuse existing shared widgets and components from previous features (e.g., DiscountBadge, ShopProductCard, PrimaryButton, etc.) whenever applicable.
+7. **Clean Architecture Layers**: Every feature must include: Domain (entities, repository contract, usecases), Data (models, mock datasource, repository impl with `safeCall`), Presentation (cubit, state, pages, widgets), DI registration, and routing.
+8. **Phase 1 Data Scope**: Mock Data only in Phase 1 (no real API).
+9. **Loading Experience**: Shimmer placeholders for all loading states.
+10. **Visual Perfection**: Pixel-perfect match with the Figma screenshots (colors, spacing, radius, typography).
+
 ## Phase 1 Scope & Feature Constraints
 
 Phase 1 implementation covers UI-only screens backed by structured mock data:
@@ -78,4 +88,5 @@ Phase 1 implementation covers UI-only screens backed by structured mock data:
 - **Compliance**: All code reviews MUST verify adherence to Clean Architecture layers, Figma design fidelity, Cubit separation, and `go_router` shell architecture.
 - **Amendments**: Proposed updates to this Constitution require documentation of rationale, version updates following Semantic Versioning (MAJOR for structural paradigm shifts, MINOR for new architectural principles, PATCH for clarifications), and synchronization across `.specify/templates/`.
 
-**Version**: 1.0.0 | **Ratified**: 2026-08-02 | **Last Amended**: 2026-08-02
+**Version**: 1.1.0 | **Ratified**: 2026-08-02 | **Last Amended**: 2026-09-16
+

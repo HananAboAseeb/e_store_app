@@ -11,6 +11,8 @@ import '../../features/auth/presentation/models/verification_mode.dart';
 import '../../features/auth/presentation/pages/verification_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
+import '../../features/categories/presentation/pages/categories_page.dart';
+import '../../features/categories/presentation/pages/category_products_placeholder_page.dart';
 import '../../features/shop/presentation/pages/shop_page.dart';
 import '../../features/flash_sale/presentation/pages/flash_sale_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
@@ -96,6 +98,22 @@ final router = GoRouter(
       path: RouteNames.kMaxAttemptsErrorPage,
       name: 'max-attempts-error',
       builder: (context, state) => const MaxAttemptsErrorPage(),
+    ),
+
+    // ── Categories Modal Route ──────────────────────────────────────────────────
+    GoRoute(
+      path: RouteNames.kCategoriesPage,
+      name: 'categories',
+      builder: (context, state) => const CategoriesPage(),
+    ),
+    GoRoute(
+      path: RouteNames.kCategoryProductsPage,
+      name: 'category-products',
+      builder: (context, state) {
+        final title = (state.extra as Map<String, dynamic>?)?['title'] as String? ??
+            'Products';
+        return CategoryProductsPlaceholderPage(title: title);
+      },
     ),
 
     // ── Main App Shell Routes (5-tab navigation) ────────────────────────────────

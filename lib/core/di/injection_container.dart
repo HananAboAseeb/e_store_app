@@ -6,6 +6,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 
 import '../../features/auth/auth_injection.dart';
 import '../../features/cart/cart_injection.dart';
+import '../../features/categories/categories_injection.dart';
 import '../../features/flash_sale/flash_sale_injection.dart';
 import '../../features/home/domain/entities/product/product_entity.dart';
 import '../../features/home/home_injection.dart';
@@ -58,4 +59,5 @@ Future<void> initCore() async {
   initAuth();
   initFlashSale();
   initShop();
+  initCategories();
 }

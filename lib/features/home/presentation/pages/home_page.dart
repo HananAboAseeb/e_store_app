@@ -132,7 +132,8 @@ class _HomeViewState extends State<_HomeView> {
                       HomeSectionHeader(
                         title: 'Categories',
                         showSeeAll: true,
-                        onSeeAllTap: () {},
+                        onSeeAllTap: () =>
+                            context.push(RouteNames.kCategoriesPage),
                       ),
                       SizedBox(height: 12.h),
                       Padding(
@@ -150,7 +151,10 @@ class _HomeViewState extends State<_HomeView> {
                           ),
                           itemBuilder: (context, index) {
                             return CategoryCard(
-                                category: data.categories[index]);
+                              category: data.categories[index],
+                              onTap: () =>
+                                  context.push(RouteNames.kCategoriesPage),
+                            );
                           },
                         ),
                       ),
