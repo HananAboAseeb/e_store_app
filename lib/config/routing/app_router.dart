@@ -17,6 +17,9 @@ import '../../features/shop/presentation/pages/shop_page.dart';
 import '../../features/flash_sale/presentation/pages/flash_sale_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/search/presentation/pages/image_search_page.dart';
+import '../../features/search/presentation/pages/search_page.dart';
+import '../../features/search/presentation/pages/search_results_page.dart';
 import '../../features/wishlist/presentation/pages/wishlist_page.dart';
 import '../../root.dart';
 import 'route_names.dart';
@@ -100,7 +103,7 @@ final router = GoRouter(
       builder: (context, state) => const MaxAttemptsErrorPage(),
     ),
 
-    // ── Categories Modal Route ──────────────────────────────────────────────────
+    // ── Categories & Search Modal Routes ────────────────────────────────────────
     GoRoute(
       path: RouteNames.kCategoriesPage,
       name: 'categories',
@@ -110,10 +113,16 @@ final router = GoRouter(
       path: RouteNames.kCategoryProductsPage,
       name: 'category-products',
       builder: (context, state) {
-        final title = (state.extra as Map<String, dynamic>?)?['title'] as String? ??
-            'Products';
+        final title =
+            (state.extra as Map<String, dynamic>?)?['title'] as String? ??
+                'Products';
         return CategoryProductsPlaceholderPage(title: title);
       },
+    ),
+    GoRoute(
+      path: RouteNames.kImageSearchPage,
+      name: 'image-search',
+      builder: (context, state) => const ImageSearchPage(),
     ),
 
     // ── Main App Shell Routes (5-tab navigation) ────────────────────────────────
@@ -133,6 +142,19 @@ final router = GoRouter(
               path: RouteNames.kFlashSalePage,
               name: 'flash-sale',
               builder: (context, state) => const FlashSalePage(),
+            ),
+            GoRoute(
+              path: RouteNames.kSearchPage,
+              name: 'search',
+              builder: (context, state) => const SearchPage(),
+            ),
+            GoRoute(
+              path: RouteNames.kSearchResultsPage,
+              name: 'search-results',
+              builder: (context, state) {
+                final query = state.uri.queryParameters['q'] ?? '';
+                return SearchResultsPage(query: query);
+              },
             ),
           ],
         ),

@@ -24,15 +24,18 @@ class FilterPriceRangeSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Price Range',
-              style: TextStyle(
-                fontFamily: 'Raleway',
-                fontSize: 22.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textPrimary,
+            Flexible(
+              child: Text(
+                'Price Range',
+                style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textPrimary,
+                ),
               ),
             ),
+            SizedBox(width: 8.w),
             Text(
               '\$${minPrice.round()} - \$${maxPrice.round()}',
               style: TextStyle(

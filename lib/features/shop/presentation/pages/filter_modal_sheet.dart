@@ -147,9 +147,8 @@ class _FilterModalContent extends StatelessWidget {
                                 SizedBox(height: 12.h),
                                 Row(
                                   children: row2.map((category) {
-                                    final isSelected = state
-                                        .selectedSubCategories
-                                        .any((c) =>
+                                    final isSelected =
+                                        state.selectedSubCategories.any((c) =>
                                             c.toLowerCase() ==
                                             category.name.toLowerCase());
                                     return Padding(

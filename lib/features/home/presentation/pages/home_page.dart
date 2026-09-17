@@ -119,8 +119,9 @@ class _HomeViewState extends State<_HomeView> {
                       // Section 1: Top AppBar / Search Header
                       HomeAppBar(
                         onTitleTap: _scrollToTop,
-                        onSearchTap: () {},
-                        onCameraTap: () {},
+                        onSearchTap: () => context.push(RouteNames.kSearchPage),
+                        onCameraTap: () =>
+                            context.push(RouteNames.kImageSearchPage),
                       ),
                       SizedBox(height: 12.h),
 
