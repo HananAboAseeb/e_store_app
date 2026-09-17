@@ -68,53 +68,63 @@ class ShopAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 children: [
                   if (hasCategory)
-                    Container(
-                      padding: EdgeInsets.fromLTRB(10.w, 4.h, 6.w, 4.h),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFCAD8FF),
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            activeCategory!,
-                            style: TextStyle(
-                              fontFamily: 'Raleway',
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w600,
-                              color: const Color(0xFF004BFE),
-                            ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(10.w, 4.h, 6.w, 4.h),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFCAD8FF),
+                            borderRadius: BorderRadius.circular(20.r),
                           ),
-                          SizedBox(width: 4.w),
-                          GestureDetector(
-                            onTap: onDismissCategory,
-                            behavior: HitTestBehavior.opaque,
-                            child: Padding(
-                              padding: EdgeInsets.all(2.w),
-                              child: Icon(
-                                Icons.close,
-                                size: 14.sp,
-                                color: const Color(0xFF004BFE),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  activeCategory!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontFamily: 'Raleway',
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: const Color(0xFF004BFE),
+                                  ),
+                                ),
                               ),
-                            ),
+                              SizedBox(width: 4.w),
+                              GestureDetector(
+                                onTap: onDismissCategory,
+                                behavior: HitTestBehavior.opaque,
+                                child: Padding(
+                                  padding: EdgeInsets.all(2.w),
+                                  child: Icon(
+                                    Icons.close,
+                                    size: 14.sp,
+                                    color: const Color(0xFF004BFE),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     )
                   else
-                    Padding(
-                      padding: EdgeInsets.only(left: 8.w),
-                      child: Text(
-                        'Search...',
-                        style: TextStyle(
-                          fontFamily: 'Raleway',
-                          fontSize: 13.sp,
-                          color: AppColors.gray400,
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 8.w),
+                        child: Text(
+                          'Search...',
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
+                            fontSize: 13.sp,
+                            color: AppColors.gray400,
+                          ),
                         ),
                       ),
                     ),
-                  const Spacer(),
                   // Blue Camera Icon inside the capsule
                   GestureDetector(
                     onTap: onCameraTap,
