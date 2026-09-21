@@ -27,23 +27,28 @@ class HomeSectionHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Left: Optional Leading Icon + Dark Bold Title
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (leading != null) ...[
-                leading!,
-                SizedBox(width: 8.w),
-              ],
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.w900,
-                  color: const Color(0xFF000000),
-                  letterSpacing: -0.5,
+          Flexible(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (leading != null) ...[
+                  leading!,
+                  SizedBox(width: 8.w),
+                ],
+                Flexible(
+                  child: Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w900,
+                      color: const Color(0xFF000000),
+                      letterSpacing: -0.5,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
 
           // Right: Custom Trailing or "See All" Blue Circular Arrow

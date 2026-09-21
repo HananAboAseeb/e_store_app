@@ -279,7 +279,7 @@ class _ShopView extends StatelessWidget {
                           return ShopProductCard(
                             product: product,
                             onTap: () {
-                              // Product tap handler
+                              context.push('/product/${product.id}');
                             },
                           );
                         },

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/home_data_entity.dart';
 import 'home_section_header.dart';
 import 'product_card_standard.dart';
 
 class StuffForYouSection extends StatelessWidget {
+  final String title;
+  final Widget? leading;
   final List<HomeProductEntity> products;
   final ValueChanged<HomeProductEntity>? onProductTap;
 
   const StuffForYouSection({
     super.key,
+    this.title = 'Stuff for you',
+    this.leading,
     required this.products,
     this.onProductTap,
   });
@@ -23,35 +26,44 @@ class StuffForYouSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HomeSectionHeader(
-          title: 'Stuff for you',
-          leading: Icon(
-            Icons.star_rounded,
-            size: 22.sp,
-            color: AppColors.primary400,
-          ),
+          title: title,
+          leading: leading ??
+              Icon(
+                Icons.star_rounded,
+                size: 22.sp,
+                color: const Color(0xFF004BFE),
+              ),
         ),
         SizedBox(height: 12.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: products.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 16.h,
-              crossAxisSpacing: 12.w,
-              childAspectRatio: 0.62,
-            ),
-            itemBuilder: (context, index) {
-              final product = products[index];
-              return ProductCardStandard(
-                product: product,
-                width: double.infinity,
-                imageHeight: 164.h,
-                onTap: () => onProductTap?.call(product),
-              );
-            },
+          child: Column(
+            children: [
+              for (int i = 0; i < products.length; i += 2) ...[
+                if (i > 0) SizedBox(height: 14.h),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: ProductCardStandard(
+                        product: products[i],
+                        onTap: () => onProductTap?.call(products[i]),
+                      ),
+                    ),
+                    SizedBox(width: 14.w),
+                    if (i + 1 < products.length)
+                      Expanded(
+                        child: ProductCardStandard(
+                          product: products[i + 1],
+                          onTap: () => onProductTap?.call(products[i + 1]),
+                        ),
+                      )
+                    else
+                      const Expanded(child: SizedBox.shrink()),
+                  ],
+                ),
+              ],
+            ],
           ),
         ),
       ],

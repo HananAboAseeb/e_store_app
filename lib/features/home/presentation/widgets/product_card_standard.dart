@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_typography.dart';
 import '../../domain/entities/home_data_entity.dart';
 
 class ProductCardStandard extends StatelessWidget {
@@ -22,77 +20,42 @@ class ProductCardStandard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardWidth = width ?? 140.w;
-    final imgHeight = imageHeight ?? 140.h;
-    const grayBg = Color(0xFFE5E6EA);
+    final cardWidth = width ?? 160.w;
 
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: cardWidth,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            // White Outer Card with Shadow framing Gray Image Container
-            Stack(
-              children: [
-                Container(
-                  width: cardWidth,
-                  height: imgHeight,
-                  padding: EdgeInsets.all(6.w),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(18.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.06),
-                        blurRadius: 12,
-                        spreadRadius: 0,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
+            // White Rounded Image Card with Shadow matching Figma
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.06),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: grayBg,
-                      borderRadius: BorderRadius.circular(14.r),
-                    ),
-                    padding: EdgeInsets.all(8.w),
-                    child: Image.asset(
-                      product.imageUrl,
-                      color: grayBg,
-                      colorBlendMode: BlendMode.darken,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const SizedBox.shrink(),
-                    ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(18.r),
+                child: AspectRatio(
+                  aspectRatio: 1.05,
+                  child: Image.asset(
+                    product.imageUrl,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const SizedBox.shrink(),
                   ),
                 ),
-                if (showNewBadge ||
-                    (product.tag != null &&
-                        product.tag!.toLowerCase() == 'new'))
-                  Positioned(
-                    top: 10.h,
-                    left: 10.w,
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary400,
-                        borderRadius: BorderRadius.circular(6.r),
-                      ),
-                      child: Text(
-                        'NEW',
-                        style: TextStyle(
-                          fontSize: 9.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
+              ),
             ),
             SizedBox(height: 8.h),
 
@@ -101,10 +64,11 @@ class ProductCardStandard extends StatelessWidget {
               product.title,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: AppTypography.bodySmall.copyWith(
-                fontSize: 12.sp,
-                color: AppColors.textPrimary,
-                height: 1.3,
+              style: TextStyle(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: const Color(0xFF333333),
+                height: 1.25,
               ),
             ),
             SizedBox(height: 4.h),
@@ -113,9 +77,10 @@ class ProductCardStandard extends StatelessWidget {
             Text(
               '\$${product.price.toStringAsFixed(2).replaceAll('.', ',')}',
               style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textPrimary,
+                fontFamily: 'Raleway',
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w800,
+                color: const Color(0xFF000000),
               ),
             ),
           ],

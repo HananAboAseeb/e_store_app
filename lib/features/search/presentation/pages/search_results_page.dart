@@ -213,7 +213,7 @@ class _SearchResultsViewState extends State<_SearchResultsView> {
                           return ShopProductCard(
                             product: product,
                             onTap: () {
-                              // Can navigate to future product details
+                              context.push('/product/${product.id}');
                             },
                           );
                         },

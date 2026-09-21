@@ -67,32 +67,36 @@ class ShopProductCard extends StatelessWidget {
           ),
           SizedBox(height: 4.h),
           // Price Row
-          Row(
-            children: [
-              Text(
-                _formatPrice(product.price),
-                style: TextStyle(
-                  fontFamily: 'Raleway',
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.textPrimary,
-                ),
-              ),
-              if (product.isDiscounted && product.originalPrice != null) ...[
-                SizedBox(width: 8.w),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Row(
+              children: [
                 Text(
-                  _formatPrice(product.originalPrice!),
+                  _formatPrice(product.price),
                   style: TextStyle(
                     fontFamily: 'Raleway',
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0xFFFF5790),
-                    decoration: TextDecoration.lineThrough,
-                    decorationColor: const Color(0xFFFF5790),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textPrimary,
                   ),
                 ),
+                if (product.isDiscounted && product.originalPrice != null) ...[
+                  SizedBox(width: 8.w),
+                  Text(
+                    _formatPrice(product.originalPrice!),
+                    style: TextStyle(
+                      fontFamily: 'Raleway',
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFFFF5790),
+                      decoration: TextDecoration.lineThrough,
+                      decorationColor: const Color(0xFFFF5790),
+                    ),
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
           SizedBox(height: 6.h),
         ],

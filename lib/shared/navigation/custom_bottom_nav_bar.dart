@@ -23,13 +23,13 @@ class CustomBottomNavBar extends StatelessWidget {
 
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.85),
+            color: Colors.white.withOpacity(0.40),
             border: Border(
               top: BorderSide(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withOpacity(0.04),
                 width: 0.5,
               ),
             ),

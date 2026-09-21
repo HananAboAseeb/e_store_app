@@ -16,6 +16,8 @@ import '../../features/categories/presentation/pages/category_products_placehold
 import '../../features/shop/presentation/pages/shop_page.dart';
 import '../../features/flash_sale/presentation/pages/flash_sale_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/product/presentation/pages/product_details_page.dart';
+import '../../features/product/presentation/pages/reviews_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/search/presentation/pages/image_search_page.dart';
 import '../../features/search/presentation/pages/search_page.dart';
@@ -123,6 +125,24 @@ final router = GoRouter(
       path: RouteNames.kImageSearchPage,
       name: 'image-search',
       builder: (context, state) => const ImageSearchPage(),
+    ),
+    GoRoute(
+      path: RouteNames.kProductDetailsPage,
+      name: 'product-details',
+      builder: (context, state) {
+        final id = state.pathParameters['id'] ?? 'caviar-jacket';
+        final saleParam = state.uri.queryParameters['sale'];
+        final isSale = saleParam == null ? null : saleParam == 'true';
+        return ProductDetailsPage(productId: id, isSale: isSale);
+      },
+    ),
+    GoRoute(
+      path: RouteNames.kProductReviewsPage,
+      name: 'product-reviews',
+      builder: (context, state) {
+        final id = state.pathParameters['id'] ?? 'caviar-jacket';
+        return ReviewsPage(productId: id);
+      },
     ),
 
     // ── Main App Shell Routes (5-tab navigation) ────────────────────────────────

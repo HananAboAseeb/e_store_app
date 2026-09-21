@@ -15,8 +15,8 @@ import '../widgets/home_app_bar.dart';
 import '../widgets/home_hero_banner.dart';
 import '../widgets/home_section_header.dart';
 import '../widgets/home_shimmer_loading.dart';
+import '../widgets/most_popular_section.dart';
 import '../widgets/new_items_section.dart';
-import '../widgets/popular_product_card.dart';
 import '../widgets/stuff_for_you_section.dart';
 import '../widgets/top_products_bar.dart';
 
@@ -203,6 +203,9 @@ class _HomeViewState extends State<_HomeView> {
                             itemBuilder: (context, index) {
                               return FlashSaleCard(
                                 product: data.flashSaleProducts[index],
+                                onTap: () => context.push(
+                                  '/product/${data.flashSaleProducts[index].id}?sale=true',
+                                ),
                               );
                             },
                           ),
@@ -211,25 +214,9 @@ class _HomeViewState extends State<_HomeView> {
                       SizedBox(height: 24.h),
 
                       // Section 7: Most Popular Section
-                      HomeSectionHeader(
-                        title: 'Most Popular',
-                        showSeeAll: true,
+                      MostPopularSection(
+                        products: data.popularProducts,
                         onSeeAllTap: () {},
-                      ),
-                      SizedBox(height: 12.h),
-                      SizedBox(
-                        height: 140.h,
-                        child: ListView.separated(
-                          padding: EdgeInsets.symmetric(horizontal: 16.w),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: data.popularProducts.length,
-                          separatorBuilder: (context, index) =>
-                              SizedBox(width: 12.w),
-                          itemBuilder: (context, index) {
-                            final prod = data.popularProducts[index];
-                            return PopularProductCard(product: prod);
-                          },
-                        ),
                       ),
                       SizedBox(height: 24.h),
 
