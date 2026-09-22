@@ -66,34 +66,48 @@ class PopularProductCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        '${product.likeCount ?? 1780}',
-                        style: TextStyle(
-                          fontSize: 12.5.sp,
-                          fontWeight: FontWeight.w900,
-                          color: const Color(0xFF000000),
-                        ),
-                      ),
-                      SizedBox(width: 3.w),
-                      Icon(
-                        Icons.favorite_rounded,
-                        size: 13.sp,
-                        color: const Color(0xFF004BFE),
-                      ),
-                    ],
-                  ),
-                  if (product.tag != null)
-                    Text(
-                      product.tag!,
-                      style: TextStyle(
-                        fontSize: 11.5.sp,
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0xFF1A1A1A),
+                  Flexible(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            '${product.likeCount ?? 1780}',
+                            style: TextStyle(
+                              fontSize: 12.5.sp,
+                              fontWeight: FontWeight.w900,
+                              color: const Color(0xFF000000),
+                            ),
+                          ),
+                          SizedBox(width: 2.w),
+                          Icon(
+                            Icons.favorite_rounded,
+                            size: 12.sp,
+                            color: const Color(0xFF004BFE),
+                          ),
+                        ],
                       ),
                     ),
+                  ),
+                  if (product.tag != null) ...[
+                    SizedBox(width: 2.w),
+                    Flexible(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          product.tag!,
+                          style: TextStyle(
+                            fontSize: 11.5.sp,
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF1A1A1A),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

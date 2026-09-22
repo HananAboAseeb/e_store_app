@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -183,7 +184,11 @@ class _FlashSaleView extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   return FlashSaleProductCard(
                                     product: state.filteredProducts[index],
-                                    onTap: () {},
+                                    onTap: () {
+                                      context.push(
+                                        '/product/${state.filteredProducts[index].id}?sale=true',
+                                      );
+                                    },
                                   );
                                 },
                               ),
@@ -228,7 +233,9 @@ class _FlashSaleView extends StatelessWidget {
 
                                 return PopularProductCard(
                                   product: homeProduct,
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.push('/product/${prod.id}');
+                                  },
                                 );
                               },
                             ),

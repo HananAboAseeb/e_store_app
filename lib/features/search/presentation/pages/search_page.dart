@@ -146,7 +146,7 @@ class _SearchViewState extends State<_SearchView> {
                         SearchDiscoverCarousel(
                           products: state.data.discoverProducts,
                           onProductTap: (product) {
-                            // Can navigate to future product details or catalog
+                            context.push('/product/${product.id}');
                           },
                         ),
                       ]),

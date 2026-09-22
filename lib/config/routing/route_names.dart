@@ -11,6 +11,8 @@ class RouteNames {
   static const kSearchPage = '/search';
   static const kSearchResultsPage = '/search/results';
   static const kImageSearchPage = '/search/image';
+  static const kProductDetailsPage = '/product/:id';
+  static const kProductReviewsPage = '/product/:id/reviews';
 
   // Auth Routes
   static const kStartPage = '/start';

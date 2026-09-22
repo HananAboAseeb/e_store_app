@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import 'package:go_router/go_router.dart';
 import '../../../shop/presentation/widgets/shop_product_card.dart';
 import '../../domain/entities/image_search_result_entity.dart';
 
@@ -156,7 +157,8 @@ class ImageSearchResultsSheet extends StatelessWidget {
                   return ShopProductCard(
                     product: product,
                     onTap: () {
-                      // Navigate to product details
+                      Navigator.of(context).pop();
+                      context.push('/product/${product.id}');
                     },
                   );
                 },
