@@ -54,6 +54,7 @@ flutter:
     - assets/translations/
     - assets/design_references/
     - assets/images/
+    - assets/images/icons/
 
   fonts:
     - family: TheYearofHandicrafts

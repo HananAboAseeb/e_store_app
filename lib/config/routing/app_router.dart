@@ -144,6 +144,23 @@ final router = GoRouter(
         return ReviewsPage(productId: id);
       },
     ),
+    GoRoute(
+      path: RouteNames.kCheckoutPage,
+      name: 'checkout',
+      builder: (context, state) => Scaffold(
+        appBar: AppBar(title: const Text('Checkout')),
+        body: const Center(child: Text('Checkout Coming Soon')),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.kCheckoutShippingPage,
+      name: 'checkout-shipping',
+      builder: (context, state) => Scaffold(
+        appBar: AppBar(title: const Text('Shipping Address')),
+        body:
+            const Center(child: Text('Shipping Address Selection Coming Soon')),
+      ),
+    ),
 
     // ── Main App Shell Routes (5-tab navigation) ────────────────────────────────
     StatefulShellRoute.indexedStack(
