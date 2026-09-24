@@ -8,6 +8,8 @@ class AppComponentThemes {
   AppComponentThemes._();
 
   // ─── Card ─────────────────────────────────────
+  // NOTE: ThemeData.cardTheme requires CardThemeData, NOT CardTheme.
+  // CardTheme is the InheritedWidget; CardThemeData is the data class.
   static final CardThemeData cardLight = CardThemeData(
     color: AppColors.card,
     elevation: 0,

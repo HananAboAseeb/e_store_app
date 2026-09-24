@@ -20,12 +20,21 @@ class AppColors {
   /// Convenience alias — maps to the main primary accent `primary400`.
   static const Color primary = primary400;
 
+  /// Soft light blue tint for subtle backgrounds, chips, and input fills (Screens 47–50)
+  static const Color primarySoft = Color(0xFFE6EEFF);
+
   // ─────────────────────────────────────────────
   // Surfaces & Backgrounds
   // ─────────────────────────────────────────────
   static const Color background = Color(0xFFF7F8FA);
   static const Color surface = Color(0xFFFFFFFF);
   static const Color card = Color(0xFFFFFFFF);
+
+  /// Shipping Address & Contact Information card background in Checkout (Screen 47)
+  static const Color surfaceAddress = Color(0xFFF2F2F2);
+
+  /// Unselected Shipping Options & Payment Methods chip background in Checkout (Screen 47)
+  static const Color surfaceOption = Color(0xFFE6E6E6);
 
   // ─────────────────────────────────────────────
   // Text Colors
@@ -39,6 +48,7 @@ class AppColors {
   // ─────────────────────────────────────────────
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
+  static const Color transparent = Color(0x00000000);
 
   static const Color gray50 = Color(0xFFF9FAFB);
   static const Color gray100 = Color(0xFFF3F4F6);

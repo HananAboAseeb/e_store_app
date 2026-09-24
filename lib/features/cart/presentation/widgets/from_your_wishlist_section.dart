@@ -173,8 +173,8 @@ class _WishlistItemRow extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 10.w, vertical: 4.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                       decoration: BoxDecoration(
                         color: AppColors.primary400.withOpacity(0.10),
                         borderRadius: BorderRadius.circular(6.r),
@@ -190,8 +190,8 @@ class _WishlistItemRow extends StatelessWidget {
                     ),
                     SizedBox(width: 6.w),
                     Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 10.w, vertical: 4.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                       decoration: BoxDecoration(
                         color: AppColors.primary400.withOpacity(0.10),
                         borderRadius: BorderRadius.circular(6.r),

@@ -65,6 +65,8 @@ These rules apply to every feature without exception:
 8. **Phase 1 Data Scope**: Mock Data only in Phase 1 (no real API).
 9. **Loading Experience**: Shimmer placeholders for all loading states.
 10. **Visual Perfection**: Pixel-perfect match with the Figma screenshots (colors, spacing, radius, typography).
+11. **STRICT COLOR & TOKEN ENFORCEMENT**: All colors, spacing, and typography must reference tokens from `AppColors`, `AppSpacing`, and `AppTypography`. No hardcoded values are allowed. If a token is missing, add it to the tokens file first.
+
 
 ## Phase 1 Scope & Feature Constraints
 
