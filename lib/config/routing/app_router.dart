@@ -12,6 +12,7 @@ import '../../features/auth/presentation/pages/verification_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/categories/presentation/pages/categories_page.dart';
+import '../../features/checkout/presentation/pages/checkout_page.dart';
 import '../../features/categories/presentation/pages/category_products_placeholder_page.dart';
 import '../../features/shop/presentation/pages/shop_page.dart';
 import '../../features/flash_sale/presentation/pages/flash_sale_page.dart';
@@ -147,10 +148,7 @@ final router = GoRouter(
     GoRoute(
       path: RouteNames.kCheckoutPage,
       name: 'checkout',
-      builder: (context, state) => Scaffold(
-        appBar: AppBar(title: const Text('Checkout')),
-        body: const Center(child: Text('Checkout Coming Soon')),
-      ),
+      builder: (context, state) => const CheckoutPage(),
     ),
     GoRoute(
       path: RouteNames.kCheckoutShippingPage,
@@ -159,6 +157,14 @@ final router = GoRouter(
         appBar: AppBar(title: const Text('Shipping Address')),
         body:
             const Center(child: Text('Shipping Address Selection Coming Soon')),
+      ),
+    ),
+    GoRoute(
+      path: RouteNames.kPaymentPage,
+      name: 'payment',
+      builder: (context, state) => Scaffold(
+        appBar: AppBar(title: const Text('Payment')),
+        body: const Center(child: Text('Payment Coming Soon')),
       ),
     ),
 

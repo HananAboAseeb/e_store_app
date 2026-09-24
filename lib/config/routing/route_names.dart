@@ -15,6 +15,7 @@ class RouteNames {
   static const kProductReviewsPage = '/product/:id/reviews';
   static const kCheckoutPage = '/checkout';
   static const kCheckoutShippingPage = '/checkout/shipping';
+  static const kPaymentPage = '/payment';
 
   // Auth Routes
   static const kStartPage = '/start';
