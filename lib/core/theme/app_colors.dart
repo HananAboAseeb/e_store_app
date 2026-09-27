@@ -24,6 +24,24 @@ class AppColors {
   static const Color primarySoft = Color(0xFFE6EEFF);
 
   // ─────────────────────────────────────────────
+  // Payment Brand & Surface Colors (Screens 51–56)
+  // ─────────────────────────────────────────────
+  /// Soft blush background tint for Visa payment card (Screen 52)
+  static const Color blushSoft = Color(0xFFFFECEB);
+
+  /// Dark navy blue for Visa branding logo (Screen 52)
+  static const Color visaBlue = Color(0xFF1A1F71);
+
+  /// Mastercard brand red circle logo (Screen 51, 52)
+  static const Color mastercardRed = Color(0xFFEB001B);
+
+  /// Mastercard brand yellow/orange circle logo (Screen 51, 52)
+  static const Color mastercardYellow = Color(0xFFF79E1B);
+
+  /// PayPal brand blue circular badge (Screen 53)
+  static const Color paypalBlue = Color(0xFF0079C1);
+
+  // ─────────────────────────────────────────────
   // Surfaces & Backgrounds
   // ─────────────────────────────────────────────
   static const Color background = Color(0xFFF7F8FA);

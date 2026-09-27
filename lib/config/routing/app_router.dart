@@ -13,6 +13,7 @@ import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/categories/presentation/pages/categories_page.dart';
 import '../../features/checkout/presentation/pages/checkout_page.dart';
+import '../../features/payment/presentation/pages/payment_page.dart';
 import '../../features/categories/presentation/pages/category_products_placeholder_page.dart';
 import '../../features/shop/presentation/pages/shop_page.dart';
 import '../../features/flash_sale/presentation/pages/flash_sale_page.dart';
@@ -162,10 +163,10 @@ final router = GoRouter(
     GoRoute(
       path: RouteNames.kPaymentPage,
       name: 'payment',
-      builder: (context, state) => Scaffold(
-        appBar: AppBar(title: const Text('Payment')),
-        body: const Center(child: Text('Payment Coming Soon')),
-      ),
+      builder: (context, state) {
+        final amount = (state.extra as num?)?.toDouble() ?? 34.00;
+        return PaymentPage(amount: amount);
+      },
     ),
 
     // ── Main App Shell Routes (5-tab navigation) ────────────────────────────────

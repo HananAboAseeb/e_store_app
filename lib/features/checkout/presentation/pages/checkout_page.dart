@@ -78,8 +78,8 @@ class _CheckoutPageViewState extends State<_CheckoutPageView> {
     }
   }
 
-  void _onPay(BuildContext context) {
-    context.push(RouteNames.kPaymentPage);
+  void _onPay(BuildContext context, double total) {
+    context.push(RouteNames.kPaymentPage, extra: total);
   }
 
   void _onNavTap(BuildContext context, int index) {
@@ -233,8 +233,13 @@ class _CheckoutPageViewState extends State<_CheckoutPageView> {
                               // Payment Method Preview
                               PaymentMethodPreview(
                                 selectedMethod: summary.selectedPaymentMethod,
-                                onSelectMethod: (method) =>
-                                    cubit.selectPaymentMethod(method),
+                                onSelectMethod: (method) {
+                                  cubit.selectPaymentMethod(method);
+                                  context.push(
+                                    RouteNames.kPaymentPage,
+                                    extra: summary.total,
+                                  );
+                                },
                               ),
                               SizedBox(height: 16.h),
                             ],
@@ -245,7 +250,7 @@ class _CheckoutPageViewState extends State<_CheckoutPageView> {
                       // Sticky Total & Pay Bottom Bar (Above Bottom Navigation Bar)
                       CheckoutBottomBar(
                         total: summary.total,
-                        onPay: () => _onPay(context),
+                        onPay: () => _onPay(context, summary.total),
                       ),
                     ],
                   ),
