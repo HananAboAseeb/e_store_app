@@ -8,6 +8,7 @@ import '../../features/auth/auth_injection.dart';
 import '../../features/cart/cart_injection.dart';
 import '../../features/categories/categories_injection.dart';
 import '../../features/checkout/checkout_injection.dart';
+import '../../features/payment/payment_injection.dart';
 import '../../features/flash_sale/flash_sale_injection.dart';
 import '../../features/home/domain/entities/product/product_entity.dart';
 import '../../features/home/home_injection.dart';
@@ -66,4 +67,5 @@ Future<void> initCore() async {
   initSearch();
   initProductInjection();
   initCheckoutInjection();
+  initPaymentInjection();
 }
