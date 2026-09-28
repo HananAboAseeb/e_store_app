@@ -1,149 +1,138 @@
-# Implementation Plan: Categories Feature (Screen 27)
+# Implementation Plan: Categories — Just for you (Screen 43 Enhancement)
 
-**Branch**: `feature/categories` | **Date**: 2026-09-16 | **Spec**: [spec.md](./spec.md)
+**Branch**: `feature/categories` | **Date**: 2026-09-28 | **Spec**: [spec.md](./spec.md)
 
-**Input**: Feature specification from `/specs/005-categories/spec.md` and Figma reference `assets/design_references/27_CATEGORIES_FILTER.png`.
+**Design Reference**: `assets/design_references/43 CATEGORIES JUST FOR YOU.png` (Screen 43) & `27_CATEGORIES_FILTER.png` (Screen 27).
 
 ---
 
 ## Summary
-Implement the **All Categories** full-screen modal screen (Screen 27) featuring a top App Bar with a circular close button (`✕`), three department tabs (`All`, `Female`, `Male`), an accordion list of category groups with single-expansion behavior (`Clothing` expanded by default with 10 sub-category pills in 2 columns; `Shoes`, `Bags`, `Accesories` collapsed), a dedicated "Just for you" card with action trigger, and navigation to the filtered catalog.
+Enhance the existing `categories` feature by adding **Screen 43 ("Categories Just for you")**, accessible via the blue arrow button (`→`) inside the "Just for you" row of Screen 27. The screen renders a bold "Categories" page title, a prominent "★ Just for you" section header, and a vertically scrollable 2-column grid of personalized product recommendation cards.
 
-The implementation follows Feature-First Clean Architecture (`lib/features/categories/`), Cubit state management, GetIt DI, and `go_router` under `/categories`.
+In strict adherence to DRY principles, Screen 43 reuses `ShopProductCard` and the 2-column grid layout pattern from `feature/shop`. All colors, spacing, and typography strictly reference project tokens (Rule #11). The existing `CategoriesCubit`, `CategoriesRepository`, and `CategoriesMockDataSource` are extended with new methods.
 
 ---
 
 ## Technical Context
 
-**Language/Version**: Dart 3.x / Flutter 3.x  
-**Primary Dependencies**: `flutter_bloc`, `get_it`, `dartz`, `equatable`, `flutter_screenutil`, `go_router`, `shimmer`  
-**Storage**: Mock Data with simulated latency (Phase 1 UI-only)  
-**Testing & Verification**: Static analysis strictly deferred to final phase per Permanent Rule 1  
-**Target Platform**: iOS & Android  
-**Design Reference**: `assets/design_references/27_CATEGORIES_FILTER.png`  
-**Performance Goals**: 60 FPS smooth accordion transitions (<250ms), zero layout overflow across viewports (`375.w`–`412.w`), instantaneous tab updates
+- **Language/Version**: Dart 3.x / Flutter 3.x
+- **Primary Dependencies**: `flutter_bloc`, `get_it`, `dartz`, `equatable`, `flutter_screenutil`, `go_router`, `shimmer`
+- **Architecture**: Feature-First Clean Architecture (`lib/features/categories/`)
+- **State Management**: `CategoriesCubit` with Equatable states (`JustForYouLoading`, `JustForYouLoaded`, `JustForYouError`)
+- **Data Source**: Local mock dataset in `CategoriesMockDataSourceImpl` reusing existing image assets (`assets/images/`)
+- **Routing**: `RouteNames.kCategoriesJustForYouPage` (`/categories/just-for-you`) registered under `/categories`
+- **Reused Components**: `ShopProductCard` (`lib/features/shop/presentation/widgets/shop_product_card.dart`), `ShopProductEntity` (`lib/features/shop/domain/entities/shop_product_entity.dart`)
 
 ---
 
-## Constitution Check
+## Constitution & Permanent Rules Check
 
-| Principle / Rule | Requirement | Compliance Status |
+| Principle / Rule | Requirement | Compliance Strategy |
 |---|---|---|
-| **I. Existing Architecture Preservation** | Follow `lib/features/`, `lib/core/`, `lib/config/` structure | ✅ PASS: Creates `lib/features/categories/` following canonical repository architecture |
-| **II. Clean Architecture & Data Safety** | Domain decoupled, UseCases return `Either<Failure, T>`, `safeCall` in repo impl | ✅ PASS: Uses `dartz`, `safeCall`, clean layer boundaries |
-| **III. Design Tokens & Pixel Perfection** | `AppColors`, `AppSpacing`, `AppTypography`, all dimensions with `flutter_screenutil` | ✅ PASS: 100% token usage and `.w, .h, .r, .sp` scaling matching Screen 27 |
-| **IV. Strict UI & State Separation** | Cubit state management, Equatable states, shimmer loading | ✅ PASS: `CategoriesCubit`, immutable states, shimmer placeholder |
-| **V. Router & Shell Navigation** | Registered in `go_router`, clean pop/push navigation | ✅ PASS: Registered at `/categories` with `context.pop()` and catalog routing |
-| **Permanent Rules 1–10** | Deferred analysis, no new asset generation, mock data only, widget extraction | ✅ PASS: Strictly respected across all layers |
+| **I. Existing Architecture Preservation** | Extend existing feature without re-architecting | ✅ PASS: Extends `lib/features/categories/` and `specs/005-categories/` |
+| **II. Clean Architecture & Data Safety** | Domain decoupled, UseCase returns `Either<Failure, T>`, `safeCall` in repo | ✅ PASS: `GetJustForYouProductsUseCase`, `safeCall` in `CategoriesRepositoryImpl` |
+| **III. Design Tokens & Pixel-Perfection** | Strictly use `AppColors`, `AppSpacing`, `AppTypography`, `ScreenUtil` | ✅ PASS: Matches `43 CATEGORIES JUST FOR YOU.png` using design tokens only |
+| **IV. Strict UI & State Separation** | Cubit state management, Equatable states, shimmer loading | ✅ PASS: Extends `CategoriesCubit`, new immutable states, shimmer grid |
+| **V. Router & Navigation Discipline** | `go_router` path/named routing, clean back navigation | ✅ PASS: `/categories/just-for-you` sub-route; pops back to Screen 27 |
+| **Rule 1: Verification Timing** | Do NOT run `flutter analyze`/`test` until final phase | ✅ PASS: Verification strictly deferred to implementation finale |
+| **Rule 2: Asset Policy** | Reuse existing assets only, no new image files | ✅ PASS: Reuses `assets/images/` product images and standard icons |
+| **Rule 6: DRY Component Reuse** | Reuse existing widgets, entities, and patterns | ✅ PASS: Reuses `ShopProductCard`, `ShopProductEntity`, and 2-col shop grid |
+| **Rule 8: Phase 1 Data Scope** | Mock data only | ✅ PASS: Mock products in `CategoriesMockDataSourceImpl` |
+| **Rule 11: Token Enforcement** | Strict token usage from `AppColors`, `AppSpacing`, `AppTypography` | ✅ PASS: Zero hardcoded colors/radii/typography |
 
 ---
 
-## Project Structure
+## Project Structure Changes
 
-### Documentation Artifacts
+### Documentation Artifacts (`specs/005-categories/`)
+- `spec.md`: Enhanced with Screen 43 stories (User Story 4) and functional requirements (FR-023 to FR-035).
+- `plan.md`: This implementation plan.
+- `research.md`: Architectural decisions resolving DRY reuse, Cubit extension, and sub-routing.
+- `data-model.md`: Data contracts and state models for Screen 43.
+- `contracts/categories_contracts.md`: Interface contracts for Repository, UseCase, DataSource, and Cubit.
+- `quickstart.md`: Validation guide for Screen 27 & Screen 43.
+- `checklists/requirements.md`: Specification quality validation.
+
+### Source Code Changes (`lib/`)
+
 ```text
-specs/005-categories/
-├── spec.md              # Feature specification
-├── plan.md              # Implementation plan (this file)
-├── research.md          # Phase 0 architectural & technical decisions
-├── data-model.md        # Phase 1 entities, data models, and Cubit states
-├── quickstart.md        # Phase 1 validation scenarios
-├── contracts/
-│   └── categories_contracts.md # Repository, UseCase, DataSource, Cubit contracts
-└── checklists/
-    └── requirements.md  # Specification quality checklist
-```
-
-### Source Code (`lib/`)
-```text
-lib/features/categories/
-├── categories_injection.dart
-├── data/
-│   ├── datasources/
-│   │   ├── categories_mock_datasource.dart
-│   │   └── categories_mock_datasource_impl.dart
-│   ├── models/
-│   │   ├── category_group_model.dart
-│   │   └── sub_category_model.dart
-│   └── repositories/
-│       └── categories_repository_impl.dart
-├── domain/
-│   ├── entities/
-│   │   ├── category_group_entity.dart
-│   │   ├── sub_category_entity.dart
-│   │   └── gender_filter.dart
-│   ├── repositories/
-│   │   └── categories_repository.dart
-│   └── usecases/
-│       └── get_categories_usecase.dart
-└── presentation/
-    ├── cubit/
-    │   ├── categories_cubit.dart
-    │   └── categories_state.dart
-    ├── pages/
-    │   └── categories_page.dart
-    └── widgets/
-        ├── categories_app_bar.dart
-        ├── gender_tab_bar.dart
-        ├── category_accordion_tile.dart
-        ├── sub_category_pill.dart
-        ├── just_for_you_card.dart
-        └── categories_shimmer_loading.dart
-
-# Modified Core & Config Files:
-lib/config/routing/route_names.dart        # Add kCategoriesPage = '/categories'
-lib/config/routing/app_router.dart         # Register GoRoute for CategoriesPage
-lib/core/di/injection_container.dart       # Call initCategories()
+lib/
+├── config/routing/
+│   ├── route_names.dart                              # [MODIFIED] Add kCategoriesJustForYouPage
+│   └── app_router.dart                               # [MODIFIED] Register JustForYouPage route
+├── features/categories/
+│   ├── categories_injection.dart                     # [MODIFIED] Register GetJustForYouProductsUseCase & update Cubit
+│   ├── data/
+│   │   ├── datasources/
+│   │   │   ├── categories_mock_datasource.dart       # [MODIFIED] Add getJustForYouProducts()
+│   │   │   └── categories_mock_datasource_impl.dart  # [MODIFIED] Add mock Just For You products list
+│   │   └── repositories/
+│   │       └── categories_repository_impl.dart       # [MODIFIED] Implement getJustForYouProducts() with safeCall
+│   ├── domain/
+│   │   ├── repositories/
+│   │   │   └── categories_repository.dart            # [MODIFIED] Add getJustForYouProducts() contract
+│   │   └── usecases/
+│   │       └── get_just_for_you_products_usecase.dart# [NEW] Single-purpose use case
+│   └── presentation/
+│       ├── cubit/
+│       │   ├── categories_cubit.dart                 # [MODIFIED] Add loadJustForYouProducts()
+│       │   └── categories_state.dart                 # [MODIFIED] Add JustForYouLoading, JustForYouLoaded, JustForYouError
+│       ├── pages/
+│       │   ├── categories_page.dart                  # [MODIFIED] Wire JustForYouCard onTap -> push kCategoriesJustForYouPage
+│       │   └── just_for_you_page.dart                # [NEW] Screen 43 page widget
+│       └── widgets/
+│           ├── just_for_you_header.dart              # [NEW] Header with "Categories" & "★ Just for you"
+│           └── just_for_you_shimmer_loading.dart     # [NEW] 2-column product grid shimmer placeholder
 ```
 
 ---
 
-## Implementation Steps
+## Technical Design & Implementation Steps
 
-### 1. Domain Layer (`lib/features/categories/domain/`)
-- Define `GenderFilter` enum (`all`, `female`, `male`).
-- Define `SubCategoryEntity` and `CategoryGroupEntity` extending `Equatable`.
-- Define abstract `CategoriesRepository` contract returning `Either<Failure, List<CategoryGroupEntity>>`.
-- Implement `GetCategoriesUseCase`.
+### 1. Domain Layer Extension
+- **Repository Contract** (`categories_repository.dart`):
+  ```dart
+  Future<Either<Failure, List<ShopProductEntity>>> getJustForYouProducts();
+  ```
+- **UseCase** (`get_just_for_you_products_usecase.dart`):
+  Extends `UseCase<List<ShopProductEntity>, NoParam>`, delegating to `repository.getJustForYouProducts()`.
 
-### 2. Data Layer (`lib/features/categories/data/`)
-- Implement `CategoryGroupModel` and `SubCategoryModel` with JSON serialization and entity conversion.
-- Implement `CategoriesMockDataSource` and `CategoriesMockDataSourceImpl` supplying mock category groups for `all`, `female`, and `male` departments matching Screen 27.
-- Implement `CategoriesRepositoryImpl` wrapping data calls with `safeCall`.
+### 2. Data Layer Extension
+- **Mock DataSource** (`categories_mock_datasource.dart` & `categories_mock_datasource_impl.dart`):
+  Add `getJustForYouProducts()` returning 6+ mock `ShopProductModel` instances with realistic prices (`$17.00`), titles, discounts, and image asset paths (`assets/images/prod_20_1.png`, `cat_cloth_1.png`, etc.).
+- **Repository Implementation** (`categories_repository_impl.dart`):
+  Implement `getJustForYouProducts()` using `safeCall(() => mockDataSource.getJustForYouProducts())`.
 
-### 3. Presentation Layer (`lib/features/categories/presentation/`)
-- Implement `CategoriesState` (Initial, Loading, Loaded, Error) extending `Equatable`.
-- Implement `CategoriesCubit` handling:
-  - `loadCategories({GenderFilter gender = GenderFilter.all})`
-  - `selectGender(GenderFilter gender)`
-  - `toggleCategoryExpansion(String groupId)`
-- Implement UI components:
-  - `CategoriesAppBar`: "All Categories" title + circular dismiss button (`✕`).
-  - `GenderTabBar`: 3 segmented tabs with blue active border & text vs inactive grey fill.
-  - `CategoryAccordionTile`: Animated expandable card with category icon, title, chevron, and sub-category grid.
-  - `SubCategoryPill`: Rounded pill button (`12.r`) with tap handler navigating to `/catalog?subCategory=<name>`.
-  - `JustForYouCard`: Star icon + blue circular arrow button navigating to `/catalog?filter=just_for_you`.
-  - `CategoriesShimmerLoading`: Placeholder shimmer skeleton.
-  - `CategoriesPage`: Main page assembling all components with `BlocBuilder`.
+### 3. Presentation Layer Extension
+- **Cubit & States** (`categories_cubit.dart` & `categories_state.dart`):
+  - Inject `GetJustForYouProductsUseCase` into `CategoriesCubit`.
+  - Add `loadJustForYouProducts()` emitting `JustForYouLoading`, then `JustForYouLoaded` or `JustForYouError`.
+  - Add `JustForYouLoading`, `JustForYouLoaded(products: List<ShopProductEntity>)`, and `JustForYouError(message: String)` to `categories_state.dart`.
+- **UI Components**:
+  - `just_for_you_header.dart`:
+    - Top bar with back arrow button + bold title "Categories" (`Raleway`, bold, `AppColors.textPrimary`).
+    - Section title row: Blue star icon (`AppColors.primary`) + "Just for you" (`18.sp`, bold, `AppColors.textPrimary`).
+  - `just_for_you_shimmer_loading.dart`:
+    - 2-column grid shimmer placeholder matching card dimensions (`childAspectRatio: 0.58`, `mainAxisSpacing: 16.h`, `crossAxisSpacing: 14.w`).
+  - `just_for_you_page.dart` (Screen 43):
+    - Scaffold with `AppColors.background`.
+    - `BlocProvider<CategoriesCubit>` creating a fresh factory instance calling `..loadJustForYouProducts()`.
+    - `BlocBuilder<CategoriesCubit, CategoriesState>` rendering loading shimmer, error retry, or 2-column `GridView.builder` of `ShopProductCard` widgets.
+    - Card tap navigates to `context.push('/product/${product.id}')`.
+  - `categories_page.dart` (Screen 27):
+    - Update `JustForYouCard` `onTap` callback to `context.push(RouteNames.kCategoriesJustForYouPage)`.
 
-### 4. Dependency Injection & Routing
-- Create `categories_injection.dart` registering DataSource, Repository, UseCase, and Cubit in GetIt.
-- Register `initCategories()` in `lib/core/di/injection_container.dart`.
-- Add `kCategoriesPage` in `lib/config/routing/route_names.dart`.
-- Register `/categories` in `lib/config/routing/app_router.dart`.
+### 4. Routing & Dependency Injection
+- `route_names.dart`: Add `static const kCategoriesJustForYouPage = '/categories/just-for-you';`.
+- `app_router.dart`: Register `kCategoriesJustForYouPage` to render `const JustForYouPage()`.
+- `categories_injection.dart`:
+  - Register `GetJustForYouProductsUseCase`.
+  - Update `CategoriesCubit` factory: `CategoriesCubit(getCategoriesUseCase: sl(), getJustForYouProductsUseCase: sl())`.
 
 ---
 
-## Permanent Project Rules Reference
-
-All tasks and implementations MUST strictly adhere to the Permanent Project Rules from `.specify/instructions/permanent-project-rules.md`:
-1. **Verification Timing**: Do NOT run `flutter analyze` or `flutter test` after each individual task. Save all static analysis and verification strictly for the final phase to save tokens and time.
-2. **Asset Policy**: Do NOT generate any new placeholder images, icons, or asset files. Reuse existing assets located in `assets/images/` and `assets/design_references/` only. Use provided Figma screenshots strictly as visual references.
-3. **Architectural Adherence**: STRICTLY adhere to the project Constitution, Feature-First Clean Architecture, Design Tokens (`app_colors`, `app_spacing`, `app_typography`, `app_theme`), and all established coding standards.
-4. **Code Quality & Design Patterns**: Write clean, production-ready Dart code using proper Design Patterns (Repository, UseCase, Cubit/Bloc, Factory for models, etc.). Extract all reusable UI components into separate widget files.
-5. **Dimensions & Frameworks**: All dimensions must use `flutter_screenutil` (`.w`, `.h`, `.r`, `.sp`). All navigation must use `go_router`. All state management must use `flutter_bloc` (Cubit) with `equatable` states.
-6. **Component Reuse**: Reuse existing shared widgets and components from previous features (e.g., DiscountBadge, ShopProductCard, PrimaryButton, etc.) whenever applicable.
-7. **Clean Architecture Layers**: Every feature must include: Domain (entities, repository contract, usecases), Data (models, mock datasource, repository impl with `safeCall`), Presentation (cubit, state, pages, widgets), DI registration, and routing.
-8. **Phase 1 Data Scope**: Mock Data only in Phase 1 (no real API).
-9. **Loading Experience**: Shimmer placeholders for all loading states.
-10. **Visual Perfection**: Pixel-perfect match with the Figma screenshots (colors, spacing, radius, typography).
+## Acceptance & Quality Verification
+- **Pixel Perfection**: Screen 43 matches `43 CATEGORIES JUST FOR YOU.png` in typography, padding, and layout.
+- **Independence**: Opening Screen 43 and popping back retains Screen 27's accordion expansion and gender selection without re-fetching.
+- **Zero Duplication**: `ShopProductCard` and grid layout parameters reused directly from `feature/shop`.
+- **Static Analysis**: `flutter analyze` passes with 0 errors and 0 warnings (executed strictly during final implementation phase).

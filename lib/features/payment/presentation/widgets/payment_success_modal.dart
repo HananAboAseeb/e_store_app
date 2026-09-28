@@ -22,7 +22,7 @@ class PaymentSuccessModal extends StatelessWidget {
     return showDialog(
       context: context,
       barrierDismissible: false,
-      barrierColor: AppColors.black.withValues(alpha: 0.15),
+      barrierColor: AppColors.black.withOpacity(0.15),
       builder: (context) => Stack(
         children: [
           Positioned.fill(
@@ -60,83 +60,83 @@ class PaymentSuccessModal extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-          children: [
-            // Circular grey badge with inner blue checkmark circle
-            Container(
-              width: 64.w,
-              height: 64.w,
-              decoration: const BoxDecoration(
-                color: AppColors.surfaceAddress,
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: Container(
-                  width: 34.w,
-                  height: 34.w,
-                  decoration: const BoxDecoration(
-                    color: AppColors.primary,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.check,
-                    color: AppColors.white,
-                    size: 20.sp,
+            children: [
+              // Circular grey badge with inner blue checkmark circle
+              Container(
+                width: 64.w,
+                height: 64.w,
+                decoration: const BoxDecoration(
+                  color: AppColors.surfaceAddress,
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Container(
+                    width: 34.w,
+                    height: 34.w,
+                    decoration: const BoxDecoration(
+                      color: AppColors.primary,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.check,
+                      color: AppColors.white,
+                      size: 20.sp,
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: AppSpacing.sm),
+              SizedBox(height: AppSpacing.sm),
 
-            // Title: "Done!"
-            Text(
-              'Done!',
-              textAlign: TextAlign.center,
-              style: AppTypography.h2.copyWith(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.textPrimary,
-              ),
-            ),
-            SizedBox(height: AppSpacing.xs),
-
-            // Subtitle: "Your card has been successfully charged"
-            Text(
-              'Your card has been successfully charged',
-              textAlign: TextAlign.center,
-              style: AppTypography.bodySmall.copyWith(
-                color: AppColors.textSecondary,
-                fontSize: 13.sp,
-              ),
-            ),
-            SizedBox(height: AppSpacing.md),
-
-            // Grey pill button: "Track your Order"
-            SizedBox(
-              width: double.infinity,
-              height: 44.h,
-              child: ElevatedButton(
-                onPressed: onTrackOrder,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.surfaceOption,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.r),
-                  ),
-                ),
-                child: Text(
-                  'Track your Order',
-                  style: AppTypography.buttonText.copyWith(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
-                  ),
+              // Title: "Done!"
+              Text(
+                'Done!',
+                textAlign: TextAlign.center,
+                style: AppTypography.h2.copyWith(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textPrimary,
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: AppSpacing.xs),
+
+              // Subtitle: "Your card has been successfully charged"
+              Text(
+                'Your card has been successfully charged',
+                textAlign: TextAlign.center,
+                style: AppTypography.bodySmall.copyWith(
+                  color: AppColors.textSecondary,
+                  fontSize: 13.sp,
+                ),
+              ),
+              SizedBox(height: AppSpacing.md),
+
+              // Grey pill button: "Track your Order"
+              SizedBox(
+                width: double.infinity,
+                height: 44.h,
+                child: ElevatedButton(
+                  onPressed: onTrackOrder,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.surfaceOption,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24.r),
+                    ),
+                  ),
+                  child: Text(
+                    'Track your Order',
+                    style: AppTypography.buttonText.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
   }
 }

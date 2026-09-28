@@ -14,7 +14,7 @@ class PaymentProcessingModal extends StatelessWidget {
     return showDialog(
       context: context,
       barrierDismissible: false,
-      barrierColor: AppColors.black.withValues(alpha: 0.15),
+      barrierColor: AppColors.black.withOpacity(0.15),
       builder: (context) => Stack(
         children: [
           Positioned.fill(
@@ -52,55 +52,55 @@ class PaymentProcessingModal extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-            children: [
-              // Circular grey badge with blue progress spinner
-              Container(
-                width: 64.w,
-                height: 64.w,
-                decoration: const BoxDecoration(
-                  color: AppColors.surfaceAddress,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: SizedBox(
-                    width: 32.w,
-                    height: 32.w,
-                    child: const CircularProgressIndicator(
-                      strokeWidth: 3.0,
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(AppColors.primary),
+              children: [
+                // Circular grey badge with blue progress spinner
+                Container(
+                  width: 64.w,
+                  height: 64.w,
+                  decoration: const BoxDecoration(
+                    color: AppColors.surfaceAddress,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: SizedBox(
+                      width: 32.w,
+                      height: 32.w,
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 3.0,
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(AppColors.primary),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: AppSpacing.sm),
+                SizedBox(height: AppSpacing.sm),
 
-              // Title: "Payment in Progress"
-              Text(
-                'Payment in Progress',
-                textAlign: TextAlign.center,
-                style: AppTypography.h2.copyWith(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textPrimary,
+                // Title: "Payment in Progress"
+                Text(
+                  'Payment in Progress',
+                  textAlign: TextAlign.center,
+                  style: AppTypography.h2.copyWith(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textPrimary,
+                  ),
                 ),
-              ),
-              SizedBox(height: AppSpacing.xs),
+                SizedBox(height: AppSpacing.xs),
 
-              // Subtitle: "Please, wait a few moments"
-              Text(
-                'Please, wait a few moments',
-                textAlign: TextAlign.center,
-                style: AppTypography.bodySmall.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: 13.sp,
+                // Subtitle: "Please, wait a few moments"
+                Text(
+                  'Please, wait a few moments',
+                  textAlign: TextAlign.center,
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.textSecondary,
+                    fontSize: 13.sp,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
   }
 }

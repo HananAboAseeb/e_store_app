@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../../../core/utils/safe_call.dart';
+import '../../../shop/domain/entities/shop_product_entity.dart';
 import '../../domain/entities/category_group_entity.dart';
 import '../../domain/entities/gender_filter.dart';
 import '../../domain/repositories/categories_repository.dart';
@@ -18,6 +19,14 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   }) async {
     return await safeCall(
       () => mockDataSource.getCategories(gender: gender),
+    );
+  }
+
+  @override
+  Future<Either<Failure, List<ShopProductEntity>>>
+      getJustForYouProducts() async {
+    return await safeCall(
+      () => mockDataSource.getJustForYouProducts(),
     );
   }
 }

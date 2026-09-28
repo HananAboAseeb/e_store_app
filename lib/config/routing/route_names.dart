@@ -8,6 +8,7 @@ class RouteNames {
   static const kFlashSalePage = '/flash-sale';
   static const kCategoriesPage = '/categories';
   static const kCategoryProductsPage = '/category-products';
+  static const kCategoriesJustForYouPage = '/categories/just-for-you';
   static const kSearchPage = '/search';
   static const kSearchResultsPage = '/search/results';
   static const kImageSearchPage = '/search/image';
