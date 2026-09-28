@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_spacing.dart';
 import '../../domain/entities/shop_product_entity.dart';
 
 class ShopProductCard extends StatelessWidget {
@@ -25,26 +26,37 @@ class ShopProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image Container
+          // Image Container with full white border frame and subtle shadow (Figma)
           Expanded(
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                color: const Color(0xFFF5F5F5),
-                borderRadius: BorderRadius.circular(16.r),
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(15.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.cardShadow,
+                    blurRadius: 10.r,
+                    offset: Offset(0, 3.h),
+                  ),
+                ],
               ),
+              padding: EdgeInsets.all(AppSpacing.xs),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(16.r),
-                child: Image.asset(
-                  product.imageUrl,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    color: const Color(0xFFF5F5F5),
-                    child: Center(
-                      child: Icon(
-                        Icons.image_outlined,
-                        size: 40.sp,
-                        color: AppColors.gray400,
+                borderRadius: BorderRadius.circular(9.r),
+                child: Container(
+                  color: AppColors.surfaceCardImage,
+                  child: Image.asset(
+                    product.imageUrl,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: AppColors.surfaceCardImage,
+                      child: Center(
+                        child: Icon(
+                          Icons.image_outlined,
+                          size: 40.sp,
+                          color: AppColors.gray400,
+                        ),
                       ),
                     ),
                   ),
@@ -60,8 +72,8 @@ class ShopProductCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: 13.sp,
-              fontWeight: FontWeight.w400,
-              color: AppColors.textSecondary,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textCardTitle,
               height: 1.25,
             ),
           ),
@@ -77,8 +89,8 @@ class ShopProductCard extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'Raleway',
                     fontSize: 16.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.black,
                   ),
                 ),
                 if (product.isDiscounted && product.originalPrice != null) ...[
@@ -88,10 +100,10 @@ class ShopProductCard extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Raleway',
                       fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFFFF5790),
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.discount,
                       decoration: TextDecoration.lineThrough,
-                      decorationColor: const Color(0xFFFF5790),
+                      decorationColor: AppColors.discount,
                     ),
                   ),
                 ],

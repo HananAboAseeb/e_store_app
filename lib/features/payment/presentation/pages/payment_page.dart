@@ -94,7 +94,7 @@ class PaymentView extends StatelessWidget {
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
                       child: Container(
-                        color: AppColors.background.withValues(alpha: 0.85),
+                        color: AppColors.background.withOpacity(0.85),
                       ),
                     ),
                   ),
@@ -116,7 +116,7 @@ class PaymentView extends StatelessWidget {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.black.withValues(alpha: 0.12),
+                            color: AppColors.black.withOpacity(0.12),
                             blurRadius: 24.r,
                             offset: const Offset(0, -6),
                           ),
@@ -130,7 +130,7 @@ class PaymentView extends StatelessWidget {
                 if (state is PaymentProcessing)
                   Positioned.fill(
                     child: Container(
-                      color: AppColors.black.withValues(alpha: 0.25),
+                      color: AppColors.black.withOpacity(0.25),
                       child: const Center(
                         child: PaymentProcessingModal(),
                       ),
@@ -140,7 +140,7 @@ class PaymentView extends StatelessWidget {
                 if (state is PaymentFailureState)
                   Positioned.fill(
                     child: Container(
-                      color: AppColors.black.withValues(alpha: 0.25),
+                      color: AppColors.black.withOpacity(0.25),
                       child: Center(
                         child: PaymentFailureModal(
                           onTryAgain: () {
@@ -157,7 +157,7 @@ class PaymentView extends StatelessWidget {
                 if (state is PaymentSuccessState)
                   Positioned.fill(
                     child: Container(
-                      color: AppColors.black.withValues(alpha: 0.25),
+                      color: AppColors.black.withOpacity(0.25),
                       child: Center(
                         child: PaymentSuccessModal(
                           onTrackOrder: () {

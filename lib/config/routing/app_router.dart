@@ -12,6 +12,7 @@ import '../../features/auth/presentation/pages/verification_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/categories/presentation/pages/categories_page.dart';
+import '../../features/categories/presentation/pages/just_for_you_page.dart';
 import '../../features/checkout/presentation/pages/checkout_page.dart';
 import '../../features/payment/presentation/pages/payment_page.dart';
 import '../../features/categories/presentation/pages/category_products_placeholder_page.dart';
@@ -112,6 +113,11 @@ final router = GoRouter(
       path: RouteNames.kCategoriesPage,
       name: 'categories',
       builder: (context, state) => const CategoriesPage(),
+    ),
+    GoRoute(
+      path: RouteNames.kCategoriesJustForYouPage,
+      name: 'categories-just-for-you',
+      builder: (context, state) => const JustForYouPage(),
     ),
     GoRoute(
       path: RouteNames.kCategoryProductsPage,

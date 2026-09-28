@@ -32,7 +32,7 @@ class _CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F7F9),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -124,10 +124,7 @@ class _CategoriesView extends StatelessWidget {
           // ── Just for you ──
           JustForYouCard(
             onTap: () {
-              context.push(
-                RouteNames.kCategoryProductsPage,
-                extra: {'title': 'Just for you'},
-              );
+              context.push(RouteNames.kCategoriesJustForYouPage);
             },
           ),
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../shop/data/models/shop_product_model.dart';
 import '../../domain/entities/gender_filter.dart';
 import '../models/category_group_model.dart';
 import '../models/sub_category_model.dart';
@@ -220,5 +221,74 @@ class CategoriesMockDataSourceImpl implements CategoriesMockDataSource {
       case GenderFilter.male:
         return _maleGroups;
     }
+  }
+
+  // ── Just for you mock products ───────────────────────────────────────
+  static final List<ShopProductModel> _justForYouProducts = [
+    ShopProductModel(
+      id: 'jfy-1',
+      title: 'Lorem ipsum dolor sit amet consectetur',
+      imageUrl: 'assets/images/cat_cloth_1.png',
+      price: 17.0,
+      category: 'Clothing',
+      subCategory: 'Shirts',
+      createdAt: DateTime(2026, 1, 1),
+    ),
+    ShopProductModel(
+      id: 'jfy-2',
+      title: 'Lorem ipsum dolor sit amet consectetur',
+      imageUrl: 'assets/images/cat_cloth_2.png',
+      price: 17.0,
+      category: 'Clothing',
+      subCategory: 'T-Shirts',
+      createdAt: DateTime(2026, 1, 2),
+    ),
+    ShopProductModel(
+      id: 'jfy-3',
+      title: 'Lorem ipsum dolor sit amet consectetur',
+      imageUrl: 'assets/images/prod_20_1.png',
+      price: 17.0,
+      originalPrice: 24.0,
+      isDiscounted: true,
+      category: 'Clothing',
+      subCategory: 'Tunics',
+      createdAt: DateTime(2026, 1, 3),
+    ),
+    ShopProductModel(
+      id: 'jfy-4',
+      title: 'Lorem ipsum dolor sit amet consectetur',
+      imageUrl: 'assets/images/prod_20_2.png',
+      price: 17.0,
+      category: 'Clothing',
+      subCategory: 'Shirts',
+      createdAt: DateTime(2026, 1, 4),
+    ),
+    ShopProductModel(
+      id: 'jfy-5',
+      title: 'Lorem ipsum dolor sit amet consectetur',
+      imageUrl: 'assets/images/prod_20_3.png',
+      price: 17.0,
+      category: 'Accesories',
+      subCategory: 'Caps',
+      createdAt: DateTime(2026, 1, 5),
+    ),
+    ShopProductModel(
+      id: 'jfy-6',
+      title: 'Lorem ipsum dolor sit amet consectetur',
+      imageUrl: 'assets/images/cat_hoodie_1.png',
+      price: 17.0,
+      originalPrice: 28.0,
+      isDiscounted: true,
+      category: 'Clothing',
+      subCategory: 'Hoodies',
+      createdAt: DateTime(2026, 1, 6),
+    ),
+  ];
+
+  @override
+  Future<List<ShopProductModel>> getJustForYouProducts() async {
+    // Simulate network latency
+    await Future<void>.delayed(const Duration(milliseconds: 300));
+    return _justForYouProducts;
   }
 }

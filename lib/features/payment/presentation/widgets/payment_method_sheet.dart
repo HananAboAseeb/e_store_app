@@ -39,7 +39,7 @@ class PaymentMethodSheet extends StatefulWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: AppColors.transparent,
-      barrierColor: AppColors.black.withValues(alpha: 0.15),
+      barrierColor: AppColors.black.withOpacity(0.15),
       builder: (context) => Stack(
         children: [
           Positioned.fill(

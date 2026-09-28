@@ -48,6 +48,12 @@ class AppColors {
   static const Color surface = Color(0xFFFFFFFF);
   static const Color card = Color(0xFFFFFFFF);
 
+  /// Product image card background (Figma ShopX)
+  static const Color surfaceCardImage = Color(0xFFF5F5F5);
+
+  /// Subtle card shadow for elevated product cards (Figma ShopX)
+  static const Color cardShadow = Color(0x0F000000);
+
   /// Shipping Address & Contact Information card background in Checkout (Screen 47)
   static const Color surfaceAddress = Color(0xFFF2F2F2);
 
@@ -59,6 +65,7 @@ class AppColors {
   // ─────────────────────────────────────────────
   static const Color textPrimary = Color(0xFF1A1A1A);
   static const Color textSecondary = Color(0xFF8E8E93);
+  static const Color textCardTitle = Color(0xFF292929);
   static const Color textWhite = Color(0xFFFFFFFF);
 
   // ─────────────────────────────────────────────
@@ -85,6 +92,9 @@ class AppColors {
   static const Color success = Color(0xFF34C759);
   static const Color error = Color(0xFFFF3B30);
   static const Color warning = Color(0xFFFF9500);
+
+  /// Discount & promotional badge pink accent (Figma ShopX)
+  static const Color discount = Color(0xFFFF5790);
 
   // ─────────────────────────────────────────────
   // Borders & Dividers

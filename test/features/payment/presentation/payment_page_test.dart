@@ -22,7 +22,8 @@ class MockGetPaymentMethodsUseCase implements GetPaymentMethodsUseCase {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 
   @override
-  Future<Either<Failure, List<PaymentMethodEntity>>> call([NoParam? param]) async {
+  Future<Either<Failure, List<PaymentMethodEntity>>> call(
+      [NoParam? param]) async {
     return Right(methods);
   }
 }
@@ -35,7 +36,8 @@ class MockProcessPaymentUseCase implements ProcessPaymentUseCase {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 
   @override
-  Future<Either<Failure, PaymentResultEntity>> call([ProcessPaymentParams? params]) async {
+  Future<Either<Failure, PaymentResultEntity>> call(
+      [ProcessPaymentParams? params]) async {
     return Right(result);
   }
 }
@@ -83,7 +85,9 @@ void main() {
     timestamp: DateTime.now(),
   );
 
-  testWidgets('PaymentPage loads methods, renders PaymentMethodSheet and handles tap', (tester) async {
+  testWidgets(
+      'PaymentPage loads methods, renders PaymentMethodSheet and handles tap',
+      (tester) async {
     tester.view.physicalSize = const Size(375, 812);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
@@ -96,7 +100,8 @@ void main() {
       ),
     );
 
-    await tester.pumpWidget(buildTestableWidget(const PaymentPage(amount: 34.00)));
+    await tester
+        .pumpWidget(buildTestableWidget(const PaymentPage(amount: 34.00)));
 
     // Initially mounts
     await tester.pump();
