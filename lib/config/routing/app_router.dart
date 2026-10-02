@@ -25,6 +25,7 @@ import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/search/presentation/pages/image_search_page.dart';
 import '../../features/search/presentation/pages/search_page.dart';
 import '../../features/search/presentation/pages/search_results_page.dart';
+import '../../features/wishlist/presentation/pages/recently_viewed_page.dart';
 import '../../features/wishlist/presentation/pages/wishlist_page.dart';
 import '../../root.dart';
 import 'route_names.dart';
@@ -214,6 +215,13 @@ final router = GoRouter(
               path: RouteNames.kWishlistPage,
               name: 'wishlist',
               builder: (context, state) => const WishlistPage(),
+              routes: [
+                GoRoute(
+                  path: 'recently-viewed',
+                  name: 'recently-viewed',
+                  builder: (context, state) => const RecentlyViewedPage(),
+                ),
+              ],
             ),
           ],
         ),

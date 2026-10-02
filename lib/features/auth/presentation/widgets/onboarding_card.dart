@@ -29,7 +29,7 @@ class OnboardingCard extends StatelessWidget {
       padding: EdgeInsets.all(24.w),
       decoration: BoxDecoration(
         color: AppColors.background,
-        borderRadius: BorderRadius.circular(AppColors.cardRadius.r),
+        borderRadius: BorderRadius.circular(AppRadius.cardRadius.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.08),
@@ -96,7 +96,7 @@ class OnboardingCard extends StatelessWidget {
               backgroundColor: AppColors.primary400,
               minimumSize: Size(double.infinity, 56.h),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppColors.buttonRadius.r),
+                borderRadius: BorderRadius.circular(AppRadius.buttonRadius.r),
               ),
             ),
             child: Text(
