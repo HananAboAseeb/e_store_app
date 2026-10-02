@@ -30,7 +30,7 @@ class SelectionCard extends StatelessWidget {
           color: isSelected
               ? AppColors.primary400.withOpacity(0.04)
               : AppColors.surface,
-          borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
+          borderRadius: BorderRadius.circular(AppRadius.inputRadius.r),
           border: Border.all(
             color: isSelected ? AppColors.primary400 : AppColors.border,
             width: isSelected ? 1.5 : 1.0,

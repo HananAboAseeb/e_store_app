@@ -36,8 +36,8 @@ class ShopProductCard extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.cardShadow,
-                    blurRadius: 10.r,
-                    offset: Offset(0, 3.h),
+                    blurRadius: 12.r,
+                    offset: Offset(0, 4.h),
                   ),
                 ],
               ),

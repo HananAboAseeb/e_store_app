@@ -2,6 +2,7 @@ class RouteNames {
   static const kRootPage = '/';
   static const kHomePage = '/home';
   static const kWishlistPage = '/wishlist';
+  static const kRecentlyViewedPage = '/wishlist/recently-viewed';
   static const kCatalogPage = '/catalog';
   static const kCartPage = '/cart';
   static const kProfilePage = '/profile';

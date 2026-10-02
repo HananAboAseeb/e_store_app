@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_typography.dart';
 
 class AuthTextField extends StatefulWidget {
@@ -81,23 +82,23 @@ class _AuthTextFieldState extends State<AuthTextField> {
               )
             : null,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
+          borderRadius: BorderRadius.circular(AppRadius.inputRadius.r),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
+          borderRadius: BorderRadius.circular(AppRadius.inputRadius.r),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
+          borderRadius: BorderRadius.circular(AppRadius.inputRadius.r),
           borderSide: const BorderSide(color: AppColors.primary400, width: 1.5),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
+          borderRadius: BorderRadius.circular(AppRadius.inputRadius.r),
           borderSide: const BorderSide(color: AppColors.error, width: 1.2),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppColors.inputRadius.r),
+          borderRadius: BorderRadius.circular(AppRadius.inputRadius.r),
           borderSide: const BorderSide(color: AppColors.error, width: 1.5),
         ),
         errorStyle: TextStyle(

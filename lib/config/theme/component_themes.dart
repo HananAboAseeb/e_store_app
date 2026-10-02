@@ -8,8 +8,6 @@ class AppComponentThemes {
   AppComponentThemes._();
 
   // ─── Card ─────────────────────────────────────
-  // NOTE: ThemeData.cardTheme requires CardThemeData (Flutter 3.27+ / 3.44.6).
-  // CardTheme is the InheritedTheme; CardThemeData is the data class.
   static final CardThemeData cardLight = CardThemeData(
     color: AppColors.card,
     elevation: 0,

@@ -51,8 +51,8 @@ class AppColors {
   /// Product image card background (Figma ShopX)
   static const Color surfaceCardImage = Color(0xFFF5F5F5);
 
-  /// Subtle card shadow for elevated product cards (Figma ShopX)
-  static const Color cardShadow = Color(0x0F000000);
+  /// Subtle card shadow for elevated product cards and calendars (Figma ShopX)
+  static const Color cardShadow = Color(0x1F000000);
 
   /// Shipping Address & Contact Information card background in Checkout (Screen 47)
   static const Color surfaceAddress = Color(0xFFF2F2F2);
@@ -109,14 +109,6 @@ class AppColors {
   static const Color darkSurface = Color(0xFF1E293B);
   static const Color darkCard = Color(0xFF334155);
   static const Color darkBorder = Color(0xFF475569);
-
-  // ─────────────────────────────────────────────
-  // Radii Tokens
-  // ─────────────────────────────────────────────
-  static const double buttonRadius = 24.0;
-  static const double inputRadius = 24.0;
-  static const double cardRadius = 20.0;
-  static const double pinBoxRadius = 12.0;
 
   // ─────────────────────────────────────────────
   // Keypad & Input Fill Colors
