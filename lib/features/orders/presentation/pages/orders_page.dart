@@ -91,7 +91,7 @@ class _OrdersPageState extends State<OrdersPage> {
                           _ordersCubit.loadOrders(initialTab: state.activeTab),
                       color: AppColors.primary,
                       child: ListView.separated(
-                        padding: EdgeInsets.only(top: 4.h, bottom: 24.h),
+                        padding: EdgeInsets.only(top: 4.h, bottom: 96.h),
                         itemCount: orders.length,
                         separatorBuilder: (context, index) {
                           final currentOrder = orders[index];

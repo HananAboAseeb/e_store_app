@@ -36,7 +36,7 @@ class ProfilePage extends StatelessWidget {
             }
 
             return ListView(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 96.h),
               children: [
                 // Profile Avatar & Info Card
                 Container(
@@ -64,7 +64,8 @@ class ProfilePage extends StatelessWidget {
                             width: 2.w,
                           ),
                           image: const DecorationImage(
-                            image: AssetImage('assets/images/profile_picture.png'),
+                            image:
+                                AssetImage('assets/images/profile_picture.png'),
                             fit: BoxFit.cover,
                           ),
                         ),

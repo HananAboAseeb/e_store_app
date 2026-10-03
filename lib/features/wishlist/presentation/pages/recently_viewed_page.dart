@@ -33,6 +33,7 @@ class _RecentlyViewedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             const RecentlyViewedHeader(),
@@ -127,9 +128,11 @@ class _RecentlyViewedView extends StatelessWidget {
                                   ),
                                 )
                               : GridView.builder(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 16.w,
-                                    vertical: 8.h,
+                                  padding: EdgeInsets.fromLTRB(
+                                    16.w,
+                                    8.h,
+                                    16.w,
+                                    96.h,
                                   ),
                                   itemCount: state.filteredProducts.length,
                                   gridDelegate:

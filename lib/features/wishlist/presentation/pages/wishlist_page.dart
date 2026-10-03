@@ -32,6 +32,7 @@ class _WishlistView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             const WishlistHeader(),
@@ -105,7 +106,7 @@ class _WishlistView extends StatelessWidget {
                           context.read<WishlistCubit>().loadWishlist(),
                       color: AppColors.primary,
                       child: ListView.separated(
-                        padding: EdgeInsets.only(top: 8.h, bottom: 24.h),
+                        padding: EdgeInsets.only(top: 8.h, bottom: 96.h),
                         itemCount: state.items.length,
                         separatorBuilder: (_, __) => SizedBox(height: 4.h),
                         itemBuilder: (context, index) {
