@@ -114,4 +114,35 @@ class AppColors {
   // Keypad & Input Fill Colors
   // ─────────────────────────────────────────────
   static const Color keyFill = Color(0xFFE5E5E5);
+
+  // ─────────────────────────────────────────────
+  // Orders & Shipment Status Colors (Screens 57–67)
+  // ─────────────────────────────────────────────
+  /// Amber/Orange status color for Packed milestone (Screen 57, 59)
+  static const Color statusPacked = Color(0xFFFFAE00);
+
+  /// Primary blue status color for Shipped milestone (Screen 57, 59)
+  static const Color statusShipped = Color(0xFF004BFE);
+
+  /// Green status color for Delivered milestone (Screen 57, 63)
+  static const Color statusDelivered = Color(0xFF34C759);
+
+  /// Alert red color for failed delivery attempt milestone (Screen 60, 61)
+  static const Color statusFailed = Color(0xFFFF3B30);
+
+  /// Golden yellow color for interactive and displayed rating stars (Screen 66, 67)
+  static const Color starGold = Color(0xFFFFAE00);
+
+  /// Neutral gray vertical timeline connecting line (Screen 59, 61, 63)
+  static const Color timelineLine = Color(0xFFE5E7EB);
+
+  /// Header circular action button background (Screen 57)
+  static const Color headerActionBg = Color(0xFFF0F4F8);
+
+  /// Gray pill background for item count (Screen 57)
+  static const Color countPillBg = Color(0xFFE8ECEF);
+
+  /// Image background inside thumbnail collage card (Screen 57)
+  static const Color thumbnailBg = Color(0xFFF2F4F7);
 }
+

@@ -18,6 +18,9 @@ class RouteNames {
   static const kCheckoutPage = '/checkout';
   static const kCheckoutShippingPage = '/checkout/shipping';
   static const kPaymentPage = '/payment';
+  static const kOrdersPage = '/orders';
+  static const kOrderHistoryPage = '/orders/history';
+  static const kOrderTrackingPage = '/orders/:id/tracking';
 
   // Auth Routes
   static const kStartPage = '/start';
