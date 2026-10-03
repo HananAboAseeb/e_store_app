@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,40 +20,28 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     const tabs = NavEnum.values;
 
-    return ClipRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.40),
-            border: Border(
-              top: BorderSide(
-                color: Colors.black.withOpacity(0.04),
-                width: 0.5,
-              ),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.cardShadow,
-                blurRadius: 16.r,
-                offset: const Offset(0, -4),
-              ),
-            ],
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.white,
+        border: Border(
+          top: BorderSide(
+            color: Color(0xFFE5E7EB),
+            width: 0.8,
           ),
-          child: SafeArea(
-            top: false,
-            child: SizedBox(
-              height: 56.h,
-              child: Row(
-                children: List.generate(
-                  tabs.length,
-                  (index) => NavItemWidget(
-                    tab: tabs[index],
-                    isSelected: currentIndex == index,
-                    onTap: () => onTap(index),
-                  ).expanded(),
-                ),
-              ),
+        ),
+      ),
+      child: SafeArea(
+        top: false,
+        child: SizedBox(
+          height: 56.h,
+          child: Row(
+            children: List.generate(
+              tabs.length,
+              (index) => NavItemWidget(
+                tab: tabs[index],
+                isSelected: currentIndex == index,
+                onTap: () => onTap(index),
+              ).expanded(),
             ),
           ),
         ),

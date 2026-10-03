@@ -10,6 +10,7 @@ class OrderCard extends StatelessWidget {
   final VoidCallback? onTrackTap;
   final VoidCallback? onReviewTap;
   final VoidCallback? onPayTap;
+  final VoidCallback? onTap;
 
   const OrderCard({
     super.key,
@@ -17,37 +18,42 @@ class OrderCard extends StatelessWidget {
     this.onTrackTap,
     this.onReviewTap,
     this.onPayTap,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Left: Square Thumbnail Collage Box (78.w x 78.w)
-          _buildThumbnailsBox(),
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Left: Square Thumbnail Collage Box (78.w x 78.w)
+            _buildThumbnailsBox(),
 
-          SizedBox(width: 12.w),
+            SizedBox(width: 12.w),
 
-          // Middle: Order #, Delivery Type, and Status
-          Expanded(
-            child: SizedBox(
-              height: 78.w,
-              child: _buildDetailsColumn(),
+            // Middle: Order #, Delivery Type, and Status
+            Expanded(
+              child: SizedBox(
+                height: 78.w,
+                child: _buildDetailsColumn(),
+              ),
             ),
-          ),
 
-          SizedBox(width: 8.w),
+            SizedBox(width: 8.w),
 
-          // Right: Count Pill and Action Button (96.w)
-          SizedBox(
-            height: 78.w,
-            width: 96.w,
-            child: _buildRightColumn(),
-          ),
-        ],
+            // Right: Count Pill and Action Button (96.w)
+            SizedBox(
+              height: 78.w,
+              width: 96.w,
+              child: _buildRightColumn(),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -44,7 +44,7 @@ class OrdersMockDataSourceImpl implements OrdersMockDataSource {
       deliveryType: 'Standard Delivery',
       itemCount: 3,
       status: OrderStatus.packed,
-      trackingNumber: 'LGS-92287157',
+      trackingNumber: 'LGS-i92927839300763731',
       createdAt: DateTime(2026, 4, 19, 12, 31),
     ),
 
@@ -227,23 +227,43 @@ class OrdersMockDataSourceImpl implements OrdersMockDataSource {
     // Failed Delivery Attempt (Screen 60, 61)
     OrderModel(
       id: 'order-3',
-      orderNumber: 'Order #71829304',
+      orderNumber: 'Order #92287157',
       items: const [
         OrderItemModel(
           id: 'item-failed-1',
           orderId: 'order-3',
-          productId: 'prod-6',
-          title: 'Classic leather lace-up sneakers.',
-          description: 'Durable vulcanized sole with cushioned footbed.',
-          imageUrl: 'assets/images/cat_shoe_1.png',
-          price: 110.00,
-          formattedDate: 'April, 15',
+          productId: 'prod-1',
+          title: 'Light Blue Oversized T-Shirt',
+          description: 'Standard delivery package with casual cotton tee.',
+          imageUrl: 'assets/images/prod_20_1.png',
+          price: 29.99,
+          formattedDate: 'April, 06',
+        ),
+        OrderItemModel(
+          id: 'item-failed-2',
+          orderId: 'order-3',
+          productId: 'prod-1',
+          title: 'Light Blue Oversized T-Shirt',
+          description: 'Standard delivery package with casual cotton tee.',
+          imageUrl: 'assets/images/prod_20_1.png',
+          price: 29.99,
+          formattedDate: 'April, 06',
+        ),
+        OrderItemModel(
+          id: 'item-failed-3',
+          orderId: 'order-3',
+          productId: 'prod-1',
+          title: 'Light Blue Oversized T-Shirt',
+          description: 'Standard delivery package with casual cotton tee.',
+          imageUrl: 'assets/images/prod_20_1.png',
+          price: 29.99,
+          formattedDate: 'April, 06',
         ),
       ],
       deliveryType: 'Standard Delivery',
-      itemCount: 1,
+      itemCount: 3,
       status: OrderStatus.failedAttempt,
-      trackingNumber: 'LGS-71829304',
+      trackingNumber: 'LGS-i92927839300763731',
       createdAt: DateTime(2026, 4, 17, 14, 20),
     ),
 
@@ -280,10 +300,11 @@ class OrdersMockDataSourceImpl implements OrdersMockDataSource {
       case OrderTab.toPay:
         return _orders.where((o) => o.status == OrderStatus.toPay).toList();
       case OrderTab.toReceive:
-        // Screen 57 Figma displays the exact 5 orders: 2 in-progress + 3 delivered
+        // Screen 57 Figma displays orders, including in-progress, failed attempt, and delivered
         return [
           _orders.firstWhere((o) => o.id == 'order-1'),
           _orders.firstWhere((o) => o.id == 'order-2'),
+          _orders.firstWhere((o) => o.id == 'order-3'),
           _orders.firstWhere((o) => o.id == 'order-del-1'),
           _orders.firstWhere((o) => o.id == 'order-del-2'),
           _orders.firstWhere((o) => o.id == 'order-del-3'),
@@ -315,79 +336,87 @@ class OrdersMockDataSourceImpl implements OrdersMockDataSource {
     final order = await getOrderTracking(orderId);
 
     if (order.status == OrderStatus.failedAttempt) {
-      // Screen 61 (Delivery Attempt Failed)
+      // Screen 60 (Delivery Failed - 6 steps matching Figma exactly)
       return const [
         TrackingStepModel(
           id: 'step-1',
           title: 'Packed',
-          timestamp: 'April 19 12:31',
+          timestamp: 'April,19 12:31',
           isCompleted: true,
           iconType: 'package',
         ),
         TrackingStepModel(
           id: 'step-2',
           title: 'On the Way to Logistic Facility',
-          timestamp: 'April 19 16:20',
+          timestamp: 'April,19 16:20',
           isCompleted: true,
           iconType: 'transit',
         ),
         TrackingStepModel(
           id: 'step-3',
           title: 'Arrived at Logistic Facility',
-          timestamp: 'April 19 19:07',
+          timestamp: 'April,19 19:07',
           isCompleted: true,
           iconType: 'facility',
         ),
         TrackingStepModel(
           id: 'step-4',
-          title: 'Shipped',
-          timestamp: 'April 20 06:15',
-          isCompleted: true,
-          iconType: 'shipped',
-        ),
-        TrackingStepModel(
-          id: 'step-5',
-          title: 'Attempt to deliver your parcel was not successful',
-          isCompleted: false,
-          isFailed: true,
-          iconType: 'alert',
-        ),
-      ];
-    } else if (order.status == OrderStatus.delivered) {
-      // Screen 63 (Delivered - all 5 blue)
-      return const [
-        TrackingStepModel(
-          id: 'step-1',
-          title: 'Packed',
-          timestamp: 'April 19 12:31',
-          isCompleted: true,
-          iconType: 'package',
-        ),
-        TrackingStepModel(
-          id: 'step-2',
-          title: 'On the Way to Logistic Facility',
-          timestamp: 'April 19 16:20',
-          isCompleted: true,
-          iconType: 'transit',
-        ),
-        TrackingStepModel(
-          id: 'step-3',
-          title: 'Arrived at Logistic Facility',
-          timestamp: 'April 19 19:07',
-          isCompleted: true,
-          iconType: 'facility',
-        ),
-        TrackingStepModel(
-          id: 'step-4',
-          title: 'Shipped',
-          timestamp: 'April 20 06:15',
+          title: 'shipped',
+          timestamp: 'April,20 06:15',
           isCompleted: true,
           iconType: 'shipped',
         ),
         TrackingStepModel(
           id: 'step-5',
           title: 'Delivered',
-          timestamp: 'April 21 09:34',
+          timestamp: null,
+          isCompleted: false,
+          iconType: 'delivered_orange',
+        ),
+        TrackingStepModel(
+          id: 'step-6',
+          title: 'Attempt to deliver your parcel was not successful',
+          timestamp: null,
+          isCompleted: false,
+          isFailed: true,
+          iconType: 'alert',
+        ),
+      ];
+    } else if (order.status == OrderStatus.delivered) {
+      // Screen 63 (Delivered - all 5 blue matching Figma exactly)
+      return const [
+        TrackingStepModel(
+          id: 'step-1',
+          title: 'Packed',
+          timestamp: 'April,19 12:31',
+          isCompleted: true,
+          iconType: 'package',
+        ),
+        TrackingStepModel(
+          id: 'step-2',
+          title: 'On the Way to Logistic Facility',
+          timestamp: 'April,19 16:20',
+          isCompleted: true,
+          iconType: 'transit',
+        ),
+        TrackingStepModel(
+          id: 'step-3',
+          title: 'Arrived at Logistic Facility',
+          timestamp: 'April,19 19:07',
+          isCompleted: true,
+          iconType: 'facility',
+        ),
+        TrackingStepModel(
+          id: 'step-4',
+          title: 'shipped',
+          timestamp: 'April,20 06:15',
+          isCompleted: true,
+          iconType: 'shipped',
+        ),
+        TrackingStepModel(
+          id: 'step-5',
+          title: 'delivered',
+          timestamp: 'April,21 09:24',
           isCompleted: true,
           iconType: 'delivered',
         ),
@@ -398,34 +427,35 @@ class OrdersMockDataSourceImpl implements OrdersMockDataSource {
         TrackingStepModel(
           id: 'step-1',
           title: 'Packed',
-          timestamp: 'April 19 12:31',
+          timestamp: 'April,19 12:31',
           isCompleted: true,
           iconType: 'package',
         ),
         TrackingStepModel(
           id: 'step-2',
           title: 'On the Way to Logistic Facility',
-          timestamp: 'April 19 16:20',
+          timestamp: 'April,19 16:20',
           isCompleted: true,
           iconType: 'transit',
         ),
         TrackingStepModel(
           id: 'step-3',
           title: 'Arrived at Logistic Facility',
-          timestamp: 'April 19 19:07',
+          timestamp: 'April,19 19:07',
           isCompleted: false,
           iconType: 'facility',
         ),
         TrackingStepModel(
           id: 'step-4',
-          title: 'Shipped',
-          timestamp: 'April 20 06:15',
+          title: 'shipped',
+          timestamp: 'Expected on April,20',
           isCompleted: false,
           iconType: 'shipped',
         ),
         TrackingStepModel(
           id: 'step-5',
           title: 'Delivered',
+          timestamp: null,
           isCompleted: false,
           iconType: 'delivered',
         ),

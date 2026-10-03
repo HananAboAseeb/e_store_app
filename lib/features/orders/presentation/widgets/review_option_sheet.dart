@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../shared/widgets/modal_close_button.dart';
 import '../../domain/entities/order_entity.dart';
 import '../../domain/usecases/get_items_to_review_usecase.dart';
 import 'review_sheet.dart';
@@ -115,24 +116,8 @@ class _ReviewOptionSheetState extends State<ReviewOptionSheet> {
                   ),
                 ],
               ),
-              // Close X button with darker gray background matching Figma
-              GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
-                behavior: HitTestBehavior.opaque,
-                child: Container(
-                  width: 36.w,
-                  height: 36.w,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFE8ECEF), // Darker neutral gray
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.close_rounded,
-                    size: 18.sp,
-                    color: const Color(0xFF1F2937),
-                  ),
-                ),
-              ),
+              // Close X button using centralized ModalCloseButton
+              const ModalCloseButton(),
             ],
           ),
 

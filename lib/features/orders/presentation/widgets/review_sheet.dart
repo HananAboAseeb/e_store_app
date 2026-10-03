@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../shared/widgets/modal_close_button.dart';
 import '../../../../shared/widgets/primary_button.dart';
 import '../../domain/entities/order_entity.dart';
 import '../../domain/usecases/submit_review_usecase.dart';
@@ -119,23 +120,7 @@ class _ReviewSheetState extends State<ReviewSheet> {
                   color: AppColors.textPrimary,
                 ),
               ),
-              GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
-                behavior: HitTestBehavior.opaque,
-                child: Container(
-                  width: 36.w,
-                  height: 36.w,
-                  decoration: const BoxDecoration(
-                    color: AppColors.surfaceOption,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.close_rounded,
-                    size: 18.sp,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-              ),
+              const ModalCloseButton(),
             ],
           ),
 

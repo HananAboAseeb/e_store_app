@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
-import '../../../../shared/widgets/meta_pill.dart';
 import '../../domain/entities/order_entity.dart';
 import '../cubit/order_tracking_cubit.dart';
 import '../cubit/order_tracking_state.dart';
@@ -58,14 +57,14 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
     return BlocProvider.value(
       value: _trackingCubit,
       child: Scaffold(
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.white,
         body: Column(
           children: [
-            // Top Header with Back Button
+            // Top Header: Matching Figma Screens 59, 60, 63
             OrdersHeader(
               title: 'To Receive',
               subtitle: 'My Orders',
-              showBackButton: true,
+              onBackTap: () => Navigator.of(context).maybePop(),
             ),
 
             Expanded(
@@ -97,16 +96,16 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                     final steps = state.steps;
 
                     return SingleChildScrollView(
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
+                      padding: EdgeInsets.only(top: 4.h, bottom: 24.h),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Order Summary Card
+                          // 1. Order Summary Card matching Figma
                           _buildOrderSummaryCard(order),
 
                           SizedBox(height: 12.h),
 
-                          // Vertical Tracking Timeline
+                          // 2. Tracking Milestones without vertical lines
                           OrderTrackingTimeline(
                             steps: steps,
                             onLearnMoreTap: () {
@@ -130,98 +129,47 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
     );
   }
 
+  /// Top Order Summary Card matching Figma Screens 59, 60, 63 layout
   Widget _buildOrderSummaryCard(OrderEntity order) {
-    final trackingCode = order.trackingNumber ?? 'LGS-92287157';
-    final displayItems = order.items.take(3).toList();
-    final remainingCount = order.itemCount - displayItems.length;
+    final trackingCode = order.trackingNumber ?? 'LGS-i92927839300763731';
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      padding: EdgeInsets.all(16.r),
+      padding: EdgeInsets.all(14.w),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: const Color(0xFFF6F8FA),
         borderRadius: BorderRadius.circular(16.r),
-        boxShadow: const [
-          BoxShadow(
-            color: AppColors.cardShadow,
-            blurRadius: 10,
-            offset: Offset(0, 4),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Row of Thumbnails + Basic Info
+          // Top Row: Dynamic Collage + Order Details
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Thumbnails
-              Row(
-                children: [
-                  for (final item in displayItems) ...[
-                    Container(
-                      width: 48.w,
-                      height: 48.w,
-                      margin: EdgeInsets.only(right: 6.w),
-                      decoration: BoxDecoration(
-                        color: AppColors.surfaceCardImage,
-                        borderRadius: BorderRadius.circular(8.r),
-                        image: DecorationImage(
-                          image: AssetImage(item.imageUrl),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ],
-                  if (remainingCount > 0)
-                    Container(
-                      width: 40.w,
-                      height: 48.w,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.surfaceOption,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Text(
-                        '+$remainingCount',
-                        style: AppTypography.caption.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.textPrimary,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
+              // Dynamic Product Collage directly on card background (no white container)
+              _buildOrderItemsCollage(order),
 
-              SizedBox(width: 12.w),
+              SizedBox(width: 14.w),
 
-              // Order Number & Pills
+              // Order Number & Details
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       order.orderNumber,
-                      style: AppTypography.bodySmall.copyWith(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 14.sp,
-                        color: AppColors.textPrimary,
-                      ),
+                      style: AppTypography.orderCardTitle,
                     ),
-                    SizedBox(height: 2.h),
+                    SizedBox(height: 3.h),
                     Text(
                       order.deliveryType,
-                      style: AppTypography.caption.copyWith(
-                        color: AppColors.textSecondary,
-                        fontSize: 11.sp,
-                      ),
+                      style: AppTypography.orderCardSubtitle,
                     ),
                     SizedBox(height: 6.h),
-                    MetaPill(
-                      text: '${order.itemCount} items',
-                      backgroundColor: AppColors.primarySoft,
-                      textColor: AppColors.primary,
+                    Text(
+                      '${order.itemCount} Items',
+                      style: AppTypography.orderCardCount,
                     ),
                   ],
                 ),
@@ -229,55 +177,199 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
             ],
           ),
 
-          SizedBox(height: 12.h),
-          Container(height: 1.h, color: AppColors.divider),
-          SizedBox(height: 12.h),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.h),
+            child: Container(
+              height: 1.h,
+              color: const Color(0xFFE2E8F0),
+            ),
+          ),
 
-          // LGS Tracking Row with Copy Action
+          // Bottom Row: Tracking Number + Exact Blue Ticket Icon
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    order.orderNumber,
-                    style: AppTypography.caption.copyWith(
-                      color: AppColors.textSecondary,
-                      fontSize: 12.sp,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      order.orderNumber,
+                      style: AppTypography.caption.copyWith(
+                        color: const Color(0xFF6B7280),
+                        fontSize: 11.5.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 2.h),
-                  Text(
-                    trackingCode,
-                    style: AppTypography.bodySmall.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textPrimary,
-                      fontSize: 14.sp,
+                    SizedBox(height: 2.h),
+                    Text(
+                      trackingCode,
+                      style: AppTypography.bodySmall.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xFF111827),
+                        fontSize: 13.sp,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              SizedBox(width: 8.w),
+              // Blue rounded ticket icon button matching Figma exactly
               GestureDetector(
                 onTap: () => _copyTrackingNumber(trackingCode),
                 behavior: HitTestBehavior.opaque,
                 child: Container(
-                  width: 38.w,
-                  height: 38.w,
-                  decoration: const BoxDecoration(
-                    color: AppColors.surfaceOption,
-                    shape: BoxShape.circle,
+                  width: 32.w,
+                  height: 32.w,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(8.r),
+                    border: Border.all(
+                      color: AppColors.primary,
+                      width: 1.5.w,
+                    ),
                   ),
-                  child: Icon(
-                    Icons.copy_rounded,
-                    size: 18.sp,
-                    color: AppColors.textPrimary,
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 14.w,
+                        height: 2.2.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(2.r),
+                        ),
+                      ),
+                      SizedBox(height: 2.5.h),
+                      Container(
+                        width: 14.w,
+                        height: 2.2.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(2.r),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  /// Dynamic Product Collage: Renders exact items without outer white padding
+  Widget _buildOrderItemsCollage(OrderEntity order) {
+    final items = order.items;
+    final count = items.length;
+
+    if (count == 0) {
+      return SizedBox(
+        width: 68.w,
+        height: 68.w,
+        child: _buildThumbItem('assets/images/prod_20_1.png'),
+      );
+    }
+
+    if (count == 1) {
+      return SizedBox(
+        width: 68.w,
+        height: 68.w,
+        child: _buildThumbItem(items[0].imageUrl),
+      );
+    }
+
+    if (count == 2) {
+      return SizedBox(
+        width: 68.w,
+        height: 68.w,
+        child: Row(
+          children: [
+            Expanded(child: _buildThumbItem(items[0].imageUrl)),
+            SizedBox(width: 4.w),
+            Expanded(child: _buildThumbItem(items[1].imageUrl)),
+          ],
+        ),
+      );
+    }
+
+    if (count == 3) {
+      // 3 items matching Figma Screen 60: 2 on top row, 1 in bottom row
+      return SizedBox(
+        width: 68.w,
+        height: 68.w,
+        child: Column(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(child: _buildThumbItem(items[0].imageUrl)),
+                  SizedBox(width: 4.w),
+                  Expanded(child: _buildThumbItem(items[1].imageUrl)),
+                ],
+              ),
+            ),
+            SizedBox(height: 4.h),
+            Expanded(
+              child: Center(
+                child: SizedBox(
+                  width: 32.w,
+                  child: _buildThumbItem(items[2].imageUrl),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    // 4 items (2x2 grid matching 4 items count)
+    return SizedBox(
+      width: 68.w,
+      height: 68.w,
+      child: Column(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(child: _buildThumbItem(items[0].imageUrl)),
+                SizedBox(width: 4.w),
+                Expanded(child: _buildThumbItem(items[1].imageUrl)),
+              ],
+            ),
+          ),
+          SizedBox(height: 4.h),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(child: _buildThumbItem(items[2].imageUrl)),
+                SizedBox(width: 4.w),
+                Expanded(child: _buildThumbItem(items[3].imageUrl)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildThumbItem(String url) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(6.r),
+      child: Container(
+        color: AppColors.thumbnailBg,
+        child: Image.asset(
+          url,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+          errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+        ),
       ),
     );
   }

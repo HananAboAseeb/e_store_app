@@ -17,7 +17,7 @@ class OrderTrackingTimeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+      padding: EdgeInsets.symmetric(vertical: 8.h),
       child: Column(
         children: List.generate(steps.length, (index) {
           final step = steps[index];

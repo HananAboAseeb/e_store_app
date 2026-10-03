@@ -120,6 +120,9 @@ class _OrdersPageState extends State<OrdersPage> {
                           final order = orders[index];
                           return OrderCard(
                             order: order,
+                            onTap: () {
+                              context.push('/orders/${order.id}/tracking');
+                            },
                             onTrackTap: () {
                               context.push('/orders/${order.id}/tracking');
                             },

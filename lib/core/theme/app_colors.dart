@@ -144,5 +144,10 @@ class AppColors {
 
   /// Image background inside thumbnail collage card (Screen 57)
   static const Color thumbnailBg = Color(0xFFF2F4F7);
-}
 
+  /// Modal close button circular background: #000000 with 10% opacity (Screen 58, 61)
+  static const Color closeButtonBg = Color(0x1A000000);
+
+  /// Modal close button icon: #000000 with 50% opacity (Screen 58, 61)
+  static const Color closeButtonIcon = Color(0x7F000000);
+}
