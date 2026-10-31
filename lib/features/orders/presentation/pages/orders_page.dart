@@ -23,6 +23,7 @@ class OrdersPage extends StatefulWidget {
 
 class _OrdersPageState extends State<OrdersPage> {
   late final OrdersCubit _ordersCubit;
+  OrderStatus? _selectedStatusFilter;
 
   @override
   void initState() {
@@ -34,6 +35,36 @@ class _OrdersPageState extends State<OrdersPage> {
   void dispose() {
     _ordersCubit.close();
     super.dispose();
+  }
+
+  Widget _buildStatusChip(String label, OrderStatus? status) {
+    final isSelected = _selectedStatusFilter == status;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedStatusFilter = status;
+        });
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : const Color(0xFFF3F4F6),
+          borderRadius: BorderRadius.circular(20.r),
+          border: isSelected
+              ? null
+              : Border.all(color: const Color(0xFFE5E7EB), width: 1.w),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 12.sp,
+            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+            color: isSelected ? Colors.white : const Color(0xFF4B5563),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -51,6 +82,30 @@ class _OrdersPageState extends State<OrdersPage> {
               onFilterTap: () {
                 context.push('/orders/history');
               },
+            ),
+
+            // Horizontal status navigation selector for direct access to all tracking milestones
+            Container(
+              height: 40.h,
+              margin: EdgeInsets.symmetric(vertical: 4.h),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                children: [
+                  _buildStatusChip('All', null),
+                  SizedBox(width: 8.w),
+                  _buildStatusChip('Packed Orders', OrderStatus.packed),
+                  SizedBox(width: 8.w),
+                  _buildStatusChip('Shipped Orders', OrderStatus.shipped),
+                  SizedBox(width: 8.w),
+                  _buildStatusChip('Delivered Orders', OrderStatus.delivered),
+                  SizedBox(width: 8.w),
+                  _buildStatusChip(
+                      'Failed Attempts', OrderStatus.failedAttempt),
+                  SizedBox(width: 8.w),
+                  _buildStatusChip('To Pay', OrderStatus.toPay),
+                ],
+              ),
             ),
 
             // Orders List (Directly below header matching Figma Screen 57)
@@ -78,7 +133,12 @@ class _OrdersPageState extends State<OrdersPage> {
                   }
 
                   if (state is OrdersLoaded) {
-                    final orders = state.filteredOrders;
+                    final allOrders = state.filteredOrders;
+                    final orders = _selectedStatusFilter == null
+                        ? allOrders
+                        : allOrders
+                            .where((o) => o.status == _selectedStatusFilter)
+                            .toList();
                     if (orders.isEmpty) {
                       return const NoDataFoundWidget(
                         title: 'No Orders Found',

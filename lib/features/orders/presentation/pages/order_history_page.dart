@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -38,14 +39,14 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
     return BlocProvider.value(
       value: _ordersCubit,
       child: Scaffold(
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.white,
         body: Column(
           children: [
-            // Top Header (Title "History", 3 icons, Back button)
-            OrdersHeader(
+            // Top Header (Title "History", Avatar, 3 action icons matching Figma Screen 65)
+            const OrdersHeader(
               title: 'History',
-              subtitle: 'Past Orders',
-              showBackButton: true,
+              subtitle: '',
+              showBackButton: false,
             ),
 
             // Orders List
@@ -85,9 +86,19 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                     return RefreshIndicator(
                       onRefresh: () => _ordersCubit.loadHistory(),
                       color: AppColors.primary,
-                      child: ListView.builder(
-                        padding: const EdgeInsets.only(top: 8, bottom: 24),
+                      child: ListView.separated(
+                        padding: EdgeInsets.only(top: 8.h, bottom: 96.h),
                         itemCount: orders.length,
+                        separatorBuilder: (_, __) => Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.w,
+                            vertical: 6.h,
+                          ),
+                          child: Container(
+                            height: 1.h,
+                            color: const Color(0xFFF3F4F6),
+                          ),
+                        ),
                         itemBuilder: (context, index) {
                           final order = orders[index];
                           return HistoryItemTile(

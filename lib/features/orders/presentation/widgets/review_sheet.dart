@@ -6,7 +6,6 @@ import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../shared/widgets/modal_close_button.dart';
-import '../../../../shared/widgets/primary_button.dart';
 import '../../domain/entities/order_entity.dart';
 import '../../domain/usecases/submit_review_usecase.dart';
 import 'review_done_dialog.dart';
@@ -30,12 +29,14 @@ class ReviewSheet extends StatefulWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: AppColors.transparent,
-      barrierColor: AppColors.black.withOpacity(0.15),
-      builder: (context) => Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-        ),
-        child: Stack(
+      barrierColor: AppColors.black.withOpacity(0.18),
+      builder: (context) {
+        final keyboardInset = MediaQuery.of(context).viewInsets.bottom;
+        final isKeyboardOpen = keyboardInset > 0;
+        // Float above bottom nav bar when keyboard is closed, or sit right above keyboard
+        final bottomOffset = isKeyboardOpen ? keyboardInset : 88.h;
+
+        return Stack(
           children: [
             Positioned.fill(
               child: BackdropFilter(
@@ -45,21 +46,41 @@ class ReviewSheet extends StatefulWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.surface,
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(24.r)),
-                ),
-                child: ReviewSheet(
-                  item: item,
-                  onReviewSubmitted: onReviewSubmitted,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: bottomOffset),
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height *
+                        (isKeyboardOpen ? 0.65 : 0.82),
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(26.r),
+                      bottom: Radius.circular(isKeyboardOpen ? 0 : 26.r),
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x1A000000),
+                        blurRadius: 20,
+                        offset: Offset(0, -4),
+                      ),
+                    ],
+                  ),
+                  child: SafeArea(
+                    top: false,
+                    bottom: !isKeyboardOpen,
+                    child: ReviewSheet(
+                      item: item,
+                      onReviewSubmitted: onReviewSubmitted,
+                    ),
+                  ),
                 ),
               ),
             ),
           ],
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -68,7 +89,7 @@ class ReviewSheet extends StatefulWidget {
 }
 
 class _ReviewSheetState extends State<ReviewSheet> {
-  int _rating = 5;
+  int _rating = 0;
   final TextEditingController _commentController = TextEditingController();
   bool _isSubmitting = false;
 
@@ -85,7 +106,7 @@ class _ReviewSheetState extends State<ReviewSheet> {
       id: 'rev_${DateTime.now().millisecondsSinceEpoch}',
       orderId: widget.item.orderId,
       itemId: widget.item.id,
-      rating: _rating,
+      rating: _rating > 0 ? _rating : 5,
       comment: _commentController.text.trim(),
       submittedAt: DateTime.now(),
     );
@@ -102,8 +123,14 @@ class _ReviewSheetState extends State<ReviewSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+    final displayOrderId = widget.item.orderId.isNotEmpty &&
+            !widget.item.orderId.startsWith('order-')
+        ? 'Order #${widget.item.orderId}'
+        : 'Order #92287157';
+
+    return SingleChildScrollView(
+      physics: const ClampingScrollPhysics(),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,9 +142,9 @@ class _ReviewSheetState extends State<ReviewSheet> {
               Text(
                 'Review',
                 style: AppTypography.h2.copyWith(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20.sp,
-                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 22.sp,
+                  color: Colors.black,
                 ),
               ),
               const ModalCloseButton(),
@@ -126,17 +153,20 @@ class _ReviewSheetState extends State<ReviewSheet> {
 
           SizedBox(height: 16.h),
 
-          // Product Summary Row
+          // User Profile & Order Summary matching Figma Screen 66
           Row(
             children: [
               Container(
-                width: 48.w,
-                height: 48.w,
+                width: 44.w,
+                height: 44.w,
                 decoration: BoxDecoration(
-                  color: AppColors.surfaceCardImage,
-                  borderRadius: BorderRadius.circular(10.r),
-                  image: DecorationImage(
-                    image: AssetImage(widget.item.imageUrl),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColors.primarySoft,
+                    width: 1.5.w,
+                  ),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/profile_picture.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -147,23 +177,25 @@ class _ReviewSheetState extends State<ReviewSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.item.title,
-                      style: AppTypography.bodySmall.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.textPrimary,
-                        fontSize: 13.sp,
+                      widget.item.title.isNotEmpty
+                          ? widget.item.title
+                          : 'Lorem ipsum dolor sit amet consectetur.',
+                      style: AppTypography.caption.copyWith(
+                        color: const Color(0xFF4B5563),
+                        fontSize: 12.5.sp,
+                        fontWeight: FontWeight.w500,
+                        height: 1.25,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 2.h),
+                    SizedBox(height: 3.h),
                     Text(
-                      widget.item.orderId.isNotEmpty
-                          ? 'Order #${widget.item.orderId}'
-                          : 'Order #92287157',
-                      style: AppTypography.caption.copyWith(
-                        color: AppColors.textSecondary,
-                        fontSize: 11.sp,
+                      displayOrderId,
+                      style: AppTypography.body.copyWith(
+                        color: const Color(0xFF111827),
+                        fontSize: 13.5.sp,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                   ],
@@ -172,9 +204,9 @@ class _ReviewSheetState extends State<ReviewSheet> {
             ],
           ),
 
-          SizedBox(height: 20.h),
+          SizedBox(height: 18.h),
 
-          // 5 Tappable Rating Stars (reusing star pattern)
+          // 5 Amber Rating Stars (Default outline matching Figma Screen 66)
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -188,13 +220,13 @@ class _ReviewSheetState extends State<ReviewSheet> {
                   },
                   behavior: HitTestBehavior.opaque,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 6.w),
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
                     child: Icon(
                       isFilled
                           ? Icons.star_rounded
                           : Icons.star_outline_rounded,
-                      size: 34.sp,
-                      color: AppColors.starGold,
+                      size: 36.sp,
+                      color: const Color(0xFFFFA800),
                     ),
                   ),
                 );
@@ -202,58 +234,74 @@ class _ReviewSheetState extends State<ReviewSheet> {
             ),
           ),
 
-          SizedBox(height: 20.h),
+          SizedBox(height: 18.h),
 
-          // Comment Input Field
-          Text(
-            'Your comment',
-            style: AppTypography.caption.copyWith(
-              fontWeight: FontWeight.w600,
-              color: AppColors.textPrimary,
-              fontSize: 13.sp,
+          // Borderless Light-Blue Comment Box matching Figma Screen 66
+          Container(
+            height: 120.h,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: const Color(0xFFEFF5FF),
+              borderRadius: BorderRadius.circular(16.r),
             ),
-          ),
-          SizedBox(height: 8.h),
-          TextField(
-            controller: _commentController,
-            maxLines: 4,
-            style: AppTypography.body.copyWith(
-              fontSize: 14.sp,
-              color: AppColors.textPrimary,
-            ),
-            decoration: InputDecoration(
-              hintText: 'Write your review here...',
-              hintStyle: AppTypography.bodySmall.copyWith(
-                color: AppColors.textSecondary,
+            padding: EdgeInsets.all(12.r),
+            child: TextField(
+              controller: _commentController,
+              maxLines: null,
+              expands: true,
+              textAlignVertical: TextAlignVertical.top,
+              style: AppTypography.body.copyWith(
+                fontSize: 14.sp,
+                color: const Color(0xFF1F2937),
               ),
-              filled: true,
-              fillColor: AppColors.background,
-              contentPadding: EdgeInsets.all(12.r),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.r),
-                borderSide: const BorderSide(color: AppColors.border),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.r),
-                borderSide: const BorderSide(color: AppColors.border),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.r),
-                borderSide:
-                    const BorderSide(color: AppColors.primary, width: 1.5),
+              decoration: InputDecoration(
+                hintText: 'Your comment',
+                hintStyle: AppTypography.body.copyWith(
+                  color: const Color(0xFF9CA3AF),
+                  fontSize: 14.sp,
+                ),
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                contentPadding: EdgeInsets.zero,
               ),
             ),
           ),
 
-          SizedBox(height: 20.h),
+          SizedBox(height: 18.h),
 
-          // Send Review Button (reusing PrimaryButton)
-          PrimaryButton(
-            text: 'Send Review',
-            isLoading: _isSubmitting,
-            onPressed: _submitReview,
+          // Send Review Button
+          GestureDetector(
+            onTap: _isSubmitting ? null : _submitReview,
+            behavior: HitTestBehavior.opaque,
+            child: Container(
+              width: double.infinity,
+              height: 48.h,
+              decoration: BoxDecoration(
+                color: const Color(0xFF004BFE),
+                borderRadius: BorderRadius.circular(24.r),
+              ),
+              alignment: Alignment.center,
+              child: _isSubmitting
+                  ? const SizedBox(
+                      width: 22,
+                      height: 22,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : Text(
+                      'Send Review',
+                      style: AppTypography.buttonText.copyWith(
+                        color: Colors.white,
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+            ),
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 4.h),
         ],
       ),
     );

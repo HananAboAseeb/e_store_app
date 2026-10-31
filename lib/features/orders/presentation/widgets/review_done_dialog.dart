@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../shared/widgets/verified_check_badge.dart';
 
 class ReviewDoneDialog extends StatefulWidget {
   const ReviewDoneDialog({super.key});
@@ -12,8 +14,18 @@ class ReviewDoneDialog extends StatefulWidget {
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
-      barrierColor: AppColors.black.withOpacity(0.3),
-      builder: (context) => const ReviewDoneDialog(),
+      barrierColor: AppColors.black.withOpacity(0.18),
+      builder: (context) => Stack(
+        children: [
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+              child: const SizedBox.expand(),
+            ),
+          ),
+          const ReviewDoneDialog(),
+        ],
+      ),
     );
   }
 
@@ -43,70 +55,72 @@ class _ReviewDoneDialogState extends State<ReviewDoneDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: AppColors.surface,
+      backgroundColor: AppColors.white,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24.r),
+        borderRadius: BorderRadius.circular(28.r),
       ),
       insetPadding: EdgeInsets.symmetric(horizontal: 32.w),
       child: GestureDetector(
         onTap: () => Navigator.of(context).maybePop(),
         behavior: HitTestBehavior.opaque,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
+          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 34.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Blue checkmark circle
+              // Concentric Checkmark Badge matching Figma Screen 67
               Container(
-                width: 72.w,
-                height: 72.w,
+                width: 68.w,
+                height: 68.w,
                 decoration: const BoxDecoration(
-                  color: AppColors.primary,
+                  color: Color(0xFFEFF5FF),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  Icons.check_rounded,
-                  size: 38.sp,
-                  color: AppColors.textWhite,
+                alignment: Alignment.center,
+                child: VerifiedCheckBadge(
+                  size: 46.w,
+                  backgroundColor: const Color(0xFF004BFE),
+                  checkColor: Colors.white,
                 ),
               ),
 
-              SizedBox(height: 20.h),
+              SizedBox(height: 18.h),
 
               // Done! Title
               Text(
                 'Done!',
                 style: AppTypography.h1.copyWith(
                   fontWeight: FontWeight.w800,
-                  fontSize: 24.sp,
-                  color: AppColors.textPrimary,
+                  fontSize: 22.sp,
+                  color: const Color(0xFF111827),
                 ),
               ),
 
               SizedBox(height: 8.h),
 
-              // Subtitle
+              // Subtitle (exact Figma Screen 67 wording)
               Text(
-                'Your review has been successfully sent',
+                'You review has been successfully sent',
                 textAlign: TextAlign.center,
                 style: AppTypography.bodySmall.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: 14.sp,
+                  color: const Color(0xFF6B7280),
+                  fontSize: 13.5.sp,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
 
-              SizedBox(height: 20.h),
+              SizedBox(height: 22.h),
 
-              // 5 Golden Stars (reusing star pattern)
+              // 5 Golden Stars matching Figma Screen 67
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(5, (index) {
                   return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 2.w),
+                    padding: EdgeInsets.symmetric(horizontal: 3.w),
                     child: Icon(
                       Icons.star_rounded,
-                      size: 26.sp,
-                      color: AppColors.starGold,
+                      size: 28.sp,
+                      color: const Color(0xFFFFA800),
                     ),
                   );
                 }),

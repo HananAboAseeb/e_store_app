@@ -308,6 +308,7 @@ class OrdersMockDataSourceImpl implements OrdersMockDataSource {
           _orders.firstWhere((o) => o.id == 'order-del-1'),
           _orders.firstWhere((o) => o.id == 'order-del-2'),
           _orders.firstWhere((o) => o.id == 'order-del-3'),
+          _orders.firstWhere((o) => o.id == 'order-5'),
         ];
       case OrderTab.toReview:
         return _orders.where((o) => o.status == OrderStatus.delivered).toList();

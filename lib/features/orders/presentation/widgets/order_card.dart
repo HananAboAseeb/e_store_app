@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../shared/widgets/verified_check_badge.dart';
 import '../../domain/entities/order_entity.dart';
 
 class OrderCard extends StatelessWidget {
@@ -458,58 +459,4 @@ class OrderCard extends StatelessWidget {
         );
     }
   }
-}
-
-/// Custom-drawn verified checkmark badge matching Figma Screen 57 geometry exactly
-class VerifiedCheckBadge extends StatelessWidget {
-  final double size;
-
-  const VerifiedCheckBadge({super.key, this.size = 20});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: CustomPaint(
-        painter: _VerifiedCheckPainter(),
-      ),
-    );
-  }
-}
-
-class _VerifiedCheckPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // 1. Draw solid primary blue circle
-    final bgPaint = Paint()
-      ..color = AppColors.primary
-      ..style = PaintingStyle.fill
-      ..isAntiAlias = true;
-
-    final center = Offset(size.width / 2, size.height / 2);
-    canvas.drawCircle(center, size.width / 2, bgPaint);
-
-    // 2. Draw smooth rounded white checkmark matching Figma exactly
-    final checkPaint = Paint()
-      ..color = AppColors.white
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = size.width * 0.115
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round
-      ..isAntiAlias = true;
-
-    final path = Path();
-    // Start of check (left arm)
-    path.moveTo(size.width * 0.30, size.height * 0.50);
-    // Vertex of check (bottom)
-    path.lineTo(size.width * 0.44, size.height * 0.67);
-    // End of check (right arm)
-    path.lineTo(size.width * 0.72, size.height * 0.35);
-
-    canvas.drawPath(path, checkPaint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

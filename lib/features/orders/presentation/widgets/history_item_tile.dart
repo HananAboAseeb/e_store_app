@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
-import '../../../../shared/widgets/meta_pill.dart';
 import '../../domain/entities/order_entity.dart';
 
 class HistoryItemTile extends StatelessWidget {
@@ -19,104 +18,159 @@ class HistoryItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firstItem = order.items.isNotEmpty ? order.items.first : null;
-    final imageUrl = firstItem?.imageUrl ?? 'assets/images/prod_20_1.png';
+    // Prefer the high-fidelity Figma history product asset for history tiles
+    final imageUrl = (firstItem != null && firstItem.imageUrl.isNotEmpty)
+        ? firstItem.imageUrl
+        : 'assets/images/history_product.png';
     final title = firstItem?.title ?? 'Lorem ipsum dolor sit amet consectetur.';
     final date = firstItem?.formattedDate.isNotEmpty == true
         ? firstItem!.formattedDate
         : 'April, 06';
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
-      padding: EdgeInsets.all(12.r),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: const [
-          BoxShadow(
-            color: AppColors.cardShadow,
-            blurRadius: 8,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
+      color: Colors.transparent,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Product Thumbnail
+          // Product Thumbnail matching Figma Screen 65 (136x108, Radius 15, with white padding frame and soft drop shadow)
           Container(
-            width: 72.w,
-            height: 72.w,
+            width: 136.w,
+            height: 108.h,
+            padding: EdgeInsets.all(5.w),
             decoration: BoxDecoration(
-              color: AppColors.surfaceCardImage,
-              borderRadius: BorderRadius.circular(12.r),
-              image: DecorationImage(
-                image: AssetImage(imageUrl),
-                fit: BoxFit.cover,
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(15.r),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x14000000),
+                  blurRadius: 10,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(11.r),
+              child: Container(
+                color: AppColors.thumbnailBg,
+                child: Image.asset(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Image.asset(
+                    'assets/images/history_product.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           ),
 
           SizedBox(width: 12.w),
 
-          // Details
+          // Details Column
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
+                // Title (2 lines)
                 Text(
                   title,
-                  style: AppTypography.bodySmall.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 13.sp,
-                    color: AppColors.textPrimary,
+                  style: AppTypography.caption.copyWith(
+                    color: const Color(0xFF4B5563),
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                    height: 1.25,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 4.h),
+
+                // Bold Order Number
+                Text(
+                  order.orderNumber.isNotEmpty
+                      ? order.orderNumber
+                      : 'Order #92287157',
+                  style: AppTypography.body.copyWith(
+                    color: const Color(0xFF111827),
+                    fontSize: 13.5.sp,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                SizedBox(height: 10.h),
+
+                // Bottom row: Date Pill + Review Button with flexible width to eliminate right overflow on all screen sizes
                 Row(
                   children: [
-                    Text(
-                      order.orderNumber,
-                      style: AppTypography.caption.copyWith(
-                        color: AppColors.textSecondary,
-                        fontSize: 11.sp,
+                    // Date Pill (H: 30, radius: 10, Color(0xFFE8ECEF))
+                    Expanded(
+                      flex: 48,
+                      child: Container(
+                        height: 30.h,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFE8ECEF),
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        alignment: Alignment.center,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 4.w),
+                            child: Text(
+                              date,
+                              maxLines: 1,
+                              style: AppTypography.caption.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF1F2937),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(width: 8.w),
-                    MetaPill(
-                      text: date,
-                      backgroundColor: AppColors.surfaceOption,
-                      textColor: AppColors.textSecondary,
+
+                    SizedBox(width: 6.w),
+
+                    // Outlined Capsule Review Button (H: 30, radius: 16 per Figma Dev Mode)
+                    Expanded(
+                      flex: 52,
+                      child: GestureDetector(
+                        onTap: onReviewTap,
+                        behavior: HitTestBehavior.opaque,
+                        child: Container(
+                          height: 30.h,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(16.r),
+                            border: Border.all(
+                              color: const Color(0xFF004BFE),
+                              width: 1.5.w,
+                            ),
+                          ),
+                          alignment: Alignment.center,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4.w),
+                              child: Text(
+                                'Review',
+                                maxLines: 1,
+                                style: AppTypography.buttonText.copyWith(
+                                  fontSize: 12.5.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xFF004BFE),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ],
-            ),
-          ),
-
-          SizedBox(width: 8.w),
-
-          // Outlined Review Button
-          SizedBox(
-            width: 80.w,
-            height: 34.h,
-            child: OutlinedButton(
-              onPressed: onReviewTap,
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: AppColors.primary, width: 1.5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                padding: EdgeInsets.zero,
-              ),
-              child: Text(
-                'Review',
-                style: AppTypography.buttonText.copyWith(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.primary,
-                ),
-              ),
             ),
           ),
         ],

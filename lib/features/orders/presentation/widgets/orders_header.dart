@@ -93,18 +93,20 @@ class OrdersHeader extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 1.h),
-                  Text(
-                    subtitle,
-                    style: AppTypography.caption.copyWith(
-                      color: const Color(
-                          0xFF1F2937), // Darker charcoal per Figma and user feedback
-                      fontSize: 13.sp, // Raleway SemiBold in Figma
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: -0.14,
-                      height: 1.05,
+                  if (subtitle.isNotEmpty) ...[
+                    SizedBox(height: 1.h),
+                    Text(
+                      subtitle,
+                      style: AppTypography.caption.copyWith(
+                        color: const Color(
+                            0xFF1F2937), // Darker charcoal per Figma and user feedback
+                        fontSize: 13.sp, // Raleway SemiBold in Figma
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.14,
+                        height: 1.05,
+                      ),
                     ),
-                  ),
+                  ],
                 ],
               ),
             ),
