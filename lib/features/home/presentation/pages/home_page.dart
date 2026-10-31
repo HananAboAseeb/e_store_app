@@ -63,6 +63,7 @@ class _HomeViewState extends State<_HomeView> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
+        bottom: false,
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             if (state is HomeLoading || state is HomeInitial) {
@@ -112,7 +113,7 @@ class _HomeViewState extends State<_HomeView> {
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   physics: const AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.only(bottom: 24.h),
+                  padding: EdgeInsets.only(bottom: 96.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

@@ -21,6 +21,9 @@ import '../../features/flash_sale/presentation/pages/flash_sale_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/product/presentation/pages/product_details_page.dart';
 import '../../features/product/presentation/pages/reviews_page.dart';
+import '../../features/orders/presentation/pages/order_history_page.dart';
+import '../../features/orders/presentation/pages/order_tracking_page.dart';
+import '../../features/orders/presentation/pages/orders_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/search/presentation/pages/image_search_page.dart';
 import '../../features/search/presentation/pages/search_page.dart';
@@ -249,6 +252,26 @@ final router = GoRouter(
               path: RouteNames.kProfilePage,
               name: 'profile',
               builder: (context, state) => const ProfilePage(),
+            ),
+            GoRoute(
+              path: RouteNames.kOrdersPage,
+              name: 'orders',
+              builder: (context, state) => const OrdersPage(),
+              routes: [
+                GoRoute(
+                  path: 'history',
+                  name: 'orders-history',
+                  builder: (context, state) => const OrderHistoryPage(),
+                ),
+                GoRoute(
+                  path: ':id/tracking',
+                  name: 'order-tracking',
+                  builder: (context, state) {
+                    final id = state.pathParameters['id'] ?? '';
+                    return OrderTrackingPage(orderId: id);
+                  },
+                ),
+              ],
             ),
           ],
         ),
