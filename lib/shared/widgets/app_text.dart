@@ -108,6 +108,58 @@ class AppText extends StatelessWidget {
     );
   }
 
+  /// Card Titles (Figma 16px Raleway bold)
+  factory AppText.cardTitle(
+    String text, {
+    Key? key,
+    TextStyle? style,
+    TextAlign? textAlign,
+    TextOverflow? overflow,
+    int? maxLines,
+    Color? color,
+    bool? softWrap,
+  }) {
+    var effectiveStyle = AppTypography.cardTitle;
+    if (color != null) effectiveStyle = effectiveStyle.copyWith(color: color);
+    if (style != null) effectiveStyle = effectiveStyle.merge(style);
+
+    return AppText(
+      text,
+      key: key,
+      style: effectiveStyle,
+      textAlign: textAlign,
+      overflow: overflow,
+      maxLines: maxLines,
+      softWrap: softWrap,
+    );
+  }
+
+  /// Card Descriptions (Figma 12px Nunito Sans regular)
+  factory AppText.cardDescription(
+    String text, {
+    Key? key,
+    TextStyle? style,
+    TextAlign? textAlign,
+    TextOverflow? overflow,
+    int? maxLines,
+    Color? color,
+    bool? softWrap,
+  }) {
+    var effectiveStyle = AppTypography.cardDescription;
+    if (color != null) effectiveStyle = effectiveStyle.copyWith(color: color);
+    if (style != null) effectiveStyle = effectiveStyle.merge(style);
+
+    return AppText(
+      text,
+      key: key,
+      style: effectiveStyle,
+      textAlign: textAlign,
+      overflow: overflow,
+      maxLines: maxLines,
+      softWrap: softWrap,
+    );
+  }
+
   /// Primary body text (16sp normal)
   factory AppText.body(
     String text, {

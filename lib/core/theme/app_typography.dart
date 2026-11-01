@@ -4,26 +4,50 @@ import 'app_colors.dart';
 
 class AppTypography {
   static TextStyle get h1 => TextStyle(
+        fontFamily: 'Raleway',
         fontSize: 28.sp,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w700,
         color: AppColors.textPrimary,
         height: 1.25,
         letterSpacing: -0.28,
       );
 
   static TextStyle get h2 => TextStyle(
+        fontFamily: 'Raleway',
         fontSize: 24.sp,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w700,
         color: AppColors.textPrimary,
-        height: 1.5,
+        height: 1.2,
         letterSpacing: -0.28,
       );
 
   static TextStyle get h3 => TextStyle(
+        fontFamily: 'Raleway',
         fontSize: 16.sp,
         fontWeight: FontWeight.bold,
         color: AppColors.textPrimary,
-        letterSpacing: -0.2,
+        height: 19 / 16,
+        letterSpacing: -0.15,
+      );
+
+  /// Card Title (Figma: Raleway, 700, 16px, line-height: 19px, letter-spacing: -0.15px)
+  static TextStyle get cardTitle => TextStyle(
+        fontFamily: 'Raleway',
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w700,
+        color: AppColors.textPrimary,
+        height: 19 / 16,
+        letterSpacing: -0.15,
+      );
+
+  /// Card Description (Figma: Nunito Sans, 400, 12px, line-height: 18px, letter-spacing: 0px)
+  static TextStyle get cardDescription => TextStyle(
+        fontFamily: 'Nunito Sans',
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+        height: 18 / 12,
+        letterSpacing: 0,
       );
 
   static TextStyle get body => TextStyle(

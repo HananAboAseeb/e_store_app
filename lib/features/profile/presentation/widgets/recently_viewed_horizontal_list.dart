@@ -22,17 +22,8 @@ class RecentlyViewedHorizontalList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText.h2(
-          'Recently viewed',
-          style: TextStyle(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.bold,
-            color: AppColors.textPrimary,
-            letterSpacing: -0.28,
-            height: 1.5,
-          ),
-        ),
-        SizedBox(height: AppSpacing.sm),
+        AppText.h2('Recently viewed'),
+        SizedBox(height: 6.h),
         SizedBox(
           height: 72.w,
           child: ListView.separated(
@@ -49,16 +40,15 @@ class RecentlyViewedHorizontalList extends StatelessWidget {
                 child: Container(
                   width: 72.w,
                   height: 72.w,
-                  padding: EdgeInsets.all(8.r),
                   decoration: BoxDecoration(
                     color: AppColors.surfaceCardImage,
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.r),
+                    borderRadius: BorderRadius.circular(16.r),
                     child: Image.asset(
                       item.product.imageUrl,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) => Icon(
                         Icons.image_outlined,
                         color: AppColors.gray400,

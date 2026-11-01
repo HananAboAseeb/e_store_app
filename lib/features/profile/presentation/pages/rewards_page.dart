@@ -116,13 +116,13 @@ class RewardsPage extends StatelessWidget {
     }
 
     return GridView.builder(
-      padding: EdgeInsets.only(top: 8.h, bottom: 24.h),
+      padding: EdgeInsets.only(top: 4.h, bottom: 16.h),
       itemCount: state.rewards.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 16.w,
-        mainAxisSpacing: 16.h,
-        childAspectRatio: 0.67,
+        mainAxisSpacing: 6.h,
+        childAspectRatio: 0.80,
       ),
       itemBuilder: (context, index) {
         final reward = state.rewards[index];

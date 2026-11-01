@@ -142,10 +142,11 @@ class VoucherCard extends StatelessWidget {
 
     if (iconType == 'bag') {
       return Image.asset(
-        'assets/images/icons/Bag 2.png',
+        'assets/images/ShopX_logo.png',
         width: 24.w,
         height: 24.w,
         color: AppColors.primary400,
+        fit: BoxFit.contain,
         errorBuilder: (_, __, ___) => Icon(
           Icons.shopping_bag,
           color: AppColors.primary400,

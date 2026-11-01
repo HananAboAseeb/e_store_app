@@ -27,17 +27,8 @@ class MyOrdersTabs extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText.h2(
-          'My Orders',
-          style: TextStyle(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.bold,
-            color: AppColors.textPrimary,
-            letterSpacing: -0.28,
-            height: 1.5,
-          ),
-        ),
-        SizedBox(height: AppSpacing.sm),
+        AppText.h2('My Orders'),
+        SizedBox(height: 6.h),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           clipBehavior: Clip.none,

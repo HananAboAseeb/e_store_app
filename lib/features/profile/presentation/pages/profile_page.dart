@@ -79,16 +79,8 @@ class ProfilePage extends StatelessWidget {
                       ),
                       SizedBox(height: 20.h),
 
-                      // Greeting
-                      AppText.h1(
-                        state.user.greeting,
-                        style: TextStyle(
-                          fontSize: 28.sp,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textPrimary,
-                          letterSpacing: -0.28,
-                        ),
-                      ),
+                      // Greeting (Figma: Raleway, 700, 28px, letter-spacing: -0.28px)
+                      AppText.h1(state.user.greeting),
                       SizedBox(height: 16.h),
 
                       // Announcement Banner (Screens 62, 81, 85 - 340x74px)

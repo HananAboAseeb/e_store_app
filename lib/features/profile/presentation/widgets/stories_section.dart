@@ -21,17 +21,8 @@ class StoriesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText.h2(
-          'Stories',
-          style: TextStyle(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.bold,
-            color: AppColors.textPrimary,
-            letterSpacing: -0.28,
-            height: 1.5,
-          ),
-        ),
-        SizedBox(height: AppSpacing.sm),
+        AppText.h2('Stories'),
+        SizedBox(height: 6.h),
         SizedBox(
           height: 155.h,
           child: ListView.separated(
