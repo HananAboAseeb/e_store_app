@@ -75,4 +75,3 @@ class _VerifiedCheckPainter extends CustomPainter {
       oldDelegate.backgroundColor != backgroundColor ||
       oldDelegate.checkColor != checkColor;
 }
-

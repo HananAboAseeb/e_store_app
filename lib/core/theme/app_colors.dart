@@ -48,6 +48,10 @@ class AppColors {
   static const Color surface = Color(0xFFFFFFFF);
   static const Color card = Color(0xFFFFFFFF);
 
+  /// Grey surface fill for Announcement card, Month Selector pill, and surface containers (Figma #F2F2F2)
+  static const Color surfaceAnnouncement = Color(0xFFF2F2F2);
+  static const Color surfaceContainer = Color(0xFFF2F2F2);
+
   /// Product image card background (Figma ShopX)
   static const Color surfaceCardImage = Color(0xFFF5F5F5);
 
@@ -150,4 +154,40 @@ class AppColors {
 
   /// Modal close button icon: #000000 with 50% opacity (Screen 58, 61)
   static const Color closeButtonIcon = Color(0x7F000000);
+
+  // ─────────────────────────────────────────────
+  // Profile, Activity & Rewards Colors (Screens 62, 64, 81–85)
+  // ─────────────────────────────────────────────
+  /// Soft pink background for voucher expiring announcement (Screen 85)
+  static const Color rewardBackground = Color(0xFFFDECEE);
+
+  /// Red border and alert text for expiring vouchers (Screen 83)
+  static const Color voucherWarning = Color(0xFFFF3B30);
+
+  /// Soft pink background fill for expiring voucher ticket (Screen 83)
+  static const Color voucherWarningBg = Color(0xFFFFF0F2);
+
+  /// Coral red text for voucher "Valid Until" date (Screen 82, 83)
+  static const Color voucherValidDate = Color(0xFFFF6060);
+
+  /// Blue segment in My Activity donut chart (Screen 64 - Clothing 50.1%)
+  static const Color chartBlue = Color(0xFF004BFE);
+
+  /// Green segment in My Activity donut chart (Screen 64 - Lingerie 25.2%)
+  static const Color chartGreen = Color(0xFF70B92B);
+
+  /// Orange segment in My Activity donut chart (Screen 64 - Shoes 12.9%)
+  static const Color chartOrange = Color(0xFFF48A25);
+
+  /// Red/Pink segment in My Activity donut chart (Screen 64 - Bags 11.8%)
+  static const Color chartRed = Color(0xFFE60049);
+
+  /// Red badge background for "Live" stories indicator (Screen 62, 81, 85)
+  static const Color storyLiveRed = Color(0xFFFF1744);
+
+  /// Primary blue for reward progress icons and badges (Screen 84)
+  static const Color rewardIconBlue = Color(0xFF004BFE);
+
+  /// Light gray fill for inactive progress tab pill (Screen 82, 84)
+  static const Color tabInactiveBg = Color(0xFFE8ECEF);
 }

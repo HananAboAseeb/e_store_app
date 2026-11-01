@@ -4,21 +4,62 @@ import 'app_colors.dart';
 
 class AppTypography {
   static TextStyle get h1 => TextStyle(
+        fontFamily: 'Raleway',
         fontSize: 28.sp,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w700,
         color: AppColors.textPrimary,
+        height: 1.25,
+        letterSpacing: -0.28,
       );
 
   static TextStyle get h2 => TextStyle(
-        fontSize: 22.sp,
-        fontWeight: FontWeight.w600,
+        fontFamily: 'Raleway',
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w700,
         color: AppColors.textPrimary,
+        height: 1.2,
+        letterSpacing: -0.28,
+      );
+
+  static TextStyle get h3 => TextStyle(
+        fontFamily: 'Raleway',
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textPrimary,
+        height: 19 / 16,
+        letterSpacing: -0.15,
+      );
+
+  /// Card Title (Figma: Raleway, 700, 16px, line-height: 19px, letter-spacing: -0.15px)
+  static TextStyle get cardTitle => TextStyle(
+        fontFamily: 'Raleway',
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w700,
+        color: AppColors.textPrimary,
+        height: 19 / 16,
+        letterSpacing: -0.15,
+      );
+
+  /// Card Description (Figma: Nunito Sans, 400, 12px, line-height: 18px, letter-spacing: 0px)
+  static TextStyle get cardDescription => TextStyle(
+        fontFamily: 'Nunito Sans',
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+        height: 18 / 12,
+        letterSpacing: 0,
       );
 
   static TextStyle get body => TextStyle(
         fontSize: 16.sp,
         fontWeight: FontWeight.normal,
         color: AppColors.textPrimary,
+      );
+
+  static TextStyle get bodySecondary => TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.normal,
+        color: AppColors.textSecondary,
       );
 
   static TextStyle get bodySmall => TextStyle(
@@ -31,6 +72,12 @@ class AppTypography {
         fontSize: 12.sp,
         fontWeight: FontWeight.w500,
         color: AppColors.textSecondary,
+      );
+
+  static TextStyle get price => TextStyle(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textPrimary,
       );
 
   static TextStyle get buttonText => TextStyle(

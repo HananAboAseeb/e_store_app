@@ -10,6 +10,7 @@ class PrimaryButton extends StatelessWidget {
   final double? width;
   final double? height;
   final TextStyle? textStyle;
+  final BorderRadiusGeometry? borderRadius;
 
   const PrimaryButton({
     super.key,
@@ -20,11 +21,17 @@ class PrimaryButton extends StatelessWidget {
     this.width,
     this.height,
     this.textStyle,
+    this.borderRadius,
   });
 
   @override
   Widget build(BuildContext context) {
     final bool effectiveDisabled = isDisabled || isLoading || onPressed == null;
+
+    final shape = RoundedRectangleBorder(
+      borderRadius:
+          borderRadius ?? BorderRadius.circular(AppRadius.buttonRadius.r),
+    );
 
     return SizedBox(
       width: width ?? double.infinity,
@@ -35,9 +42,7 @@ class PrimaryButton extends StatelessWidget {
           backgroundColor: AppColors.primary400,
           disabledBackgroundColor: AppColors.primary400.withOpacity(0.5),
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.buttonRadius.r),
-          ),
+          shape: shape,
           padding: EdgeInsets.symmetric(horizontal: 16.w),
         ),
         child: isLoading

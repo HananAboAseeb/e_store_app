@@ -3,28 +3,9 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import 'app_fonts.dart';
 
-/// Miscellaneous component themes: Card, Chip, Divider, FAB.
+/// Miscellaneous component themes: Chip, Divider, FAB.
 class AppComponentThemes {
   AppComponentThemes._();
-
-  // ─── Card ─────────────────────────────────────
-  static final CardTheme cardLight = CardTheme(
-    color: AppColors.card,
-    elevation: 0,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16),
-    ),
-    margin: EdgeInsets.zero,
-  );
-
-  static final CardTheme cardDark = CardTheme(
-    color: AppColors.darkCard,
-    elevation: 0,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16),
-    ),
-    margin: EdgeInsets.zero,
-  );
 
   // ─── Chip ─────────────────────────────────────
   static final ChipThemeData chipLight = ChipThemeData(

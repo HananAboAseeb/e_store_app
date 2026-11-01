@@ -24,7 +24,9 @@ import '../../features/product/presentation/pages/reviews_page.dart';
 import '../../features/orders/presentation/pages/order_history_page.dart';
 import '../../features/orders/presentation/pages/order_tracking_page.dart';
 import '../../features/orders/presentation/pages/orders_page.dart';
+import '../../features/profile/presentation/pages/my_activity_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/profile/presentation/pages/rewards_page.dart';
 import '../../features/search/presentation/pages/image_search_page.dart';
 import '../../features/search/presentation/pages/search_page.dart';
 import '../../features/search/presentation/pages/search_results_page.dart';
@@ -252,6 +254,18 @@ final router = GoRouter(
               path: RouteNames.kProfilePage,
               name: 'profile',
               builder: (context, state) => const ProfilePage(),
+              routes: [
+                GoRoute(
+                  path: 'my-activity',
+                  name: 'my-activity',
+                  builder: (context, state) => const MyActivityPage(),
+                ),
+                GoRoute(
+                  path: 'rewards',
+                  name: 'rewards',
+                  builder: (context, state) => const RewardsPage(),
+                ),
+              ],
             ),
             GoRoute(
               path: RouteNames.kOrdersPage,
