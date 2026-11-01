@@ -7,18 +7,35 @@ class AppTypography {
         fontSize: 28.sp,
         fontWeight: FontWeight.bold,
         color: AppColors.textPrimary,
+        height: 1.25,
+        letterSpacing: -0.28,
       );
 
   static TextStyle get h2 => TextStyle(
-        fontSize: 22.sp,
-        fontWeight: FontWeight.w600,
+        fontSize: 24.sp,
+        fontWeight: FontWeight.bold,
         color: AppColors.textPrimary,
+        height: 1.5,
+        letterSpacing: -0.28,
+      );
+
+  static TextStyle get h3 => TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textPrimary,
+        letterSpacing: -0.2,
       );
 
   static TextStyle get body => TextStyle(
         fontSize: 16.sp,
         fontWeight: FontWeight.normal,
         color: AppColors.textPrimary,
+      );
+
+  static TextStyle get bodySecondary => TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.normal,
+        color: AppColors.textSecondary,
       );
 
   static TextStyle get bodySmall => TextStyle(
@@ -31,6 +48,12 @@ class AppTypography {
         fontSize: 12.sp,
         fontWeight: FontWeight.w500,
         color: AppColors.textSecondary,
+      );
+
+  static TextStyle get price => TextStyle(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textPrimary,
       );
 
   static TextStyle get buttonText => TextStyle(

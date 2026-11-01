@@ -6,6 +6,8 @@ class RouteNames {
   static const kCatalogPage = '/catalog';
   static const kCartPage = '/cart';
   static const kProfilePage = '/profile';
+  static const kMyActivityPage = '/profile/my-activity';
+  static const kRewardsPage = '/profile/rewards';
   static const kFlashSalePage = '/flash-sale';
   static const kCategoriesPage = '/categories';
   static const kCategoryProductsPage = '/category-products';

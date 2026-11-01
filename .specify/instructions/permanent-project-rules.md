@@ -13,5 +13,5 @@ These 12 rules apply to every feature in this repository without exception:
 9. **Loading Experience**: Shimmer placeholders for all loading states.
 10. **Visual Perfection**: Pixel-perfect match with the Figma screenshots (colors, spacing, radius, typography).
 11. **STRICT COLOR & TOKEN ENFORCEMENT**: All colors, spacing, and typography must reference tokens from `AppColors`, `AppSpacing`, and `AppTypography`. No hardcoded values are allowed. If a token is missing, add it to the tokens file first.
-12. **FVM-ONLY CLI COMMANDS**: ALWAYS use `fvm flutter` (NOT bare `flutter`) for ALL Flutter CLI commands (`analyze`, `test`, `run`, `build`, `pub get`, etc.). The project uses FVM with Flutter 3.44.6. The global Flutter (3.24.5) has incompatible API differences (e.g., `CardTheme` vs `CardThemeData`). Using bare `flutter` causes type mismatch errors and reverts fixes.
+12. **CLI & THEME ENVIRONMENT COMPATIBILITY**: The project is compatible across both local Flutter (3.24.5) and newer Flutter toolchains. The theme in `app_theme.dart` and `component_themes.dart` is designed to be version-agnostic (avoiding version-incompatible APIs such as `CardTheme` vs `CardThemeData`). Do NOT re-introduce `CardThemeData` or `CardTheme` into `ThemeData` or `AppComponentThemes` to preserve seamless compilation and runtime execution on the user's Flutter environment.
 
