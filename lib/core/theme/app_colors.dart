@@ -190,4 +190,55 @@ class AppColors {
 
   /// Light gray fill for inactive progress tab pill (Screen 82, 84)
   static const Color tabInactiveBg = Color(0xFFE8ECEF);
+
+  // ─────────────────────────────────────────────
+  // Chat Feature Colors (Screens 68–80)
+  // ─────────────────────────────────────────────
+  /// Gradient top for Chat background (Screens 68–79)
+  static const Color chatBgTop = Color(0xFFE8F1FD);
+
+  /// Gradient middle for Chat background (Screens 68–79)
+  static const Color chatBgMiddle = Color(0xFFFFFFFF);
+
+  /// Gradient bottom for Chat background (Screens 68–79)
+  static const Color chatBgBottom = Color(0xFFE8F1FD);
+
+  /// Soft blue background for bot message bubbles & appbar avatar (#004CFF26)
+  static const Color chatBubbleBg = Color(0x26004CFF);
+
+  /// Background for bot message bubbles (Screens 68–71) - #004CFF26
+  static const Color botBubbleBg = chatBubbleBg;
+
+  /// Primary blue for user message bubbles (Screens 71–79)
+  static const Color userBubbleBg = primary400;
+
+  /// Primary blue for agent message bubbles (Screens 73–79)
+  static const Color agentBubbleBg = primary400;
+
+  /// Active background for selected issue chip (Screens 68, 69)
+  static const Color chipActiveBg = primary400;
+
+  /// Border color for inactive issue chips (Screens 68, 69)
+  static const Color chipInactiveBorder = primary400;
+
+  /// Background for inactive issue chips (Screens 68, 69)
+  static const Color chipInactiveBg = Color(0xFFFFFFFF);
+
+  /// Grey color for 3-dot typing and connecting indicators (Screens 71, 72, 73)
+  static const Color typingDot = Color(0xFF8E8E93);
+
+  /// Gold color for selected rating stars in customer care review (Screen 80)
+  static const Color chatReviewStar = Color(0xFFFFAE00);
+
+  /// Soft light blue tint for comment input field in review modal (Screen 80)
+  static const Color chatReviewFieldBg = Color(0xFFF0F5FF);
+
+  /// Subtle light blue border for comment input field in review modal (Screen 80)
+  static const Color chatReviewFieldBorder = Color(0xFFD6E4FF);
+
+  /// Light blue background for selected order summary cards in chat (Screens 70–79)
+  static const Color chatOrderCardBg = Color(0xFFDCEBFE);
+
+  /// Soft light blue background for count badge in chat order card
+  static const Color chatOrderPillBg = Color(0xFFD4E2F6);
 }

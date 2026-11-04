@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../config/routing/route_names.dart';
 
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -43,10 +46,11 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
         body: Column(
           children: [
             // Top Header (Title "History", Avatar, 3 action icons matching Figma Screen 65)
-            const OrdersHeader(
+            OrdersHeader(
               title: 'History',
               subtitle: '',
               showBackButton: false,
+              onMessageTap: () => context.push(RouteNames.kChatPage),
             ),
 
             // Orders List

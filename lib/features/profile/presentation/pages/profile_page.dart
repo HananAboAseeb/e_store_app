@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../config/routing/route_names.dart';
 
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -54,6 +57,8 @@ class ProfilePage extends StatelessWidget {
                       // Header with scan to rewards & menu to cycle announcement
                       ProfileHeader(
                         avatarUrl: state.user.avatarUrl,
+                        onSettingsPressed: () =>
+                            context.push(RouteNames.kChatPage),
                         onMenuPressed: () {
                           final cubit = context.read<ProfileCubit>();
                           cubit.cycleAnnouncementType();

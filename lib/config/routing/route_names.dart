@@ -23,6 +23,7 @@ class RouteNames {
   static const kOrdersPage = '/orders';
   static const kOrderHistoryPage = '/orders/history';
   static const kOrderTrackingPage = '/orders/:id/tracking';
+  static const kChatPage = '/chat';
 
   // Auth Routes
   static const kStartPage = '/start';

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../config/routing/route_names.dart';
 
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -65,6 +68,7 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
               title: 'To Receive',
               subtitle: 'My Orders',
               onBackTap: () => Navigator.of(context).maybePop(),
+              onMessageTap: () => context.push(RouteNames.kChatPage),
             ),
 
             Expanded(
@@ -109,7 +113,11 @@ class _OrderTrackingPageState extends State<OrderTrackingPage> {
                           OrderTrackingTimeline(
                             steps: steps,
                             onLearnMoreTap: () {
-                              DeliveryFailedSheet.show(context);
+                              DeliveryFailedSheet.show(
+                                context,
+                                onChatNowTap: () =>
+                                    context.push(RouteNames.kChatPage),
+                              );
                             },
                           ),
 

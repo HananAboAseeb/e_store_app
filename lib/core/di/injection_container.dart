@@ -6,6 +6,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 
 import '../../features/auth/auth_injection.dart';
 import '../../features/cart/cart_injection.dart';
+import '../../features/chat/chat_injection.dart';
 import '../../features/categories/categories_injection.dart';
 import '../../features/checkout/checkout_injection.dart';
 import '../../features/payment/payment_injection.dart';
@@ -72,4 +73,5 @@ Future<void> initCore() async {
   initPaymentInjection();
   initWishlist();
   initOrdersInjection();
+  initChatInjection();
 }

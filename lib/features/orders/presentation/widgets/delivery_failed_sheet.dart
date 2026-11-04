@@ -1,6 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../config/routing/route_names.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -96,12 +99,7 @@ class DeliveryFailedSheet extends StatelessWidget {
                 if (onChatNowTap != null) {
                   onChatNowTap!();
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Connecting to Customer Care...'),
-                      backgroundColor: AppColors.primary,
-                    ),
-                  );
+                  context.push(RouteNames.kChatPage);
                 }
               },
               style: ElevatedButton.styleFrom(

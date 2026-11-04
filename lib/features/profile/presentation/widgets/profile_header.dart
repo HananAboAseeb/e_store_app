@@ -128,9 +128,7 @@ class ProfileHeader extends StatelessWidget {
           flutterIcon: Icons.settings_outlined,
           onTap: onSettingsPressed ??
               () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Settings opened')),
-                );
+                context.push(RouteNames.kChatPage);
               },
         ),
       ],

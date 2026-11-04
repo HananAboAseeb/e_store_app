@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../config/routing/route_names.dart';
+
 import '../../../../core/di/injection_container.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/no_data_found_widget.dart';
@@ -79,6 +81,7 @@ class _OrdersPageState extends State<OrdersPage> {
             OrdersHeader(
               title: 'To Recieve',
               subtitle: 'My Orders',
+              onMessageTap: () => context.push(RouteNames.kChatPage),
               onFilterTap: () {
                 context.push('/orders/history');
               },

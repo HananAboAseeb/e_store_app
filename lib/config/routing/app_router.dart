@@ -11,6 +11,7 @@ import '../../features/auth/presentation/models/verification_mode.dart';
 import '../../features/auth/presentation/pages/verification_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
+import '../../features/chat/presentation/pages/chat_page.dart';
 import '../../features/categories/presentation/pages/categories_page.dart';
 import '../../features/categories/presentation/pages/just_for_you_page.dart';
 import '../../features/checkout/presentation/pages/checkout_page.dart';
@@ -180,7 +181,11 @@ final router = GoRouter(
         return PaymentPage(amount: amount);
       },
     ),
-
+    GoRoute(
+      path: RouteNames.kChatPage,
+      name: 'chat',
+      builder: (context, state) => const ChatPage(),
+    ),
     // ── Main App Shell Routes (5-tab navigation) ────────────────────────────────
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
