@@ -17,6 +17,7 @@ import '../../features/home/home_injection.dart';
 import '../../features/product/product_injection.dart';
 import '../../features/profile/profile_injection.dart';
 import '../../features/search/search_injection.dart';
+import '../../features/settings/settings_injection.dart';
 import '../../features/shop/shop_injection.dart';
 import '../../features/theme/theme_injection.dart';
 import '../../features/wishlist/wishlist_injection.dart';
@@ -74,4 +75,5 @@ Future<void> initCore() async {
   initWishlist();
   initOrdersInjection();
   initChatInjection();
+  initSettingsInjection();
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../config/routing/route_names.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -136,7 +139,7 @@ class OrdersHeader extends StatelessWidget {
                 // 3. Settings icon
                 _buildActionIcon(
                   icon: Icons.settings_outlined,
-                  onTap: onSettingsTap,
+                  onTap: onSettingsTap ?? () => context.push(RouteNames.kSettingsPage),
                 ),
               ],
             ),

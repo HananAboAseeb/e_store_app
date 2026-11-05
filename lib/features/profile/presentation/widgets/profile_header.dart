@@ -128,7 +128,7 @@ class ProfileHeader extends StatelessWidget {
           flutterIcon: Icons.settings_outlined,
           onTap: onSettingsPressed ??
               () {
-                context.push(RouteNames.kChatPage);
+                context.push(RouteNames.kSettingsPage);
               },
         ),
       ],

@@ -31,6 +31,15 @@ import '../../features/profile/presentation/pages/rewards_page.dart';
 import '../../features/search/presentation/pages/image_search_page.dart';
 import '../../features/search/presentation/pages/search_page.dart';
 import '../../features/search/presentation/pages/search_results_page.dart';
+import '../../features/settings/presentation/pages/about_shopx_page.dart';
+import '../../features/settings/presentation/pages/country_selection_page.dart';
+import '../../features/settings/presentation/pages/currency_selection_page.dart';
+import '../../features/settings/presentation/pages/language_selection_page.dart';
+import '../../features/settings/presentation/pages/payment_settings_page.dart';
+import '../../features/settings/presentation/pages/settings_page.dart';
+import '../../features/settings/presentation/pages/shipping_address_page.dart';
+import '../../features/settings/presentation/pages/sizes_selection_page.dart';
+import '../../features/settings/presentation/pages/your_profile_page.dart';
 import '../../features/wishlist/presentation/pages/recently_viewed_page.dart';
 import '../../features/wishlist/presentation/pages/wishlist_page.dart';
 import '../../root.dart';
@@ -289,6 +298,53 @@ final router = GoRouter(
                     final id = state.pathParameters['id'] ?? '';
                     return OrderTrackingPage(orderId: id);
                   },
+                ),
+              ],
+            ),
+            GoRoute(
+              path: RouteNames.kSettingsPage,
+              name: 'settings',
+              builder: (context, state) => const SettingsPage(),
+              routes: [
+                GoRoute(
+                  path: 'profile',
+                  name: 'settings-profile',
+                  builder: (context, state) => const YourProfilePage(),
+                ),
+                GoRoute(
+                  path: 'payment',
+                  name: 'settings-payment',
+                  builder: (context, state) => const PaymentSettingsPage(),
+                ),
+                GoRoute(
+                  path: 'shipping',
+                  name: 'settings-shipping',
+                  builder: (context, state) => const ShippingAddressPage(),
+                ),
+                GoRoute(
+                  path: 'country',
+                  name: 'settings-country',
+                  builder: (context, state) => const CountrySelectionPage(),
+                ),
+                GoRoute(
+                  path: 'language',
+                  name: 'settings-language',
+                  builder: (context, state) => const LanguageSelectionPage(),
+                ),
+                GoRoute(
+                  path: 'currency',
+                  name: 'settings-currency',
+                  builder: (context, state) => const CurrencySelectionPage(),
+                ),
+                GoRoute(
+                  path: 'sizes',
+                  name: 'settings-sizes',
+                  builder: (context, state) => const SizesSelectionPage(),
+                ),
+                GoRoute(
+                  path: 'about',
+                  name: 'settings-about',
+                  builder: (context, state) => const AboutShopXPage(),
                 ),
               ],
             ),
