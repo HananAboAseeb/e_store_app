@@ -10,12 +10,16 @@ class PaymentCardItem extends StatelessWidget {
   final PaymentMethodEntity card;
   final VoidCallback onTap;
   final VoidCallback? onSettingsTap;
+  final double? width;
+  final double? height;
 
   const PaymentCardItem({
     super.key,
     required this.card,
     required this.onTap,
     this.onSettingsTap,
+    this.width,
+    this.height,
   });
 
   @override
@@ -27,8 +31,8 @@ class PaymentCardItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 230.w,
-        height: 145.h,
+        width: width ?? 230.w,
+        height: height ?? 145.h,
         padding: EdgeInsets.all(AppSpacing.sm),
         decoration: BoxDecoration(
           color: backgroundColor,

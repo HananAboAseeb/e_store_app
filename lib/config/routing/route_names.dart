@@ -25,6 +25,17 @@ class RouteNames {
   static const kOrderTrackingPage = '/orders/:id/tracking';
   static const kChatPage = '/chat';
 
+  // Settings Routes
+  static const kSettingsPage = '/settings';
+  static const kSettingsProfilePage = '/settings/profile';
+  static const kSettingsPaymentPage = '/settings/payment';
+  static const kSettingsShippingPage = '/settings/shipping';
+  static const kSettingsCountryPage = '/settings/country';
+  static const kSettingsLanguagePage = '/settings/language';
+  static const kSettingsCurrencyPage = '/settings/currency';
+  static const kSettingsSizesPage = '/settings/sizes';
+  static const kSettingsAboutPage = '/settings/about';
+
   // Auth Routes
   static const kStartPage = '/start';
   static const kLoginPage = '/login';

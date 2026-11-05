@@ -58,7 +58,7 @@ class ProfilePage extends StatelessWidget {
                       ProfileHeader(
                         avatarUrl: state.user.avatarUrl,
                         onSettingsPressed: () =>
-                            context.push(RouteNames.kChatPage),
+                            context.push(RouteNames.kSettingsPage),
                         onMenuPressed: () {
                           final cubit = context.read<ProfileCubit>();
                           cubit.cycleAnnouncementType();

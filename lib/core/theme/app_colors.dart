@@ -241,4 +241,46 @@ class AppColors {
 
   /// Soft light blue background for count badge in chat order card
   static const Color chatOrderPillBg = Color(0xFFD4E2F6);
+
+  // ─────────────────────────────────────────────
+  // Settings Feature Colors (Screens 86–100)
+  // ─────────────────────────────────────────────
+  /// Soft pink background for Delete My Account button (Screen 87)
+  static const Color deleteAccountBg = Color(0xFFFFECEB);
+
+  /// Circular light grey background for Delete warning dialog icon badge (Screen 99)
+  static const Color deleteWarningBg = Color(0xFFEAEAEA);
+
+  /// Coral red shopping bag icon color for debit transactions in Payment History (Screen 92)
+  static const Color historyDebitIcon = Color(0xFFFF5B60);
+
+  /// Soft pink background fill for debit transaction card in Payment History (Screen 92)
+  static const Color historyDebitCardBg = Color(0xFFFFF0F2);
+
+  /// Primary blue shopping bag icon color for credit transactions in Payment History (Screen 92)
+  static const Color historyCreditIcon = Color(0xFF004BFE);
+
+  /// Soft blue radial glow color at top of About ShopX screen (Screen 100)
+  static const Color aboutGlow = Color(0xFFE1EDFF);
+
+  /// Active selection background for language, currency, sizes, and country tiles
+  static const Color activeSelectionBg = Color(0xFFE6EEFF);
+
+  /// Divider color between settings menu items (Figma #0000001A)
+  static const Color settingsDivider = Color(0x1A000000);
+
+  /// Soft blue tint for card input fields and profile fields (Figma #004CFF1A)
+  static const Color cardFieldBg = Color(0x1A004CFF);
+
+  /// Grey color for "Required" placeholder text in card fields (Figma #969CA7)
+  static const Color cardFieldRequired = Color(0xFF969CA7);
+
+  /// Background for Edit Information button in profile (Figma #00000026)
+  static const Color profileEditButtonBg = Color(0x26000000);
+
+  /// Selected preference option tile background (Figma #004CFF26)
+  static const Color selectedOptionBg = Color(0x26004CFF);
+
+  /// Unselected preference option tile background (Figma #0000001A)
+  static const Color unselectedOptionBg = Color(0x1A000000);
 }
