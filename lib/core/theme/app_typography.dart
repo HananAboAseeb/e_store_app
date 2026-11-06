@@ -7,8 +7,8 @@ class AppTypography {
         fontFamily: 'Raleway',
         fontSize: 28.sp,
         fontWeight: FontWeight.w700,
-        color: AppColors.textPrimary,
-        height: 1.25,
+        color: const Color(0xFF000000),
+        height: 36 / 28,
         letterSpacing: -0.28,
       );
 
@@ -16,30 +16,27 @@ class AppTypography {
         fontFamily: 'Raleway',
         fontSize: 24.sp,
         fontWeight: FontWeight.w700,
-        color: AppColors.textPrimary,
-        height: 1.2,
+        color: const Color(0xFF000000),
+        height: 36 / 24,
         letterSpacing: -0.28,
       );
-
-  /// Card Sheet Modal Title (Figma Screens 90, 91: Raleway, 700, 24px, line-height: 36px, letter-spacing: -0.28px)
-  static TextStyle get sheetTitle => h2.copyWith(height: 36 / 24);
 
   /// Form Field Label (Figma Screens 90, 91: Raleway, 600, 16px, line-height: 36px, letter-spacing: -0.28px)
   static TextStyle get fieldLabel => TextStyle(
         fontFamily: 'Raleway',
         fontSize: 16.sp,
-        fontWeight: FontWeight.w600,
-        color: AppColors.textPrimary,
+        fontWeight: FontWeight.w800,
+        color: const Color(0xFF000000),
         height: 36 / 16,
         letterSpacing: -0.28,
       );
 
   static TextStyle get h3 => TextStyle(
         fontFamily: 'Raleway',
-        fontSize: 16.sp,
-        fontWeight: FontWeight.bold,
-        color: AppColors.textPrimary,
-        height: 19 / 16,
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w900,
+        color: const Color(0xFF000000),
+        height: 22 / 18,
         letterSpacing: -0.15,
       );
 

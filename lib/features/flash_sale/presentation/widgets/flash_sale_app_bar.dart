@@ -1,3 +1,4 @@
+import '../../../../core/theme/app_typography.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -89,12 +90,7 @@ class _FlashSaleAppBarState extends State<FlashSaleAppBar> {
               // Title: Flash Sale
               Text(
                 'Flash Sale',
-                style: TextStyle(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w800,
-                  color: const Color(0xFF1A1A1A),
-                  letterSpacing: -0.5,
-                ),
+                style: AppTypography.h2,
               ),
               const Spacer(),
 

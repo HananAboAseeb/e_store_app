@@ -26,12 +26,7 @@ class HomeAppBar extends StatelessWidget {
             onTap: onTitleTap,
             child: Text(
               'Shop',
-              style: TextStyle(
-                fontSize: 28.sp,
-                fontWeight: FontWeight.w900,
-                color: const Color(0xFF000000),
-                letterSpacing: -0.5,
-              ),
+              style: AppTypography.h1,
             ),
           ),
 

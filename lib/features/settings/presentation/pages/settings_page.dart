@@ -71,11 +71,7 @@ class _SettingsView extends StatelessWidget {
                 SizedBox(height: 8.h),
                 AppText(
                   'Settings',
-                  style: AppTypography.h1.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 28.sp,
-                    color: AppColors.textPrimary,
-                  ),
+                  style: AppTypography.h1,
                 ),
                 SizedBox(height: 12.h),
 

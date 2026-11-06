@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../shared/widgets/app_text.dart';
 
@@ -22,12 +21,7 @@ class SettingsSectionHeader extends StatelessWidget {
       ),
       child: AppText(
         title,
-        style: AppTypography.h3.copyWith(
-          fontFamily: 'Raleway',
-          color: AppColors.textPrimary,
-          fontWeight: FontWeight.w700,
-          fontSize: 14.sp,
-        ),
+        style: AppTypography.h2,
       ),
     );
   }
