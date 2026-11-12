@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 
 class HomeSectionHeader extends StatelessWidget {
   final String title;
@@ -39,12 +40,7 @@ class HomeSectionHeader extends StatelessWidget {
                   child: Text(
                     title,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w900,
-                      color: const Color(0xFF000000),
-                      letterSpacing: -0.5,
-                    ),
+                    style: AppTypography.h2,
                   ),
                 ),
               ],

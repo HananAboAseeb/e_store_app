@@ -137,7 +137,7 @@ class _AddEditCardSheetState extends State<AddEditCardSheet> {
               children: [
                 AppText(
                   title,
-                  style: AppTypography.sheetTitle,
+                  style: AppTypography.h2,
                 ),
                 ModalCloseButton(
                   onTap: () => Navigator.of(context).pop(),

@@ -41,9 +41,9 @@ class SettingsMenuItem extends StatelessWidget {
                     title,
                     style: AppTypography.body.copyWith(
                       fontFamily: 'Raleway',
-                      color: titleColor ?? AppColors.textPrimary,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15.sp,
+                      color: titleColor ?? const Color(0xFF000000),
+                      fontWeight: FontWeight.w800,
+                      fontSize: 16.sp,
                     ),
                   ),
                 ),

@@ -106,11 +106,7 @@ class _ShippingAddressViewState extends State<_ShippingAddressView> {
                 children: [
                   AppText(
                     'Settings',
-                    style: AppTypography.h1.copyWith(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 28.sp,
-                      color: AppColors.textPrimary,
-                    ),
+                    style: AppTypography.h1,
                   ),
                   SizedBox(height: 4.h),
                   AppText(

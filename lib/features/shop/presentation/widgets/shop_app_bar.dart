@@ -1,3 +1,4 @@
+import '../../../../core/theme/app_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -35,13 +36,7 @@ class ShopAppBar extends StatelessWidget implements PreferredSizeWidget {
           // 1. "Shop" Title
           Text(
             'Shop',
-            style: TextStyle(
-              fontFamily: 'Raleway',
-              fontSize: 28.sp,
-              fontWeight: FontWeight.w700,
-              color: AppColors.textPrimary,
-              letterSpacing: -0.5,
-            ),
+            style: AppTypography.h1,
           ),
           SizedBox(width: 10.w),
 
